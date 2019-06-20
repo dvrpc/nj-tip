@@ -1,0 +1,142 @@
+.map {
+  width: 60%;
+  height: 100%;
+}
+.marker:hover {
+  cursor: pointer;
+}
+.mapboxgl-popup {
+  min-width: 100px;
+  max-width: 250px;
+  min-height: 100px;
+}
+.mapboxgl-popup:hover {
+  cursor: pointer;
+}
+.mapboxgl-popup-content {
+  background: #fff;
+  padding: 0;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  text-align: center;
+}
+.mapboxgl-popup-content h2 {
+  margin: 5% 5% 0;
+  border-bottom: 1px solid #ddd;
+}
+.mapboxgl-popup-content p {
+  padding: 5%;
+  font-weight: bold;
+}
+.dropdown-nav {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  width: calc(100% - 20px);
+  margin: 10px 10px 0 10px;
+  font-family: 'Open Sans', tahoma, Arial, Helvetica, sans-serif;
+}
+.btn {
+  user-select: none;
+  padding: 0.46875rem 1rem;
+  line-height: 1.5;
+  border-radius: 0.125rem;
+  cursor: pointer;
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1),
+    background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: box-shadow, transform;
+  background-color: white;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+.btn:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+.btn:after {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 0.255em;
+  vertical-align: 0.15em;
+  content: "";
+  border-top: 0.3em solid;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0;
+  border-left: 0.3em solid transparent;
+}
+.layer-menu, .legend-menu {
+  display: none;
+  border: 0;
+  opacity: 0;
+  transform: scale(0);
+  transform-origin: 0 0;
+  will-change: transform, opacity;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: absolute;
+  top: 100%;
+  z-index: 1;
+  min-width: 10rem;
+  max-width: 20rem;
+  margin: 0.125rem 0 0;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.125rem;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+.layer-menu.show{
+  display: block;
+  opacity: 1;
+  transform: scale(1);
+  left: 0;
+}
+.legend-menu.show{
+  display: block;
+  opacity: 1;
+  transform: scale(1);
+  right: 0;
+}
+.legend-links{
+  display: flex;
+  padding-inline-start: 0;
+  border-bottom: 2px solid #333;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #ddd;
+}
+.dropdown-item, .legendLink {
+  display: flex;
+  align-items: center;
+  min-height: 2.25rem;
+  padding: 0 .5rem;
+  overflow: hidden;
+  line-height: 1;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  color: inherit;
+  white-space: nowrap;
+  transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.dropdown-item:hover {
+  cursor: pointer;
+  background-color: #ddd;
+  color: #000;
+}
+.selected, .legendLink.active {
+  color: white;
+  background-color: #333;
+}
+.legend-content{
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
+/*just guessing here...*/
+ @media screen and (max-width: 880px) {
+  .map{
+    height: 50vh;
+    width: 100%;
+  }
+ }

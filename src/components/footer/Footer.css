@@ -1,0 +1,19 @@
+.footer {
+  color: white;
+  background: #333333;
+  width: 100%;
+  display: flex;
+  padding: 3%;
+  font-size: 1rem;
+}
+
+.footer a {
+  color: unset;
+}
+
+/*media queries*/
+ @media screen and (max-width: 880px) {
+  .footer{
+    font-size: 0.8rem;
+  }
+ }
