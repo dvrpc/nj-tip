@@ -3548,7 +3548,7 @@
       "type": "line",
       "source": "boundary",
       "source-layer": "municipalities",
-      "filter": ["all", ["==", "state", "PA"]],
+      "filter": ["all", ["==", "state", "NJ"]],
       "minzoom": 11,
       "maxzoom": 18,
       "layout": {
@@ -3573,7 +3573,7 @@
       "type": "line",
       "source": "boundary",
       "source-layer": "county",
-      "filter": ["all", ["==", "state", "PA"], ["==", "dvrpc", "Yes"]],
+      "filter": ["all", ["==", "state", "NJ"], ["==", "dvrpc", "Yes"]],
       "paint": {
         "line-color": "#9699A6",
         "line-width": {
