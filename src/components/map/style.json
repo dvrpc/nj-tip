@@ -88,9 +88,9 @@
       "url": "mapbox://mapbox.mapbox-terrain-v2,mapbox.mapbox-streets-v7",
       "type": "vector"
     },
-    "pa-tip": {
+    "nj-tip": {
       "type": "vector",
-      "url": "https://tiles.dvrpc.org/data/dvrpc-tip.json"
+      "url": "https://tiles.dvrpc.org/data/nj-tip.json"
     },
     "boundary": {
       "type": "vector",
@@ -3307,9 +3307,9 @@
       }
     },
     {
-      "id": "pa-tip-lines",
-      "source": "pa-tip",
-      "source-layer": "patip_line",
+      "id": "nj-tip-lines",
+      "source": "nj-tip",
+      "source-layer": "draft_njtip_line",
       "type": "line",
       "paint": {
         "line-width": [
@@ -4896,9 +4896,9 @@
       "source-layer": "country_label"
     },
     {
-      "id": "pa-tip-points",
-      "source": "pa-tip",
-      "source-layer": "patip_fy19",
+      "id": "nj-tip-points",
+      "source": "nj-tip",
+      "source-layer": "draft_njtip_point",
       "type": "circle",
       "paint": {
         "circle-radius": ["interpolate", ["linear"], ["zoom"], 7, 2, 12, 8],
