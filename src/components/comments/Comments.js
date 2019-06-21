@@ -2,7 +2,7 @@ import Inferno, { Component, linkEvent } from "inferno";
 import { connect } from "inferno-redux";
 
 import "./Comments.css";
-import { POSTComment } from "../../utils/POSTComment.js";
+import { POSTComment } from "./POSTComment.js";
 import { submitComment } from "../reducers/commentsReducer.js";
 
 class Comments extends Component {
