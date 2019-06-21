@@ -18,7 +18,7 @@ class ListItem extends Component {
   }
 
   componentWillMount() {
-    let category = this.props.data.DESCRIPTIO;
+    let category = this.props.data.TYPE_DESC;
 
     fetchSprite.then(response => {
       this.setState({
@@ -53,7 +53,7 @@ class ListItem extends Component {
           src="https://tiles.dvrpc.org/data/styles/dvrpc-pa-tip/sprite.png"
           className="list-category-thumbnail"
           style={imgStyle}
-          alt={`icon for ${project.DESCRIPTIO} projects`}
+          alt={`icon for ${project.TYPE_DESC} projects`}
         />
 
         <div className="list-text">
@@ -77,4 +77,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default withRouter(connect(null, mapDispatchToProps)(ListItem));
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(ListItem)
+);

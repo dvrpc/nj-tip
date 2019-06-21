@@ -62,7 +62,7 @@ const keywordRequest = keyword =>
           srOut: 4326,
           f: "geojson",
           outFields:
-            "OBJECTID,CTY,MPMS_ID,ROAD_NAME,DESCRIPTIO,LATITUDE,LONGITUDE",
+            "OBJECTID,CTY,MPMS_ID,ROAD_NAME,TYPE_DESC,LATITUDE,LONGITUDE",
           returnGeometry: false
         };
         //Encode the data
@@ -93,7 +93,7 @@ const keywordRequest = keyword =>
                 : {
                     OBJECTID: project.id + project.road_name,
                     CTY: project.county,
-                    DESCRIPTIO: project.category,
+                    TYPE_DESC: project.category,
                     MPMS_ID: project.id,
                     ROAD_NAME: project.road_name,
                     LATITUDE: 40.018,

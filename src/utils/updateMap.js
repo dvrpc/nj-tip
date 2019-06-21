@@ -7,7 +7,7 @@ export const updateBounds = mapReference => {
     features: []
   };
   let rendered = mapReference.map.queryRenderedFeatures({
-    layers: ["pa-tip-points", "pa-tip-lines"]
+    layers: ["nj-tip-points", "nj-tip-lines"]
   });
 
   rendered.forEach(item => {
@@ -17,19 +17,17 @@ export const updateBounds = mapReference => {
       renderedProjects.features.push({
         CTY: item.properties.CTY,
         MPMS_ID: item.properties.MPMS_ID,
-        DESCRIPTIO: item.properties.DESCRIPTIO,
+        TYPE_DESC: item.properties.TYPE_DESC,
         ROAD_NAME: item.properties.ROAD_NAME,
         LATITUDE:
-          item.layer.id === "pa-tip-points"
+          item.layer.id === "nj-tip-points"
             ? item.geometry.coordinates[1]
             : item.geometry.coordinates[0][1],
         LONGITUDE:
-          item.layer.id === "pa-tip-points"
+          item.layer.id === "nj-tip-points"
             ? item.geometry.coordinates[0]
             : item.geometry.coordinates[1][0],
-        mapbox_id: `${item.properties.MPMS_ID}_${
-          item._vectorTileFeature._geometry
-        }`
+        mapbox_id: `${item.properties.MPMS_ID}_${item._vectorTileFeature._geometry}`
       });
     }
   });
@@ -90,9 +88,7 @@ export const showPopup = (marker, map) => {
   tilePopup
     .setLngLat([details.LONGITUDE, details.LATITUDE])
     .setHTML(
-      `<h2>${details.MPMS_ID}</h2><p style="border-bottom: 8px solid #${
-        colors[details.DESCRIPTIO].forMap
-      };">${details.ROAD_NAME}</p>`
+      `<h2>${details.MPMS_ID}</h2><p style="border-bottom: 8px solid #${colors[details.TYPE_DESC].forMap};">${details.ROAD_NAME}</p>`
     )
     .addTo(map);
 

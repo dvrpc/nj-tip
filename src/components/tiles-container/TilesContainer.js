@@ -69,7 +69,7 @@ class TilesContainer extends Component {
     // determine whether to display all projects, or filtered projects
     if (this.state.filtered) {
       projects = projects.filter(
-        project => project.DESCRIPTIO === this.state.categoryToFilter
+        project => project.TYPE_DESC === this.state.categoryToFilter
       );
     }
 
@@ -162,4 +162,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TilesContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TilesContainer);

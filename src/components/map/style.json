@@ -3325,7 +3325,7 @@
         ],
         "line-color": [
           "match",
-          ["get", "DESCRIPTIO"],
+          ["get", "TYPE_DESC"],
           "Bicycle/Pedestrian Improvement",
           "#f26522",
           "Bridge Repair/Replacement",
@@ -4904,7 +4904,7 @@
         "circle-radius": ["interpolate", ["linear"], ["zoom"], 7, 2, 12, 8],
         "circle-color": [
           "match",
-          ["get", "DESCRIPTIO"],
+          ["get", "TYPE_DESC"],
           "Bicycle/Pedestrian Improvement",
           "#f26522",
           "Bridge Repair/Replacement",
