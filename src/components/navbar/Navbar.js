@@ -40,7 +40,7 @@ class Navbar extends Component {
             </a>
 
             <h2 id="draft-text">
-              <strong>FY2019 TIP for NJ</strong>
+              <strong>FY2020 TIP for NJ</strong>
             </h2>
           </div>
         </a>

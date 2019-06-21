@@ -318,7 +318,7 @@ class Expanded extends Component {
             <Comments
               colorScheme={colorScheme}
               projectId={details.id ? details.id : null}
-              title={"Submit a Public Comment for This Project"}
+              title={"Submit a Public Comment for this Project"}
             />
           </div>
         )))

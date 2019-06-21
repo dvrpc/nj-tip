@@ -117,11 +117,11 @@ class PrintPage extends Component {
         </table>
 
         <p style={{ marginLeft: "2%" }}>
-          Total FY2019 - 2022 Cost: <strong>{this.props.totals[4]}</strong>
+          Total FY2020 - 2023 Cost: <strong>{this.props.totals[4]}</strong>
         </p>
 
         <p style={{ marginLeft: "2%" }}>
-          Total FY2019 - 2030 Cost: <strong>{this.props.totals[5]}</strong>
+          Total FY2020 - 2030 Cost: <strong>{this.props.totals[5]}</strong>
         </p>
 
         <h1 style={subHeaders}>Project Milestones:</h1>

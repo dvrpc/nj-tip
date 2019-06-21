@@ -28,7 +28,7 @@ class Homepage extends Component {
               alt="Transportation Improvement Program logo"
             />
             <div className="stacked-headers">
-              <h1>FY2019 Transportation Improvement</h1>
+              <h1>FY2020 Transportation Improvement</h1>
               <h1>Program for New Jersey (FY20-23)</h1>
             </div>
           </div>
@@ -76,7 +76,7 @@ class Homepage extends Component {
             </p>
             <ul>
               <li>
-                <b>FY2019 TIP for NJ</b>
+                <b>FY2020 TIP for NJ</b>
               </li>
               <li>
                 <a href="https://www.dvrpc.org/Products/17065/">TIP Guide</a>
@@ -94,7 +94,7 @@ class Homepage extends Component {
           <div className="tip-info-cluster">
             <div className="tip-info-paragraphs">
               <h2>
-                FY2019 Transportation Improvement Program for New Jersey
+                FY2020 Transportation Improvement Program for New Jersey
                 (FY20-23)
               </h2>
 
@@ -105,7 +105,7 @@ class Homepage extends Component {
                 <ul class="list-group">
                   <li class="list-group-item">
                     <a href="/TIP/NJ/pdf/.pdf">
-                      Highlights of the FY2019 TIP for NJ
+                      Highlights of the FY2020 TIP for NJ
                     </a>{" "}
                     <span class="sm">[1.1 MB pdf]</span>
                   </li>
@@ -299,7 +299,7 @@ class Homepage extends Component {
                 <table id="obligation-summary-table">
                   <tbody>
                     <tr>
-                      <td>FY2019:</td>
+                      <td>FY2020:</td>
 
                       <td>
                         <a href="/TIP/NJ/pdf/.pdf">Summary</a>{" "}

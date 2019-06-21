@@ -57,6 +57,7 @@ const keywordRequest = keyword =>
     fetch(`https://www.dvrpc.org/data/tip/2020/list/${keyword}`)
       .then(response => response.json())
       .then(features => {
+        console.log("what is features ", features);
         // get geometry & rest of project information from the arcGIS server
         let mpms_array = features.map(project => project.id).join(",");
         let params = {
