@@ -95,7 +95,7 @@ const keywordRequest = keyword =>
                     CTY: project.county,
                     TYPE_DESC: project.category,
                     MPMS_ID: project.id,
-                    ROAD_NAME: project.road_name,
+                    PROJECTNAM: project.road_name,
                     LATITUDE: 40.018,
                     LONGITUDE: -75.148,
                     NOT_MAPPED: true

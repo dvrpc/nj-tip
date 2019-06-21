@@ -33,7 +33,7 @@ const transformLocationSuggestions = data => ({
 const transformKeywordSuggestions = data => ({
   title: "TIP Projects",
   results: data.features.slice(0, 5).map(project => ({
-    name: `${project.properties.MPMS_ID}: ${project.properties.ROAD_NAME}`,
+    name: `${project.properties.MPMS_ID}: ${project.properties.PROJECTNAM}`,
     id: `${project.properties.MPMS_ID}`,
     type: "expanded"
   }))
@@ -173,4 +173,9 @@ const mapDispatchToProps = dispatch => ({
   hydrateGeometry: id => dispatch(hydrateGeometry(id))
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Search));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Search)
+);

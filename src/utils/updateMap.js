@@ -18,7 +18,7 @@ export const updateBounds = mapReference => {
         CTY: item.properties.CTY,
         MPMS_ID: item.properties.MPMS_ID,
         TYPE_DESC: item.properties.TYPE_DESC,
-        ROAD_NAME: item.properties.ROAD_NAME,
+        PROJECTNAM: item.properties.PROJECTNAM,
         LATITUDE:
           item.layer.id === "nj-tip-points"
             ? item.geometry.coordinates[1]
@@ -88,7 +88,7 @@ export const showPopup = (marker, map) => {
   tilePopup
     .setLngLat([details.LONGITUDE, details.LATITUDE])
     .setHTML(
-      `<h2>${details.MPMS_ID}</h2><p style="border-bottom: 8px solid #${colors[details.TYPE_DESC].forMap};">${details.ROAD_NAME}</p>`
+      `<h2>${details.MPMS_ID}</h2><p style="border-bottom: 8px solid #${colors[details.TYPE_DESC].forMap};">${details.PROJECTNAM}</p>`
     )
     .addTo(map);
 

@@ -57,7 +57,7 @@ class ListItem extends Component {
         />
 
         <div className="list-text">
-          <h2 className="name">{project.ROAD_NAME}</h2>
+          <h2 className="name">{project.PROJECTNAM}</h2>
           <h2 className="county-and-funding">
             <em>
               {project.CTY}
