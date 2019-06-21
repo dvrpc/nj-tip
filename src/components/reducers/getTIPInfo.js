@@ -52,7 +52,7 @@ export default function tipReducer(state = [], action) {
 
 const keywordRequest = keyword =>
   new Promise(resolve => {
-    fetch(`https://www.dvrpc.org/data/tip/2019/list/${keyword}`)
+    fetch(`https://www.dvrpc.org/data/tip/2020/list/${keyword}`)
       .then(response => response.json())
       .then(features => {
         // get geometry & rest of project information from the arcGIS server
@@ -73,7 +73,7 @@ const keywordRequest = keyword =>
           )
           .join("&");
         fetch(
-          `https://services1.arcgis.com/LWtWv6q6BJyKidj8/arcgis/rest/services/DVRPC_Pennsylvania_Transportation_Improvement_Program_2019_to_2022/FeatureServer/0/query`,
+          `https://services1.arcgis.com/LWtWv6q6BJyKidj8/ArcGIS/rest/services/DVRPC_Draft_New_Jersey_Transportation_Improvement_Program_2020_to_2023/FeatureServer/0/query`,
           {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
@@ -143,7 +143,7 @@ export const getTIPByMapBounds = features => dispatch => {
 // pull project information from URL for link sharing
 export const hydrateGeometry = id => dispatch => {
   fetch(
-    `https://services1.arcgis.com/LWtWv6q6BJyKidj8/arcgis/rest/services/DVRPC_Pennsylvania_Transportation_Improvement_Program_2019_to_2022/FeatureServer/0/query?where=MPMS_ID=${id}&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=LATITUDE,LONGITUDE,OBJECTID&returnGeometry=false&outSR=4326&f=json`
+    `https://services1.arcgis.com/LWtWv6q6BJyKidj8/ArcGIS/rest/services/DVRPC_Draft_New_Jersey_Transportation_Improvement_Program_2020_to_2023/FeatureServer/0/query?where=DBNUM=%27${id}%27&geometryType=esriGeometryPoint&returnGeometry=true&geometryPrecision=&outSR=4326&f=pgeojson`
   )
     .then(response => {
       if (response.ok)
@@ -156,7 +156,7 @@ export const hydrateGeometry = id => dispatch => {
 
 // gets the full information for a project to display in the modal when a tile is clicked
 export const getFullTIP = id => dispatch => {
-  fetch(`https://www.dvrpc.org/data/tip/2019/id/${id}`)
+  fetch(`https://www.dvrpc.org/data/tip/2020/id/${id}`)
     .then(response => {
       if (response.ok)
         response

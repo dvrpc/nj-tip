@@ -22,18 +22,15 @@ class Expanded extends Component {
     };
   }
 
-  // @TODO: function that does more than just history.goBack()
-  backToResults = () => {
-    this.props.history.goBack();
-  };
+  backToResults = () => this.props.history.goBack();
 
   generateStreetview = geom => {
     window.streetview = new window.google.maps.StreetViewPanorama(
       this.streetview,
       {
         position: {
-          lat: geom.LATITUDE,
-          lng: geom.LONGITUDE
+          lat: geom[1],
+          lng: geom[0]
         },
         zoom: 0
       }
@@ -51,8 +48,8 @@ class Expanded extends Component {
   componentDidUpdate(prevProps) {
     let features = this.props.geometry ? this.props.geometry.features : [];
 
-    if (features.length) {
-      const geom = features[0].attributes;
+    if (features && features.length) {
+      const geom = features[0].geometry.coordinates;
       this.generateStreetview(geom);
     }
   }
@@ -72,10 +69,9 @@ class Expanded extends Component {
     this.props && this.props.details
       ? ((details = this.props.details),
         (funding = getTotals(this.props.details.funding.data)),
-        (colorScheme = colors[details.category]),
-        (navBackground = `background: linear-gradient(to right, white 35%, ${
-          colorScheme.middle
-        } 65%, ${colorScheme.darkest})`),
+        // @TODO: replace this with colors[this.props.details.category] once cateogories get added back in
+        (colorScheme = colors["Other"]),
+        (navBackground = `background: linear-gradient(to right, white 35%, ${colorScheme.middle} 65%, ${colorScheme.darkest})`),
         (toReturn = (
           <div>
             <PrintPage details={details} totals={funding} id="print-mount" />

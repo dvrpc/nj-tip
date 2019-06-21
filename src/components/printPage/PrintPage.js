@@ -138,7 +138,7 @@ class PrintPage extends Component {
             </tr>
           </thead>
 
-          <tbody>
+          {/* <tbody>
             {this.props.details.milestones.data.map(row => (
               <tr>
                 <td>{row[0]}</td>
@@ -147,7 +147,7 @@ class PrintPage extends Component {
                 <td>{row[3]}</td>
               </tr>
             ))}
-          </tbody>
+          </tbody> */}
         </table>
       </PrintTemplate>
     );

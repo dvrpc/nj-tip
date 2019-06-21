@@ -58,8 +58,8 @@ class Search extends Component {
         {
           input,
           bounds: new window.google.maps.LatLngBounds(
-            { lat: 39.514909, lng: -76.13659 },
-            { lat: 40.608542, lng: -74.389531 }
+            { lat: 39.513289, lng: -75.433101 },
+            { lat: 40.423627, lng: -74.383175 }
           )
         },
         data => resolve(data)
