@@ -4,6 +4,7 @@ import { connect } from "inferno-redux";
 import "./Expanded.css";
 import Navbar from "../navbar/Navbar.js";
 import PrintPage from "../printPage/PrintPage.js";
+import ReadOnlyComments from "../comments/ReadOnlyComments.js";
 
 import { getFullTIP, hydrateGeometry } from "../reducers/getTIPInfo";
 import { colors } from "../../utils/tileGeometryColorType.js";
@@ -69,8 +70,7 @@ class Expanded extends Component {
     this.props && this.props.details
       ? ((details = this.props.details),
         (funding = getTotals(this.props.details.funding.data)),
-        // @TODO: replace this with colors[this.props.details.category] once cateogories get added back in
-        (colorScheme = colors["Other"]),
+        (colorScheme = colors[details.category] || colors["Other"]),
         (navBackground = `background: linear-gradient(to right, white 35%, ${colorScheme.middle} 65%, ${colorScheme.darkest})`),
         (toReturn = (
           <div>
@@ -315,6 +315,11 @@ class Expanded extends Component {
                 </section>
               </div>
             </div>
+            <ReadOnlyComments
+              colorScheme={colorScheme}
+              comments={details.comments ? details.comments : []}
+              title={"Comments and Responses"}
+            />
           </div>
         )))
       : (toReturn = (

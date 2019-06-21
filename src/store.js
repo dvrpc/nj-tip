@@ -4,10 +4,11 @@ import ReduxThunk from "redux-thunk";
 import getTIP from "./components/reducers/getTIPInfo";
 import connectTilesToMap from "./components/reducers/connectTilesToMap";
 import StateLoader from "./utils/persist.js";
+import getComments from "./components/reducers/commentsReducer";
 
 const stateLoader = new StateLoader();
 
-const rootReducer = combineReducers({ getTIP, connectTilesToMap });
+const rootReducer = combineReducers({ getTIP, connectTilesToMap, getComments });
 
 let store = createStore(
   rootReducer,

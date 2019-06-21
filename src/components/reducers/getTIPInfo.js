@@ -1,3 +1,5 @@
+import { bindActionCreators } from "redux";
+
 /*** ACTIONS ***/
 const FETCH_TIP_KEYWORDS = "FETCH_TIP_KEYWORDS";
 const GET_TIP_KEYWORDS = "GET_TIP_KEYWORDS";
