@@ -49,7 +49,7 @@ class Tile extends Component {
           </h2>
           <p className="tile-caption-text">
             {project.CTY} {counties.indexOf(project.CTY) > -1 ? " County" : ""}{" "}
-            | {project.MPMS_ID}
+            | {project.DBNUM}
           </p>
         </div>
       </div>
@@ -63,4 +63,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default withRouter(connect(null, mapDispatchToProps)(Tile));
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(Tile)
+);

@@ -31,7 +31,7 @@ class MapComponent extends Component {
       },
       toggleLayerList: false,
       toggleLegendList: false,
-      keyFilter: ["!=", "MPMS_ID", ""],
+      keyFilter: ["!=", "DBNUM", ""],
       catFilter: ["!=", "TYPE_DESC", ""],
       tilePopup: {}
     };
@@ -88,11 +88,11 @@ class MapComponent extends Component {
   };
 
   buildKeywordFilter = projects => {
-    let ids = projects.features.map(feature => feature.properties.MPMS_ID);
+    let ids = projects.features.map(feature => feature.properties.DBNUM);
     if (projects.features && projects.features.length) {
-      return ["in", "MPMS_ID"].concat(ids);
+      return ["in", "DBNUM"].concat(ids);
     }
-    return ["!=", "MPMS_ID", ""];
+    return ["!=", "DBNUM", ""];
   };
 
   componentWillMount() {
@@ -167,7 +167,7 @@ class MapComponent extends Component {
       clickTile({
         props: {
           history,
-          data: { id: e.features[0].properties.MPMS_ID }
+          data: { id: e.features[0].properties.DBNUM }
         }
       });
     });

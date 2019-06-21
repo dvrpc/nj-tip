@@ -86,7 +86,7 @@ const keywordRequest = keyword =>
           .then(arcGISProjects => {
             features.forEach(project => {
               const matchedProject = arcGISProjects.features.filter(
-                feature => feature.properties.MPMS_ID === project.id
+                feature => feature.properties.DBNUM === project.id
               );
               project.properties = matchedProject.length
                 ? matchedProject[0].properties
@@ -94,7 +94,7 @@ const keywordRequest = keyword =>
                     OBJECTID: project.id + project.road_name,
                     CTY: project.county,
                     TYPE_DESC: project.category,
-                    MPMS_ID: project.id,
+                    DBNUM: project.id,
                     PROJECTNAM: project.road_name,
                     LATITUDE: 40.018,
                     LONGITUDE: -75.148,

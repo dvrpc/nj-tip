@@ -64,7 +64,7 @@ class ListItem extends Component {
               {counties.indexOf(project.CTY) > -1 ? " County" : ""}
             </em>
           </h2>
-          <h2 className="mpms">MPMS ID: {project.MPMS_ID}</h2>
+          <h2 className="mpms">MPMS ID: {project.DBNUM}</h2>
         </div>
       </div>
     );
