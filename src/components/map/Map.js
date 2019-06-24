@@ -138,7 +138,8 @@ class MapComponent extends Component {
       this.map.addSource("CMP", {
         type: "geojson",
         data:
-          "https://services1.arcgis.com/LWtWv6q6BJyKidj8/ArcGIS/rest/services/DVRPC_CMP_2015/FeatureServer/1/query?where=1%3D1&outFields=WEB_COLOR&returnGeometry=true&geometryPrecision=4&outSR=4326&f=pgeojson"
+          // @TODO: add &outFields=WEB_COLOR back to the query string after GIS updates the feature server
+          "https://services1.arcgis.com/LWtWv6q6BJyKidj8/ArcGIS/rest/services/DVRPC_CMP_2015/FeatureServer/0/query?where=1%3D1&returnGeometry=true&geometryPrecision=4&outSR=4326&f=pgeojson"
       });
       this.map.addSource("Connections", {
         type: "geojson",
