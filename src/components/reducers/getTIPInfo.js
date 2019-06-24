@@ -57,15 +57,13 @@ const keywordRequest = keyword =>
     fetch(`https://www.dvrpc.org/data/tip/2020/list/${keyword}`)
       .then(response => response.json())
       .then(features => {
-        console.log("what is features ", features);
-        // get geometry & rest of project information from the arcGIS server
-        let mpms_array = features.map(project => project.id).join(",");
+        // get geometry & rest of project information from the arcGIS server (nj tip endpoint requires quotes around each ID in the string)
+        let id_array = features.map(project => `'${project.id}'`).join(",");
         let params = {
-          where: `MPMS_ID in (${mpms_array})`,
+          where: `DBNUM in (${id_array})`,
           srOut: 4326,
           f: "geojson",
-          outFields:
-            "OBJECTID,CTY,MPMS_ID,ROAD_NAME,TYPE_DESC,LATITUDE,LONGITUDE",
+          outFields: "OBJECTID,COUNTY,DBNUM,PROJECTNAM,TYPE_DESC,LAT,LONG_",
           returnGeometry: false
         };
         //Encode the data
