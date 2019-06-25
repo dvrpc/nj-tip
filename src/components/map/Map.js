@@ -143,7 +143,7 @@ class MapComponent extends Component {
       this.map.addSource("Connections", {
         type: "geojson",
         data:
-          "https://services1.arcgis.com/LWtWv6q6BJyKidj8/arcgis/rest/services/DVRPC_Connections_2045_Planning_Centers/FeatureServer/0/query?where=1%3D1&outFields=LUP_TYPE&geometryPrecision=4&outSR=4326&f=pgeojson"
+          "https://services1.arcgis.com/LWtWv6q6BJyKidj8/arcgis/rest/services/DVRPC_Connections_2045_Planning_Centers/FeatureServer/0/query?where=State='NJ'&outFields=LUP_TYPE&geometryPrecision=4&outSR=4326&f=pgeojson"
       });
       this.map.addSource("Freight", {
         type: "geojson",
