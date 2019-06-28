@@ -30,6 +30,7 @@ class Tile extends Component {
   render() {
     const calculatedProjectInfo = this.state.details;
     const project = this.props.data;
+    console.log("tiles projects are ", project);
 
     return (
       <div
@@ -47,10 +48,7 @@ class Tile extends Component {
           <h2 className="tile-caption-text">
             {calculatedProjectInfo.projectName}
           </h2>
-          <p className="tile-caption-text">
-            {project.CTY} {counties.indexOf(project.CTY) > -1 ? " County" : ""}{" "}
-            | {project.DBNUM}
-          </p>
+          <p className="tile-caption-text">DB #{project.DBNUM}</p>
         </div>
       </div>
     );
