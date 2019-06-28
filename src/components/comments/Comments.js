@@ -21,7 +21,7 @@ class Comments extends Component {
       >
         <h1>{this.props.title}</h1>
         <form className="comments-form" onSubmit={linkEvent(this, POSTComment)}>
-          <textarea placeholder="Submit a public comment for this project" />
+          <textarea placeholder="Enter your public comment here" />
           <div className="input-fields">
             <input
               className="comment-form-info"

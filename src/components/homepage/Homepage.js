@@ -2,6 +2,7 @@ import Inferno, { Component } from "inferno";
 import { withRouter } from "inferno-router";
 
 import Search from "../search/Search.js";
+import Comments from "../comments/Comments.js";
 
 import "./Homepage.css";
 
@@ -63,7 +64,7 @@ class Homepage extends Component {
               <img src={arrow} alt="down navigation arrow" />
             </a>
             <a
-              href="#general-comment"
+              href="#comments-anchor"
               onClick={e => {
                 scrollToElement(this, e, "generalComment");
               }}
@@ -195,7 +196,11 @@ class Homepage extends Component {
                   TIP Comments.
                 </li>
               </ul>
-              <p>
+              <p
+                ref={el => {
+                  this.generalComment = el;
+                }}
+              >
                 <strong>
                   <a href="/TIP/Draft/pdf/Effective.pdf">Click here</a>{" "}
                   <span class="sm"> [0.2 MB pdf] </span>
@@ -203,6 +208,11 @@ class Homepage extends Component {
                   effective
                 </strong>
               </p>
+              <Comments
+                colorScheme={null}
+                projectId={null}
+                title={"Submit a General Comment for the Draft FY20 NJ TIP"}
+              />
             </section>
 
             <section>
