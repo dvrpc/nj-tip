@@ -173,5 +173,36 @@ const landUse = {
     ]
   }
 };
+const urbanizedAreas = {
+  id: "Urbanized Areas",
+  type: "fill",
+  source: "UrbanizedAreas",
+  layout: {
+    visibility: "none"
+  },
+  paint: {
+    "fill-color": [
+      "interpolate",
+      ["linear"],
+      ["get", "CENSUS_UA"],
+      "03898",
+      "#E60000"
+    ]
+  }
+};
 
-export default { ipd, cmp, connections, freight, landUse };
+// from the old NJ TIP for reference only to buid out the ^ filter
+var urbanAreasColors = {
+  "03898": "rgb(230, 0, 0)",
+  "90658": "rgb(197, 96, 247)",
+  "25849": "rgb(54, 84, 135)",
+  "01495": "rgb(0, 219, 219)",
+  "90730": "rgb(115, 0, 76)",
+  "71803": "rgb(255, 211, 127)",
+  "88462": "rgb(0, 115, 76)",
+  "89263": "rgb(85, 255, 0)",
+  "63217": "rgb(115, 115, 0)",
+  "69076": "rgb(230, 117, 83)"
+};
+
+export default { ipd, cmp, connections, freight, landUse, urbanizedAreas };

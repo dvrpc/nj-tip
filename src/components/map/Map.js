@@ -27,7 +27,8 @@ class MapComponent extends Component {
         "CMP Corridors": false,
         "Connections 2045 Centers": false,
         "Freight Centers": false,
-        "DVRPC Land Use (2015)": false
+        "DVRPC Land Use (2015)": false,
+        "Urbanized Areas": false
       },
       toggleLayerList: false,
       toggleLegendList: false,
@@ -154,6 +155,12 @@ class MapComponent extends Component {
         type: "vector",
         url: "https://tiles.dvrpc.org/data/dvrpc-landuse-2015.json"
       });
+      this.map.addSource("UrbanizedAreas", {
+        type: "geojson",
+        // @TODO: issue #3 remake this query to get rid of unnescesary stuff
+        data:
+          "https://services1.arcgis.com/LWtWv6q6BJyKidj8/arcgis/rest/services/DVRPC_Urban_Areas/FeatureServer/1/query?outFields=*&where=LSAD_TYPE%3D'Urbanized+Area'&sqlFormat=standard&geometryPrecision=5&outSR=4326&outFields=LSAD_TYPE&f=pgeojson"
+      });
 
       // add layers and set initial visibility for each one to 'none'
       this.map.addLayer(layers.ipd, "water shadow");
@@ -161,6 +168,7 @@ class MapComponent extends Component {
       this.map.addLayer(layers.connections, "admin-3-4-boundaries-bg");
       this.map.addLayer(layers.freight, "admin-3-4-boundaries-bg");
       this.map.addLayer(layers.landUse, "water shadow");
+      this.map.addLayer(layers.urbanizedAreas, "water shadow");
     });
 
     this.map.on("click", "nj-tip-points", e => {
