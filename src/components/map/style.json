@@ -3575,7 +3575,7 @@
       "source-layer": "county",
       "filter": ["all", ["==", "state", "NJ"], ["==", "dvrpc", "Yes"]],
       "paint": {
-        "line-color": "#9699A6",
+        "line-color": "#323236",
         "line-width": {
           "stops": [[7, 1], [10, 1.5], [12, 1.75]]
         },
