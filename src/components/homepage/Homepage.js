@@ -31,7 +31,7 @@ class Homepage extends Component {
             />
             <div className="stacked-headers">
               <h1>Draft FY2020 Transportation Improvement</h1>
-              <h1>Program (TIP) for New Jersey (FY20-23)</h1>
+              <h1>Program (TIP) for New Jersey (FY20-FY23)</h1>
             </div>
           </header>
 
@@ -101,7 +101,7 @@ class Homepage extends Component {
                 (FY20-23)
               </h2>
               <p>
-                DVRPC's Draft TIP for NJ represents the region's federally
+                The DVRPC Draft TIP for NJ represents the region's federally
                 funded transportation improvement priorities and is required by
                 federal law in order for the region to receive and spend federal
                 transportation funds. It has been developed in cooperation with
@@ -118,14 +118,14 @@ class Homepage extends Component {
                   href="https://www.state.nj.us/transportation/capital/"
                   rel="external"
                 >
-                  Draft FY2020 STIP
+                  Draft FY2020 Statewide TIP (STIP)
                 </a>
                 . The Draft TIP is included in the{" "}
                 <a
                   href="https://www.state.nj.us/transportation/capital/"
                   rel="external"
                 >
-                  Draft Statewide TIP (STIP)
+                  Draft (STIP)
                 </a>
                 . While the public comment period will end at 5:00 PM Eastern
                 Time on Friday, August 9, 2019, the Draft STIP public comment
@@ -187,8 +187,8 @@ class Homepage extends Component {
               </ul>
               <p>
                 <strong>
-                  <a href="/TIP/Draft/pdf/tips.pdf">Click here</a>{" "}
-                  <span class="sm"> [ MB pdf] </span>
+                  <a href="/TIP/Draft/pdf/Effective.pdf">Click here</a>{" "}
+                  <span class="sm"> [0.2 MB pdf] </span>
                   to view helpful tips that can make a public comment more
                   effective
                 </strong>
@@ -261,12 +261,6 @@ class Homepage extends Component {
                       <span class="sm"> [ MB pdf]</span>
                     </li>
                     <li>
-                      <a href="/TIP/Draft/pdf/Flyer.pdf">
-                        Public Meeting Flyer
-                      </a>{" "}
-                      <span class="sm"> [ MB pdf]</span>
-                    </li>
-                    <li>
                       <a href="/TIP/Draft/pdf/Libraries.pdf">
                         Libraries Displaying the Draft TIP
                       </a>{" "}
@@ -288,8 +282,8 @@ class Homepage extends Component {
                   <span class="sm">[0.2 MB pdf]</span>
                 </li>
                 <li class="list-group-item">
-                  <a href="/TIP/Draft/pdf/Chap5.pdf">Programs</a>{" "}
-                  <span class="sm">[ MB pdf]</span>
+                  <a href="/TIP/Draft/pdf/5.pdf">Programs</a>{" "}
+                  <span class="sm">[0.1 MB pdf]</span>
                   <ul>
                     Helpful Correspondences:
                     <li>
