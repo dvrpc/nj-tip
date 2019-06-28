@@ -125,6 +125,7 @@ th {
 .funding-and-awards-table td:first-child,
 .funding-and-awards-table th:first-child {
   border-left: none;
+  word-wrap: break-word;
 }
 
 
