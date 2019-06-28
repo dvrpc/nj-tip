@@ -46,31 +46,6 @@
   width: 50%;
   box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.55);
 }
-.homepage-radio-group {
-  font-size: 1.4rem;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  background: rgba(238, 238, 238, 0.9);
-  display: flex;
-  flex-direction: row;
-  padding: 3%;
-  text-align: center;
-  align-items: center;
-}
-.radio-group-cluster {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 25%;
-}
-.homepage-radio-group input[type="radio"],
-#MPMS,
-#Keyword {
-  margin-left: 5%;
-}
-.homepage-radio-group input[type="radio"] {
-  margin-right: 1%;
-}
 #homepage-search-bar {
   border: none;
   background: url("./magnifying-glass.png") no-repeat scroll 3% 50%;
@@ -257,9 +232,6 @@
   #bgvid {
     transform: translateX(-50%) translateY(-67%);
   }
-  .radio-group-cluster {
-    flex-direction: column;
-  }
   #search-form {
     margin: 5% 5% 0 calc(30vw + 12% + 2.5vw);
   }
@@ -282,7 +254,6 @@
   #bgvid {
     transform: translateX(-50%) translateY(-58%);
   }
-  .homepage-radio-group,
   #homepage-search-bar {
     font-size: 1.2rem;
   }
