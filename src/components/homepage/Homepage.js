@@ -53,12 +53,22 @@ class Homepage extends Component {
 
           <div className="homepage-bottom-bar">
             <a
+              id="more-info-scroll"
               href="#tip-info"
               onClick={e => {
                 scrollToElement(this, e, "tipInfo");
               }}
             >
-              More Information
+              <span>More Information</span>
+              <img src={arrow} alt="down navigation arrow" />
+            </a>
+            <a
+              href="#general-comment"
+              onClick={e => {
+                scrollToElement(this, e, "generalComment");
+              }}
+            >
+              <span>Submit a General Comment</span>
               <img src={arrow} alt="down navigation arrow" />
             </a>
           </div>

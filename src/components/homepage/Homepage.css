@@ -61,7 +61,11 @@
   background: #303030;
   padding: 1.5% 5%;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+#more-info-scroll {
+  margin-right: 5%;
 }
 .homepage-bottom-bar a {
   color: #fff;
