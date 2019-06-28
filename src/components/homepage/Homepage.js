@@ -18,9 +18,11 @@ class Homepage extends Component {
     return (
       <div className="homepage">
         <div className="landing">
-          <div className="homepage-banner">
+          <header className="homepage-banner">
             <div id="banner-logo">
-              <img src={logo} alt="dvrpc logo" />
+              <a href="https://www.dvrpc.org/">
+                <img src={logo} alt="dvrpc logo" />
+              </a>
             </div>
             <img
               id="banner-tip-logo"
@@ -31,7 +33,7 @@ class Homepage extends Component {
               <h1>Draft FY2020 Transportation Improvement</h1>
               <h1>Program (TIP) for New Jersey (FY20-23)</h1>
             </div>
-          </div>
+          </header>
 
           <div className="homepage-main">
             <video
@@ -68,7 +70,7 @@ class Homepage extends Component {
             this.tipInfo = el;
           }}
         >
-          <aside className="nav-links-box">
+          <aside id="nav-links-box">
             <p>
               <a href="https://www.dvrpc.org/TIP/">
                 Transportation Improvement Program (TIP)
@@ -91,13 +93,13 @@ class Homepage extends Component {
               </li>
             </ul>
           </aside>
-          <div className="tip-info-cluster">
-            <div className="tip-info-paragraphs">
-              <h2>
+
+          <article id="tip-info-paragraphs">
+            <section>
+              <h2 className="info-section-header">
                 Draft FY2020 Transportation Improvement Program for New Jersey
                 (FY20-23)
               </h2>
-
               <p>
                 DVRPC's Draft TIP for NJ represents the region's federally
                 funded transportation improvement priorities and is required by
@@ -161,8 +163,12 @@ class Homepage extends Component {
                 </a>
                 .
               </p>
+            </section>
 
-              <h2>How to Submit a Public Comment: </h2>
+            <section>
+              <h2 className="info-section-header">
+                How to Submit a Public Comment:{" "}
+              </h2>
               <p>
                 Submit comments online by clicking the “SEARCH DRAFT TIP
                 PROJECTS BY ADDRESS OR KEYWORDS OR SUBMIT COMMENT” feature in
@@ -181,12 +187,18 @@ class Homepage extends Component {
               </ul>
               <p>
                 <strong>
-                  <a href="/TIP/Draft/pdf/.pdf">Click here</a> to view helpful
-                  tips that can make a public comment more effective
+                  <a href="/TIP/Draft/pdf/tips.pdf">Click here</a>{" "}
+                  <span class="sm"> [ MB pdf] </span>
+                  to view helpful tips that can make a public comment more
+                  effective
                 </strong>
               </p>
+            </section>
 
-              <h2>What happens after the public comment period ends?</h2>
+            <section>
+              <h2 className="info-section-header">
+                What happens after the public comment period ends?
+              </h2>
               <p>
                 Written comments received during the public comment period and
                 responses to those comments will be provided in the final
@@ -198,460 +210,215 @@ class Homepage extends Component {
                 period is over might not receive a response or be included in
                 the final TIP document.
               </p>
+            </section>
 
-              <div>
-                <h2>Detailed Information</h2>
-                <ul class="list-group">
-                  <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/HighlightsNJ20.pdf">
-                      Highlights of the Draft FY2020 TIP for NJ
-                    </a>{" "}
-                    <span class="sm">[1.1 MB pdf]</span>
-                  </li>
-                  {/* <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/.pdf">
-                      TIP Document Text (includes abbreviations and codes)
-                    </a>{" "}
-                    <span class="sm">[1.0 MB pdf]</span>
-                  </li> */}
-                  <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/1.pdf">
-                      General Overview of the TIP
-                    </a>{" "}
-                    <span class="sm">[0.2 MB pdf]</span>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/2.pdf">Program Summaries</a>{" "}
-                    <span class="sm">[0.2 MB pdf]</span>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/3.pdf">
-                      Responding to Environmental Justice (EJ) and Title VI
-                      Concerns
-                    </a>{" "}
-                    <span class="sm">[0.1 MB pdf]</span>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/4.pdf">
-                      Performance-Based Planning and Programming (PBPP)
-                    </a>{" "}
-                    <span class="sm">[0.2 MB pdf]</span>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/5.pdf">Public Involvement</a>{" "}
-                    <span class="sm">[0.1 MB pdf]</span>
-                    <ul>
-                      <li>
-                        <a href="/TIP/Draft/pdf/PublicNotice.pdf">
-                          Public Notice
-                        </a>{" "}
-                        <span class="sm"> [ MB pdf]</span>
-                      </li>
-                      <li>
-                        <a href="/TIP/Draft/pdf/Flyer.pdf">
-                          Public Meeting Flyer
-                        </a>{" "}
-                        <span class="sm"> [ MB pdf]</span>
-                      </li>
-                      <li>
-                        <a href="/TIP/Draft/pdf/Libraries.pdf">
-                          Libraries Displaying the Draft TIP
-                        </a>{" "}
-                        <span class="sm"> [ MB pdf]</span>
-                      </li>
-                      <li>
-                        <a href="/TIP/Draft/pdf/Effective.pdf">
-                          Making Your Public Comment More Effective
-                        </a>{" "}
-                        <span class="sm"> [ MB pdf]</span>
-                      </li>
-                    </ul>
-                  </li>
-                  {/* <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/.pdf">Libraries Displaying the TIP</a>{" "}
-                    <span class="sm">[0.1 MB pdf]</span>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/.pdf">Major Project Status Report</a>{" "}
-                    <span class="sm">[0.1 MB pdf]</span>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/.pdf">Public Notice</a>{" "}
-                    <span class="sm">[0.3 MB pdf]</span>
-                  </li> */}
-                  <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/6.pdf">
-                      Mapping Application and Listings Overview (Includes Codes
-                      and abbreviations)
-                    </a>{" "}
-                    <span class="sm">[0.1 MB pdf]</span>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/Chap5.pdf">Programs</a>{" "}
-                    <span class="sm">[ MB pdf]</span>
-                    <ul>
-                      Helpful Correspondences:
-                      <li>
-                        <a href="/TIP/Draft/pdf/NJ-CorresByTitle.pdf">
-                          By Title
-                        </a>{" "}
-                        <span class="sm"> [ MB pdf]</span>
-                      </li>
-                      <li>
-                        <a href="/TIP/Draft/pdf/NJ-CorresByDB.pdf">By DB#</a>{" "}
-                        <span class="sm"> [ MB pdf]</span>
-                      </li>
-                    </ul>
-                  </li>
-                  {/* <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/.pdf">Project Index by Title</a>{" "}
-                    <span class="sm">[0.1 MB pdf]</span>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/.pdf">Project Index by MPMS#</a>{" "}
-                    <span class="sm">[0.1 MB pdf]</span>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/.pdf">
-                      Project Index for Interstate Management Program (IMP)
-                    </a>{" "}
-                    <span class="sm">[0.1 MB pdf]</span>
-                  </li> */}
-                  <li class="list-group-item">
-                    Project Listings
-                    <ul>
-                      <li>
-                        <a href="/TIP/Draft/pdf/8.pdf">
-                          All Projects in DVRPC NJ Region
-                        </a>{" "}
-                        <span class="sm"> [ MB pdf]</span>
-                      </li>
-                      <li>
-                        DVRPC Regional Highway Program by County
-                        <ul>
-                          <li>
-                            <a href="/TIP/Draft/pdf/burlington.pdf">
-                              Burlington County
-                            </a>{" "}
-                            <span class="sm"> [ MB pdf]</span>
-                          </li>
-                          <li>
-                            <a href="/TIP/Draft/pdf/camden.pdf">
-                              Camden County
-                            </a>{" "}
-                            <span class="sm"> [ MB pdf]</span>
-                          </li>
-                          <li>
-                            <a href="/TIP/Draft/pdf/gloucester.pdf">
-                              Gloucester County
-                            </a>{" "}
-                            <span class="sm"> [ MB pdf]</span>
-                          </li>
-                          <li>
-                            <a href="/TIP/Draft/pdf/mercer.pdf">
-                              Mercer County
-                            </a>{" "}
-                            <span class="sm"> [ MB pdf]</span>
-                          </li>
-                          <li>
-                            <a href="/TIP/Draft/pdf/various.pdf">
-                              Various Counties
-                            </a>{" "}
-                            <span class="sm"> [ MB pdf]</span>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a href="/TIP/Draft/pdf/stwd.pdf">Statewide Program</a>{" "}
-                        <span class="sm"> [ MB pdf]</span>
-                      </li>
-                      <li>
-                        <a href="/TIP/Draft/pdf/sd20.pdf">
-                          Study and Development Program
-                        </a>{" "}
-                        <span class="sm"> [ MB pdf]</span>
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <a href="/TIP/Draft/pdf/9.pdf">
-                      Major Project Status Report
-                    </a>{" "}
-                    <span class="sm"> [ MB pdf]</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* <div>
-                <h2>Summary of Amendments and Modifications</h2>
-                <p>
-                  DVRPC will update these project listings (generally each
-                  month), as we amend or modify the TIP, as permitted under the
-                  TIP MOU. The{" "}
-                  <a href="/TIP/Draft/pdf/.pdf">
-                    Summary of Amendments and Modifications
+            <section>
+              <h2 className="info-section-header">Detailed Information</h2>
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <a href="/TIP/Draft/pdf/HighlightsNJ20.pdf">
+                    Highlights of the Draft FY2020 TIP for NJ
                   </a>{" "}
-                  <span class="sm">[0.3 MB pdf]</span> provides a chronological
-                  listing of all project changes.
-                </p>
-              </div> */}
+                  <span class="sm">[86 MB pdf]</span>
+                </li>
+                <li class="list-group-item">
+                  <a href="/TIP/Draft/pdf/.pdf">
+                    Aspectos destacados del Borrador del Programa de Mejora del
+                    Transporte (TIP) de la DVRPC para el FY2020 de Nueva Jersey
+                    (FY20 - FY23)
+                  </a>{" "}
+                  <span class="sm">[ MB pdf]</span>
+                </li>
+                <li class="list-group-item">
+                  <a href="/TIP/Draft/pdf/1.pdf">General Overview of the TIP</a>{" "}
+                  <span class="sm">[1 MB pdf]</span>
+                </li>
+                <li class="list-group-item">
+                  <a href="/TIP/Draft/pdf/2.pdf">Program Summaries</a>{" "}
+                  <span class="sm">[0.3 MB pdf]</span>
+                </li>
+                <li class="list-group-item">
+                  <a href="/TIP/Draft/pdf/3.pdf">
+                    Responding to Environmental Justice (EJ) and Title VI
+                    Concerns
+                  </a>{" "}
+                  <span class="sm">[0.2 MB pdf]</span>
+                </li>
+                <li class="list-group-item">
+                  <a href="/TIP/Draft/pdf/4.pdf">
+                    Performance-Based Planning and Programming (PBPP)
+                  </a>{" "}
+                  <span class="sm">[0.2 MB pdf]</span>
+                </li>
+                <li class="list-group-item">
+                  <a href="/TIP/Draft/pdf/5.pdf">Public Involvement</a>{" "}
+                  <span class="sm">[0.1 MB pdf]</span>
+                  <ul>
+                    <li>
+                      <a href="/TIP/Draft/pdf/PublicNotice.pdf">
+                        Public Notice
+                      </a>{" "}
+                      <span class="sm"> [ MB pdf]</span>
+                    </li>
+                    <li>
+                      <a href="/TIP/Draft/pdf/Flyer.pdf">
+                        Public Meeting Flyer
+                      </a>{" "}
+                      <span class="sm"> [ MB pdf]</span>
+                    </li>
+                    <li>
+                      <a href="/TIP/Draft/pdf/Libraries.pdf">
+                        Libraries Displaying the Draft TIP
+                      </a>{" "}
+                      <span class="sm"> [0.1 MB pdf]</span>
+                    </li>
+                    <li>
+                      <a href="/TIP/Draft/pdf/Effective.pdf">
+                        Making Your Public Comment More Effective
+                      </a>{" "}
+                      <span class="sm"> [0.2 MB pdf]</span>
+                    </li>
+                  </ul>
+                </li>
+                <li class="list-group-item">
+                  <a href="/TIP/Draft/pdf/6.pdf">
+                    Mapping Application and Listings Overview (Includes Codes
+                    and abbreviations)
+                  </a>{" "}
+                  <span class="sm">[0.2 MB pdf]</span>
+                </li>
+                <li class="list-group-item">
+                  <a href="/TIP/Draft/pdf/Chap5.pdf">Programs</a>{" "}
+                  <span class="sm">[ MB pdf]</span>
+                  <ul>
+                    Helpful Correspondences:
+                    <li>
+                      <a href="/TIP/Draft/pdf/NJ-CorresByTitle.pdf">By Title</a>{" "}
+                      <span class="sm"> [0.2 MB pdf]</span>
+                    </li>
+                    <li>
+                      <a href="/TIP/Draft/pdf/NJ-CorresByDB.pdf">By DB#</a>{" "}
+                      <span class="sm"> [0.1 MB pdf]</span>
+                    </li>
+                  </ul>
+                </li>
+                <li class="list-group-item">
+                  Project Listings
+                  <ul>
+                    <li>
+                      <a href="/TIP/Draft/pdf/8.pdf">
+                        All Projects in DVRPC NJ Region
+                      </a>{" "}
+                      <span class="sm"> [3 MB pdf]</span>
+                    </li>
+                    <li>
+                      <a href="/TIP/Draft/pdf/Roadmap.pdf">
+                        Draft TIP Project Listing Roadmap
+                      </a>{" "}
+                      <span class="sm"> [0.2 MB pdf]</span>
+                    </li>
+                    <li>
+                      DVRPC Regional Highway Program by County
+                      <ul>
+                        <li>
+                          <a href="/TIP/Draft/pdf/burlington.pdf">
+                            Burlington County
+                          </a>{" "}
+                          <span class="sm"> [0.1 MB pdf]</span>
+                        </li>
+                        <li>
+                          <a href="/TIP/Draft/pdf/camden.pdf">Camden County</a>{" "}
+                          <span class="sm"> [0.2 MB pdf]</span>
+                        </li>
+                        <li>
+                          <a href="/TIP/Draft/pdf/gloucester.pdf">
+                            Gloucester County
+                          </a>{" "}
+                          <span class="sm"> [0.1 MB pdf]</span>
+                        </li>
+                        <li>
+                          <a href="/TIP/Draft/pdf/mercer.pdf">Mercer County</a>{" "}
+                          <span class="sm"> [0.2 MB pdf]</span>
+                        </li>
+                        <li>
+                          <a href="/TIP/Draft/pdf/various.pdf">
+                            Various Counties
+                          </a>{" "}
+                          <span class="sm"> [0.1 MB pdf]</span>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="/TIP/Draft/pdf/stwd.pdf">Statewide Program</a>{" "}
+                      <span class="sm"> [0.9 MB pdf]</span>
+                    </li>
+                    <li>
+                      <a href="/TIP/Draft/pdf/sd20.pdf">
+                        Study and Development Program
+                      </a>{" "}
+                      <span class="sm"> [0.2 MB pdf]</span>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/TIP/Draft/pdf/9.pdf">Major Project Status Report</a>{" "}
+                  <span class="sm"> [0.1 MB pdf]</span>
+                </li>
+              </ul>
+            </section>
 
-              {/* <div>
-                <h2>Program Lists</h2>
-                <ul class="list-group">
-                  <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/.pdf">All Projects</a>{" "}
-                    <span class="sm">[2.0 MB pdf]</span>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/.pdf">Bucks County</a>{" "}
-                    <span class="sm">[0.2 MB pdf]</span>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/.pdf">Chester County</a>{" "}
-                    <span class="sm">[0.2 MB pdf]</span>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/.pdf">Delaware County</a>{" "}
-                    <span class="sm">[0.2 MB pdf]</span>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/.pdf">Montgomery County</a>{" "}
-                    <span class="sm">[0.4 MB pdf]</span>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/.pdf">Philadelphia County</a>{" "}
-                    <span class="sm">[0.3 MB pdf]</span>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/.pdf">Projects in Various Counties</a>{" "}
-                    <span class="sm">[0.2 MB pdf]</span>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/.pdf">Transit Projects</a>{" "}
-                    <span class="sm">[0.3 MB pdf]</span>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/.pdf">
-                      Interstate Management Program Projects
-                    </a>{" "}
-                    <span class="sm">[0.4 MB pdf]</span>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/.pdf">Competitive Programs</a>{" "}
-                    <span class="sm">[0.3 MB pdf]</span>
-                  </li>
-                </ul>
-              </div> */}
-
-              <div>
-                <h2>Appendices</h2>
-                <ul class="list-group">
-                  <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/A.pdf">
-                      A - Acknowledgement of Board Resolutions
-                    </a>{" "}
-                    <span class="sm">[ MB pdf]</span>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/B.pdf">
-                      B - Financial Tables Used in Developing the Program,
-                      including the STIP Introduction
-                    </a>{" "}
-                    <span class="sm">[ MB pdf]</span>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/C.pdf">
-                      C - Acknowledgement of the Executive Summary of the Draft
-                      Documentation of the Conformity Finding (Executive
-                      Summary)
-                    </a>{" "}
-                    <span class="sm">[ MB pdf]</span>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/D.pdf">
-                      D – Memorandum of Understanding on Procedures to Amend and
-                      Modify the TIP
-                    </a>{" "}
-                    <span class="sm">[ MB pdf]</span>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/E.pdf">E – DVRPC Local Program</a>{" "}
-                    <span class="sm">[ MB pdf]</span>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/F.pdf">
-                      F – DVRPC TIP Project Benefit Criteria
-                    </a>{" "}
-                    <span class="sm">[ MB pdf]</span>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="/TIP/Draft/pdf/G.pdf">
-                      G - Acknowledgement of Summary of the TIP Public
-                      Involvement Process, Summary of Public Comments, Original
-                      Public Comments, Agency Responses, Public Comment Outreach
-                      Documentation, and List of Recommended Changes
-                    </a>{" "}
-                    <span class="sm">[ MB pdf]</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* <div id="obligation-table-wrapper">
-                <h2>Obligation Summary</h2>
-                <table id="obligation-summary-table">
-                  <tbody>
-                    <tr>
-                      <td>FY2020:</td>
-
-                      <td>
-                        <a href="/TIP/Draft/pdf/.pdf">Summary</a>{" "}
-                        <span class="sm">[0.03 MB pdf]</span>
-                      </td>
-
-                      <td>
-                        <a href="/TIP/Draft/pdf/.pdf">Details</a>{" "}
-                        <span class="sm">[0.3 MB pdf]</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>FY2018:</td>
-
-                      <td>
-                        <a href="/TIP/Draft/pdf/.pdf">Summary</a>{" "}
-                        <span class="sm">[0.03 MB pdf]</span>
-                      </td>
-
-                      <td>
-                        <a href="/TIP/Draft/pdf/.pdf">Details</a>{" "}
-                        <span class="sm">[0.7 MB pdf]</span>
-                        <br />
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>FY2017:</td>
-
-                      <td>
-                        <a href="/TIP/Draft/pdf/.pdf">Summary</a>{" "}
-                        <span class="sm">[0.04 MB pdf]</span>
-                      </td>
-
-                      <td>
-                        <a href="/TIP/Draft/pdf/.pdf">Details</a>{" "}
-                        <span class="sm">[0.3 MB pdf]</span>
-                        <br />
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>FY2016:</td>
-
-                      <td>
-                        <a href="/TIP/Draft/pdf/.pdf">Summary</a>{" "}
-                        <span class="sm">[0.04 MB pdf]</span>
-                      </td>
-
-                      <td>
-                        <a href="/TIP/Draft/pdf/.pdf">Details</a>{" "}
-                        <span class="sm">[0.3 MB pdf]</span>
-                        <br />
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>FY2015:</td>
-
-                      <td>
-                        <a href="/TIP/Draft/pdf/.pdf">Summary</a>{" "}
-                        <span class="sm">[0.07 MB pdf]</span>
-                      </td>
-
-                      <td>
-                        <a href="/TIP/Draft/pdf/.pdf">Details</a>{" "}
-                        <span class="sm">[0.4 MB pdf]</span>
-                        <br />
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>FY2014:</td>
-
-                      <td>
-                        <a href="/TIP/Draft/pdf/.pdf">Summary</a>{" "}
-                        <span class="sm">[0.1 MB pdf]</span>
-                      </td>
-
-                      <td>
-                        <a href="/TIP/Draft/pdf/.pdf">Details</a>{" "}
-                        <span class="sm">[0.4 MB pdf]</span>
-                        <br />
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>FY2013:</td>
-
-                      <td>
-                        <a href="/TIP/Draft/pdf/.pdf">Summary</a>{" "}
-                        <span class="sm">[0.08 MB pdf]</span>
-                      </td>
-
-                      <td>
-                        <a href="/TIP/Draft/pdf/.pdf">Details</a>{" "}
-                        <span class="sm">[0.6 MB pdf]</span>
-                        <br />
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>FY2012:</td>
-
-                      <td>
-                        <a href="/TIP/Draft/pdf/.pdf">Summary</a>{" "}
-                        <span class="sm">[0.3 MB pdf]</span>
-                      </td>
-
-                      <td>
-                        <a href="/TIP/Draft/pdf/.pdf">Details</a>{" "}
-                        <span class="sm">[0.6 MB pdf]</span>
-                        <br />
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>FY2011:</td>
-
-                      <td>
-                        <a href="/TIP/Draft/pdf/.pdf">Summary</a>{" "}
-                        <span class="sm">[0.3 MB pdf]</span>
-                      </td>
-
-                      <td>
-                        <a href="/TIP/Draft/pdf/.pdf">Details</a>{" "}
-                        <span class="sm">[0.7 MB pdf]</span>
-                        <br />
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>FY2010:</td>
-
-                      <td>
-                        <a href="/TIP/Draft/pdf/.pdf">Summary</a>{" "}
-                        <span class="sm">[0.3 MB pdf]</span>
-                      </td>
-
-                      <td>
-                        <a href="/TIP/Draft/pdf/.pdf">Details</a>{" "}
-                        <span class="sm">[0.8 MB pdf]</span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div> */}
-            </div>
-          </div>
+            <section>
+              <h2 className="info-section-header">Appendices</h2>
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <a href="/TIP/Draft/pdf/A.pdf">
+                    A - Acknowledgement of Board Resolutions
+                  </a>{" "}
+                  <span class="sm">[0.3 MB pdf]</span>
+                </li>
+                <li class="list-group-item">
+                  <a href="/TIP/Draft/pdf/B.pdf">
+                    B - Financial Tables Used in Developing the Program,
+                    including the STIP Introduction
+                  </a>{" "}
+                  <span class="sm">[2 MB pdf]</span>
+                </li>
+                <li class="list-group-item">
+                  <a href="/TIP/Draft/pdf/C.pdf">
+                    C - Acknowledgement of the Executive Summary of the Draft
+                    Documentation of the Conformity Finding (Executive Summary)
+                  </a>{" "}
+                  <span class="sm">[0.3 MB pdf]</span>
+                </li>
+                <li class="list-group-item">
+                  <a href="/TIP/Draft/pdf/D.pdf">
+                    D – Memorandum of Understanding on Procedures to Amend and
+                    Modify the TIP
+                  </a>{" "}
+                  <span class="sm">[1 MB pdf]</span>
+                </li>
+                <li class="list-group-item">
+                  <a href="/TIP/Draft/pdf/E.pdf">E – DVRPC Local Program</a>{" "}
+                  <span class="sm">[0.5 MB pdf]</span>
+                </li>
+                <li class="list-group-item">
+                  <a href="/TIP/Draft/pdf/F.pdf">
+                    F – DVRPC TIP Project Benefit Criteria
+                  </a>{" "}
+                  <span class="sm">[0.5 MB pdf]</span>
+                </li>
+                <li class="list-group-item">
+                  <a href="/TIP/Draft/pdf/G.pdf">
+                    G - Acknowledgement of Summary of the TIP Public Involvement
+                    Process, Summary of Public Comments, Original Public
+                    Comments, Agency Responses, Public Comment Outreach
+                    Documentation, and List of Recommended Changes
+                  </a>{" "}
+                  <span class="sm">[0.3 MB pdf]</span>
+                </li>
+              </ul>
+            </section>
+          </article>
         </main>
       </div>
     );

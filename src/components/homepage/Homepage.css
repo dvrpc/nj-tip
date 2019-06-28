@@ -102,15 +102,14 @@
   padding: 4%;
   line-height: 1.4;
 }
-.tip-info-cluster {
-  display: flex;
-  justify-content: flex-end;
-}
-.tip-info-paragraphs h2 {
+.info-section-header {
   font-weight: 500;
   font-size: 1.8rem;
   color: #e5c942;
-  padding-bottom: 2%;
+  padding-bottom: 1%;
+}
+.info-section-header:not(:first-of-type){
+  margin-top: 4%;
 }
 #tip-info p,
 #tip-info ul,
@@ -121,8 +120,8 @@
 #draft-meeting-address{
   font-style: normal;
 }
-.tip-info-paragraphs {
-  flex-direction: row;
+#tip-info-paragraphs {
+  margin-left: 30%;
   width: 70%;
   color: #ffffff;
 }
@@ -137,7 +136,7 @@
   color: unset;
   text-decoration: underline;
 }
-.nav-links-box {
+#nav-links-box {
   position: absolute;
   width: 23%;
   padding: 2% 0 0;
@@ -146,16 +145,16 @@
   border-radius: 10px;
   box-shadow: 0 2px 2px 0 rgba(48, 48, 48, 0.7), 0 3px 5px 0 rgba(48, 48, 48, 0.8);
 }
-.nav-links-box p {
+#nav-links-box p {
   padding: 0 1.2rem 0 1.2rem;
   font-weight: bold;
 }
-.nav-links-box ul {
+#nav-links-box ul {
   list-style-type: none;
   padding: 0 1.2rem;
   background: linear-gradient(to right, #3d3c3c 0, transparent 65%);
 }
-.nav-links-box li {
+#nav-links-box li {
   padding: 5% 0 5% 0;
 }
 .list-group {
@@ -227,13 +226,16 @@
     font-size: 0.8rem !important;
     padding: 3% 0 3% 10%;
   }
-  .tip-info-cluster {
-    justify-content: center;
-  }
-  .tip-info-paragraphs {
+  #tip-info-paragraphs {
+    margin-left: 0;
     width: 100%;
   }
-  .nav-links-box {
+  #tip-info p,
+  #tip-info ul,
+  #tip-info ol {
+    font-size: inherit;
+  }
+  #nav-links-box {
     display: none;
   }
   #tip-info hr {
@@ -264,7 +266,7 @@
   #homepage-search-bar {
     text-overflow: wrap;
   }
-  .tip-info-paragraphs h2 {
+  .info-section-header {
     font-size: 1.3rem;
   }
   #tip-info p {
