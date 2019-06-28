@@ -290,8 +290,6 @@ class Expanded extends Component {
                     <table className="funding-and-awards-table">
                       <thead>
                         <tr>
-                          <th style={{ background: "#333" }}>Phase</th>
-
                           <th style={{ background: "#333" }}>Milestone</th>
 
                           <th style={{ background: "#333" }}>Estimated Date</th>
@@ -306,7 +304,6 @@ class Expanded extends Component {
                               <td>{row[0]}</td>
                               <td>{row[1]}</td>
                               <td>{row[2]}</td>
-                              <td>{row[3]}</td>
                             </tr>
                           ))}
                       </tbody>
