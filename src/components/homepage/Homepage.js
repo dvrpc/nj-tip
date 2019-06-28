@@ -96,7 +96,7 @@ class Homepage extends Component {
 
           <article id="tip-info-paragraphs">
             <section>
-              <h2 className="info-section-header">
+              <h2 className="info-section-header" id="main-section-header">
                 Draft FY2020 Transportation Improvement Program for New Jersey
                 (FY20-23)
               </h2>

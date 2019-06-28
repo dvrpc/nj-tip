@@ -82,9 +82,10 @@
   font-size: 1.8rem;
   color: #e5c942;
   padding-bottom: 1%;
-}
-.info-section-header:not(:first-of-type){
   margin-top: 4%;
+}
+#main-section-header{
+  margin-top: 0;
 }
 #tip-info p,
 #tip-info ul,
