@@ -138,14 +138,17 @@ class Homepage extends Component {
                 >
                   Draft (STIP)
                 </a>
-                . While the public comment period will end at 5:00 PM Eastern
-                Time on Friday, August 9, 2019, the Draft STIP public comment
-                period will remain open until all three NJ Metropolitan Planning
-                Organizations (MPOs) have closed their Draft TIP public comment
-                periods. NJDOT, NJ TRANSIT and the DRPA/PATCO do not hold a
-                separate public comment period or meeting for the Draft STIP and
-                rely on DVRPC and other MPOs to serve as a vehicle for this
-                federal requirement.
+                . While{" "}
+                <strong>
+                  the public comment period will end at 5:00 PM Eastern Time on
+                  Friday, August 9, 2019
+                </strong>
+                , the Draft STIP public comment period will remain open until
+                all three NJ Metropolitan Planning Organizations (MPOs) have
+                closed their Draft TIP public comment periods. NJDOT, NJ TRANSIT
+                and the DRPA/PATCO do not hold a separate public comment period
+                or meeting for the Draft STIP and rely on DVRPC and other MPOs
+                to serve as a vehicle for this federal requirement.
               </p>
               <p>
                 A public meeting/information session that DVRPC will jointly
@@ -288,7 +291,7 @@ class Homepage extends Component {
                     </li>
                     <li>
                       <a href="/TIP/Draft/pdf/Effective.pdf">
-                        Making Your Public Comment More Effective
+                        Make Your Public Comment More Effective
                       </a>{" "}
                       <span class="sm"> [0.2 MB pdf]</span>
                     </li>
