@@ -6,6 +6,7 @@ export const updateBounds = mapReference => {
     allMPMS: [],
     features: []
   };
+
   let rendered = mapReference.map.queryRenderedFeatures({
     layers: ["nj-tip-points", "nj-tip-lines"]
   });
@@ -14,8 +15,9 @@ export const updateBounds = mapReference => {
     if (renderedProjects.allMPMS.indexOf(item.properties.DBNUM) === -1) {
       renderedProjects.allMPMS.push(item.properties.DBNUM);
 
+      // add descriptive info for tiles + lat/lng for the tile hover + map popup link
       renderedProjects.features.push({
-        CTY: item.properties.CTY,
+        // CTY: item.properties.CTY,
         DBNUM: item.properties.DBNUM,
         TYPE_DESC: item.properties.TYPE_DESC,
         PROJECTNAM: item.properties.PROJECTNAM,

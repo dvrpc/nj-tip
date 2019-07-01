@@ -118,9 +118,6 @@ class MapComponent extends Component {
     });
 
     this.map.on("load", () => {
-      //map ready - get features
-      updateBounds(this);
-
       // check for keyword search
       if (this.props.keywordProjects && this.props.keywordProjects.features) {
         let keyFilter = this.buildKeywordFilter(this.props.keywordProjects);
@@ -131,6 +128,7 @@ class MapComponent extends Component {
       let zoom = new mapboxgl.NavigationControl();
       this.map.addControl(zoom, "bottom-left");
 
+      // add this info to the layers.js object. Whenever a user clicks on a layer overlay, check if the layer exists. Add it (and it's source) if it doesn't. Load it if it does.
       this.map.addSource("IPD", {
         type: "geojson",
         data:
@@ -161,7 +159,7 @@ class MapComponent extends Component {
           "https://services1.arcgis.com/LWtWv6q6BJyKidj8/arcgis/rest/services/DVRPC_Urban_Areas/FeatureServer/1/query?where=LSAD_TYPE%3D'Urbanized+Area'&sqlFormat=standard&geometryPrecision=4&outSR=4326&outFields=CENSUS_UA_&f=pgeojson"
       });
 
-      // add layers and set initial visibility for each one to 'none'
+      //add layers and set initial visibility for each one to 'none'
       this.map.addLayer(layers.ipd, "water shadow");
       this.map.addLayer(layers.cmp, "water shadow");
       this.map.addLayer(layers.connections, "admin-3-4-boundaries-bg");
@@ -202,6 +200,8 @@ class MapComponent extends Component {
     // handle user events to update map results
     this.map.on("zoomend", () => updateBounds(this));
     this.map.on("moveend", () => updateBounds(this));
+
+    // this handles the edge case of setting a filter without map movement, but only sometimes.
     this.map.on("data", () => {
       if (this.map.isStyleLoaded()) updateBounds(this);
     });
@@ -223,6 +223,8 @@ class MapComponent extends Component {
       this.context.store.getState().getTIP.bounds = [];
       this.props.getTIPByKeywords(value);
     }
+
+    // add all of the overlay info
   }
 
   componentWillReceiveProps(nextProps) {

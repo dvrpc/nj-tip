@@ -156,6 +156,7 @@ export const hydrateGeometry = id => dispatch => {
 };
 
 // gets the full information for a project to display in the modal when a tile is clicked
+// @TODO: there are issues with this endpoint. It seems like projects with DBNUM's that are all numbers work, but ones that have letters in them throw a 400 or 500 error...
 export const getFullTIP = id => dispatch => {
   fetch(`https://www.dvrpc.org/data/tip/2020/id/${id}`)
     .then(response => {
