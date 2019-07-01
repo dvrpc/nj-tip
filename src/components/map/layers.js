@@ -184,25 +184,28 @@ const urbanizedAreas = {
     "fill-color": [
       "case",
       ["==", ["get", "CENSUS_UA_"], "03898"],
-      ["#e60000"],
+      "#e60000",
       ["==", ["get", "CENSUS_UA_"], "90658"],
-      ["#c560f7"]
+      "#c560f7",
+      ["==", ["get", "CENSUS_UA_"], "25849"],
+      "#365487",
+      ["==", ["get", "CENSUS_UA_"], "01495"],
+      "#00DBDB",
+      ["==", ["get", "CENSUS_UA_"], "90730"],
+      "#73004C",
+      ["==", ["get", "CENSUS_UA_"], "71803"],
+      "#FFD37F",
+      ["==", ["get", "CENSUS_UA_"], "88462"],
+      "#00734C",
+      ["==", ["get", "CENSUS_UA_"], "89263"],
+      "#55FF00",
+      ["==", ["get", "CENSUS_UA_"], "63217"],
+      "#737300",
+      ["==", ["get", "CENSUS_UA_"], "69076"],
+      "#E67553",
+      "#b4b4b4"
     ]
   }
-};
-
-// from the old NJ TIP for reference only to buid out the ^ filter
-var urbanAreasColors = {
-  "03898": "E60000)",
-  "90658": "#C560F7",
-  "25849": "#365487",
-  "01495": "#00DBDB",
-  "90730": "#73004C",
-  "71803": "#FFD37F",
-  "88462": "#00734C",
-  "89263": "#55FF00",
-  "63217": "#737300",
-  "69076": "#E67553"
 };
 
 export default { ipd, cmp, connections, freight, landUse, urbanizedAreas };
