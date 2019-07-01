@@ -245,12 +245,12 @@ class Homepage extends Component {
                   <span class="sm">[86 MB pdf]</span>
                 </li>
                 <li class="list-group-item">
-                  <a href="/TIP/Draft/pdf/.pdf">
+                  <a href="/TIP/Draft/pdf/esHighlightsNJ20.pdf">
                     Aspectos destacados del Borrador del Programa de Mejora del
                     Transporte (TIP) de la DVRPC para el FY2020 de Nueva Jersey
                     (FY20 - FY23)
                   </a>{" "}
-                  <span class="sm">[ MB pdf]</span>
+                  <span class="sm">[86 MB pdf]</span>
                 </li>
                 <li class="list-group-item">
                   <a href="/TIP/Draft/pdf/1.pdf">General Overview of the TIP</a>{" "}
