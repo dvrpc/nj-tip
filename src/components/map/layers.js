@@ -182,27 +182,27 @@ const urbanizedAreas = {
   },
   paint: {
     "fill-color": [
-      "interpolate",
-      ["linear"],
-      ["get", "CENSUS_UA"],
-      "03898",
-      "#E60000"
+      "case",
+      ["==", ["get", "CENSUS_UA_"], "03898"],
+      ["#e60000"],
+      ["==", ["get", "CENSUS_UA_"], "90658"],
+      ["#c560f7"]
     ]
   }
 };
 
 // from the old NJ TIP for reference only to buid out the ^ filter
 var urbanAreasColors = {
-  "03898": "rgb(230, 0, 0)",
-  "90658": "rgb(197, 96, 247)",
-  "25849": "rgb(54, 84, 135)",
-  "01495": "rgb(0, 219, 219)",
-  "90730": "rgb(115, 0, 76)",
-  "71803": "rgb(255, 211, 127)",
-  "88462": "rgb(0, 115, 76)",
-  "89263": "rgb(85, 255, 0)",
-  "63217": "rgb(115, 115, 0)",
-  "69076": "rgb(230, 117, 83)"
+  "03898": "E60000)",
+  "90658": "#C560F7",
+  "25849": "#365487",
+  "01495": "#00DBDB",
+  "90730": "#73004C",
+  "71803": "#FFD37F",
+  "88462": "#00734C",
+  "89263": "#55FF00",
+  "63217": "#737300",
+  "69076": "#E67553"
 };
 
 export default { ipd, cmp, connections, freight, landUse, urbanizedAreas };

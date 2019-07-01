@@ -157,9 +157,8 @@ class MapComponent extends Component {
       });
       this.map.addSource("UrbanizedAreas", {
         type: "geojson",
-        // @TODO: issue #3 remake this query to get rid of unnescesary stuff
         data:
-          "https://services1.arcgis.com/LWtWv6q6BJyKidj8/arcgis/rest/services/DVRPC_Urban_Areas/FeatureServer/1/query?outFields=*&where=LSAD_TYPE%3D'Urbanized+Area'&sqlFormat=standard&geometryPrecision=5&outSR=4326&outFields=LSAD_TYPE&f=pgeojson"
+          "https://services1.arcgis.com/LWtWv6q6BJyKidj8/arcgis/rest/services/DVRPC_Urban_Areas/FeatureServer/1/query?where=LSAD_TYPE%3D'Urbanized+Area'&sqlFormat=standard&geometryPrecision=4&outSR=4326&outFields=CENSUS_UA_&f=pgeojson"
       });
 
       // add layers and set initial visibility for each one to 'none'
