@@ -184,10 +184,11 @@ class Homepage extends Component {
                 How to Submit a Public Comment:{" "}
               </h2>
               <p>
-                Submit comments online by clicking the “SEARCH DRAFT TIP
-                PROJECTS BY ADDRESS OR KEYWORDS OR SUBMIT COMMENT” feature in
-                order for a response to be provided in the final TIP document.
-                You can still send comments by:
+                Submit comments online by clicking the "Search &amp; Comment on
+                Draft TIP Projects" feature above or "Submit a General Comment
+                on the Draft TIP or Statewide TIP (STIP)" feature below in order
+                for a response to be provided in the final TIP document. You can
+                still send comments by:
               </p>
               <ul>
                 <li>
@@ -205,8 +206,8 @@ class Homepage extends Component {
                 }}
               >
                 <strong>
-                  <a href="/TIP/Draft/pdf/Effective.pdf">Click here</a>{" "}
-                  <span class="sm"> [0.2 MB pdf] </span>
+                  <a href="/TIP/Draft/pdf/tips.pdf">Click here</a>{" "}
+                  <span class="sm"> [0.3 MB pdf] </span>
                   to view helpful tips that can make a public comment more
                   effective
                 </strong>
@@ -214,7 +215,9 @@ class Homepage extends Component {
               <Comments
                 colorScheme={null}
                 projectId={null}
-                title={"Submit a General Comment for the Draft FY20 NJ TIP"}
+                title={
+                  "Submit a General Comment on the Draft TIP or Statewide TIP (STIP)"
+                }
               />
             </section>
 
@@ -245,7 +248,7 @@ class Homepage extends Component {
                   <span class="sm">[86 MB pdf]</span>
                 </li>
                 <li class="list-group-item">
-                  <a href="/TIP/Draft/pdf/esHighlightsNJ20.pdf">
+                  <a href="/TIP/Draft/pdf/20001Ces.pdf">
                     Aspectos destacados del Borrador del Programa de Mejora del
                     Transporte (TIP) de la DVRPC para el FY2020 de Nueva Jersey
                     (FY20 - FY23)
@@ -290,10 +293,10 @@ class Homepage extends Component {
                       <span class="sm"> [0.1 MB pdf]</span>
                     </li>
                     <li>
-                      <a href="/TIP/Draft/pdf/Effective.pdf">
+                      <a href="/TIP/Draft/pdf/tips.pdf">
                         Make Your Public Comment More Effective
                       </a>{" "}
-                      <span class="sm"> [0.2 MB pdf]</span>
+                      <span class="sm"> [0.3 MB pdf]</span>
                     </li>
                   </ul>
                 </li>
