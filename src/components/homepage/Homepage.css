@@ -188,7 +188,7 @@
     display: none;
   }
   .landing {
-    background: url("./firstFrame.jpg") no-repeat;
+    background: url("./firstFrame.png") no-repeat;
     background-position: center;
     background-size: cover;
   }
