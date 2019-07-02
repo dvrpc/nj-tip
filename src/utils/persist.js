@@ -16,6 +16,7 @@ export default class StateLoader {
   }
 
   saveState(state) {
+    console.log("state at persist ", state);
     try {
       let serializedState = JSON.stringify(state);
       localStorage.setItem(this.__KEY__, serializedState);

@@ -283,10 +283,9 @@ class Homepage extends Component {
                   <span class="sm">[0.1 MB pdf]</span>
                   <ul>
                     <li>
-                      <a href="/TIP/Draft/pdf/PublicNotice.pdf">
+                      <a href="https://www.dvrpc.org/getinvolved/publicnotices/2019-nj-tip.html">
                         Public Notice
                       </a>{" "}
-                      <span class="sm"> [ MB pdf]</span>
                     </li>
                     <li>
                       <a href="/TIP/Draft/pdf/Libraries.pdf">

@@ -2,6 +2,7 @@
 //This code only works for binary blobs
 const cachedFetch = (url, options) => {
   const cache = localStorage.getItem(url);
+  console.log("cache is ", cache);
   return cache !== null
     ? Promise.resolve(new Response(new Blob([cache])))
     : fetch(url, options).then(response => {

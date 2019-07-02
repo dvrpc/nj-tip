@@ -19,14 +19,15 @@ class Expanded extends Component {
     super(props);
 
     this.state = {
-      streetView: false
+      params: this.props.match.params.id
     };
   }
 
   backToResults = () => this.props.history.goBack();
 
   generateStreetview = geom => {
-    window.streetview = new window.google.maps.StreetViewPanorama(
+    console.log("generate streetview called with geom ", geom);
+    this.streetview = new window.google.maps.StreetViewPanorama(
       this.streetview,
       {
         position: {
@@ -36,30 +37,36 @@ class Expanded extends Component {
         zoom: 0
       }
     );
-
-    // set streetView status and re-render to show the streetview component
-    if (!this.state.streetView) this.setState({ streetView: true });
+    console.log("street view ref for fucks sake ", this.streetview);
   };
 
   componentDidMount() {
-    this.props.hydrateGeometry(this.props.match.params.id);
-    this.props.getFullTIP(this.props.match.params.id);
+    this.props.hydrateGeometry(this.state.params);
+    this.props.getFullTIP(this.state.params);
   }
 
   componentDidUpdate(prevProps) {
-    let features = this.props.geometry ? this.props.geometry.features : [];
+    const oldGeom = prevProps.geometry;
+    const newGeom = this.props.geometry;
 
-    if (features && features.length) {
-      const geom = features[0].geometry.coordinates;
-      this.generateStreetview(geom);
+    // generate streetview if the project has geometry
+    if (newGeom) {
+      const newCoords = newGeom.features[0].geometry.coordinates;
+      if (!oldGeom) {
+        this.generateStreetview(newCoords);
+      } else {
+        const oldCoords = oldGeom.features[0].geometry.coordinates;
+        if (newCoords[0] != oldCoords[0]) {
+          this.generateStreetview(newCoords);
+        }
+      }
     }
   }
 
   componentWillUnmount() {
-    // reset geometry (handle case where it was serving old features)
-    this.props.geometry = {};
-    this.props.details = {};
-    console.log("expanded props at dismount ", this.props);
+    // reset content to prevent old projects from showing up while the new one loads
+    this.props.geometry = null;
+    this.props.details = null;
   }
 
   render() {
@@ -68,13 +75,29 @@ class Expanded extends Component {
     let navBackground;
     let toReturn;
     let funding;
+    let loaded = false;
 
-    this.props && this.props.details
-      ? ((details = this.props.details),
-        (funding = getTotals(this.props.details.funding.data)),
-        (colorScheme = colors[details.category] || colors["Other"]),
-        (navBackground = `background: linear-gradient(to right, white 35%, ${colorScheme.middle} 65%, ${colorScheme.darkest})`),
-        (toReturn = (
+    if (this.props.details) {
+      // handle server errors
+      if (this.props.details.error) {
+        const reason = this.props.details.reason;
+
+        alert(
+          `Sorry! Project #${this.state.params} could not be fetched at this time due to ${reason}. Click 'ok' to return to the map.`
+        );
+        // @TODO: update redirect to https://wwww.dvrpc.org/TIP/Draft/keyword/tip
+        window.location = "http://localhost:3000/keyword/tip";
+      } else {
+        details = this.props.details;
+        funding = getTotals(details.funding.data);
+        colorScheme = colors[details.category] || colors["Default"];
+        navBackground = `background: linear-gradient(to right, white 35%, ${colorScheme.middle} 65%, ${colorScheme.darkest})`;
+        loaded = true;
+      }
+    }
+
+    loaded
+      ? (toReturn = (
           <div>
             <PrintPage details={details} totals={funding} id="print-mount" />
             <div className="expanded" id="react-no-print">
@@ -320,7 +343,7 @@ class Expanded extends Component {
               title={"Submit a Public Comment for this Project"}
             />
           </div>
-        )))
+        ))
       : (toReturn = (
           <div id="loadingBackground">
             <Navbar
