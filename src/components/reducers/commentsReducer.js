@@ -36,6 +36,10 @@ export const submitComment = comment => dispatch => {
     .then(response => {
       if (response.ok) {
         dispatch(posted_comment_response(true));
+        alert(
+          "Success! Thank you for posting a public comment for the Draft FY20 NJ TIP"
+        );
+        window.location.reload();
       } else {
         alert("Failed to post comment to database. Please try again.");
         console.log("comment post failed with status: ", response.status);

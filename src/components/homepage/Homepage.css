@@ -156,8 +156,8 @@
 #obligation-summary-table{
   width: 100%;
 }
-#submitCommentButton{
-  color: #333333;
+.homepage input[type="submit"]{
+  color: #333333 !important;
 }
 
 .sm {
