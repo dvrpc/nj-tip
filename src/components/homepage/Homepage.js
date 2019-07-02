@@ -312,7 +312,7 @@ class Homepage extends Component {
                   <a href="/TIP/Draft/pdf/7.pdf">Programs</a>{" "}
                   <span class="sm">[0.2 MB pdf]</span>
                   <ul>
-                    Helpful Correspondences:
+                    Helpful Project Indexes:
                     <li>
                       <a href="/TIP/Draft/pdf/NJ-CorresByTitle.pdf">By Title</a>{" "}
                       <span class="sm"> [0.2 MB pdf]</span>

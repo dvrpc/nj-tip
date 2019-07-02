@@ -70,6 +70,7 @@
 .homepage-bottom-bar a {
   color: #e5c942;
   white-space: nowrap;
+  font-weight: 700;
 }
 .homepage-bottom-bar img {
   padding: 0 5%;
@@ -154,6 +155,9 @@
 }
 #obligation-summary-table{
   width: 100%;
+}
+#submitCommentButton{
+  color: #333333;
 }
 
 .sm {
