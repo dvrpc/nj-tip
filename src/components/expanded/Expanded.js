@@ -57,7 +57,9 @@ class Expanded extends Component {
 
   componentWillUnmount() {
     // reset geometry (handle case where it was serving old features)
-    this.props.geometry.features = [];
+    this.props.geometry = {};
+    this.props.details = {};
+    console.log("expanded props at dismount ", this.props);
   }
 
   render() {

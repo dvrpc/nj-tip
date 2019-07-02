@@ -109,7 +109,7 @@ class Homepage extends Component {
             <section>
               <h2 className="info-section-header" id="main-section-header">
                 Draft FY2020 Transportation Improvement Program for New Jersey
-                (FY20-23)
+                (FY20-FY23)
               </h2>
               <p>
                 The DVRPC Draft TIP for NJ represents the region's federally
@@ -170,6 +170,8 @@ class Homepage extends Component {
                     TRENTON, NJ, 08650
                   </address>
                 </strong>
+              </p>
+              <p>
                 Although registration is not required, please RSVP by contacting
                 (215) 592-1800 or{" "}
                 <a href="mailto:public_affairs@dvrpc.org">
@@ -308,8 +310,8 @@ class Homepage extends Component {
                   <span class="sm">[0.2 MB pdf]</span>
                 </li>
                 <li class="list-group-item">
-                  <a href="/TIP/Draft/pdf/5.pdf">Programs</a>{" "}
-                  <span class="sm">[0.1 MB pdf]</span>
+                  <a href="/TIP/Draft/pdf/7.pdf">Programs</a>{" "}
+                  <span class="sm">[0.2 MB pdf]</span>
                   <ul>
                     Helpful Correspondences:
                     <li>
