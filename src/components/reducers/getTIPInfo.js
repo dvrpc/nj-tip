@@ -143,6 +143,9 @@ export const getTIPByMapBounds = features => dispatch => {
 
 // pull project information from URL for link sharing
 export const hydrateGeometry = id => dispatch => {
+  // handle resetting of the expanded.js props to solve old components rendering while a new one loads
+  if (id === null) return dispatch(hydrate_geometry(null));
+
   fetch(
     `https://services1.arcgis.com/LWtWv6q6BJyKidj8/ArcGIS/rest/services/DVRPC_Draft_New_Jersey_Transportation_Improvement_Program_2020_to_2023/FeatureServer/0/query?where=DBNUM=%27${id}%27&geometryType=esriGeometryPoint&returnGeometry=true&geometryPrecision=&outSR=4326&f=pgeojson`
   )
@@ -158,6 +161,9 @@ export const hydrateGeometry = id => dispatch => {
 // gets the full information for a project to display in the modal when a tile is clicked
 // @TODO: there are issues with this endpoint. It seems like projects with DBNUM's that are all numbers work, but ones that have letters in them throw a 400 or 500 error...
 export const getFullTIP = id => dispatch => {
+  // handle resetting of the expanded.js props to solve old components rendering while a new one loads
+  if (id === null) return dispatch(get_full_tip(null));
+
   fetch(`https://www.dvrpc.org/data/tip/2020/id/${id}`)
     .then(response => {
       if (response.ok) {

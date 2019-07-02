@@ -26,7 +26,6 @@ class Expanded extends Component {
   backToResults = () => this.props.history.goBack();
 
   generateStreetview = geom => {
-    console.log("generate streetview called with geom ", geom);
     this.streetview = new window.google.maps.StreetViewPanorama(
       this.streetview,
       {
@@ -37,7 +36,6 @@ class Expanded extends Component {
         zoom: 0
       }
     );
-    console.log("street view ref for fucks sake ", this.streetview);
   };
 
   componentDidMount() {
@@ -63,10 +61,10 @@ class Expanded extends Component {
     }
   }
 
+  // clear old project data from the store to prevent expanded.js from pulling old information while fetching a new page
   componentWillUnmount() {
-    // reset content to prevent old projects from showing up while the new one loads
-    this.props.geometry = null;
-    this.props.details = null;
+    this.props.hydrateGeometry(null);
+    this.props.getFullTIP(null);
   }
 
   render() {
@@ -81,7 +79,6 @@ class Expanded extends Component {
       // handle server errors
       if (this.props.details.error) {
         const reason = this.props.details.reason;
-
         alert(
           `Sorry! Project #${this.state.params} could not be fetched at this time due to ${reason}. Click 'ok' to return to the map.`
         );
