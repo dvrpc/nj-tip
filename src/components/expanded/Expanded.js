@@ -21,6 +21,8 @@ class Expanded extends Component {
     this.state = {
       params: this.props.match.params.id
     };
+
+    this.timeoutID = null;
   }
 
   backToResults = () => this.props.history.goBack();
@@ -61,10 +63,11 @@ class Expanded extends Component {
     }
   }
 
-  // clear old project data from the store to prevent expanded.js from pulling old information while fetching a new page
+  // clear old project data (and timeout, if necessary) from the store to prevent expanded.js from pulling old information while fetching a new page
   componentWillUnmount() {
     this.props.hydrateGeometry(null);
     this.props.getFullTIP(null);
+    if (this.timeoutID) window.clearTimeout(this.timeoutID);
   }
 
   render() {
@@ -76,14 +79,21 @@ class Expanded extends Component {
     let loaded = false;
 
     if (this.props.details) {
-      // handle server errors
+      // handle fetching errors
       if (this.props.details.error) {
         const reason = this.props.details.reason;
-        alert(
-          `Sorry! Project #${this.state.params} could not be fetched at this time due to ${reason}. Click 'ok' to return to the map.`
-        );
-        // @TODO: update redirect to https://wwww.dvrpc.org/TIP/Draft/keyword/tip
-        window.location = "http://localhost:3000/keyword/tip";
+
+        const throwError = () => {
+          alert(
+            `Sorry! Project #${this.state.params} could not be fetched at this time due to ${reason}. Click 'ok' to return to the map.`
+          );
+          this.props.history.push("/keyword/tip");
+        };
+
+        // throw the error alert after 1.2 seconds of delay because immediate feedback from errors is bad ux
+        this.timeoutID = window.setTimeout(throwError, 1200);
+
+        // extract project information from store props
       } else {
         details = this.props.details;
         funding = getTotals(details.funding.data);
