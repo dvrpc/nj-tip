@@ -127,6 +127,9 @@ th {
   border-left: none;
   word-wrap: break-word;
 }
+#noMilestones {
+  text-align: center;
+}
 
 
 /*Loading Styles */

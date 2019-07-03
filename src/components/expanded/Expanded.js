@@ -319,27 +319,34 @@ class Expanded extends Component {
                     class="table-wrapper hidden"
                     ref={e => (this.milestones = e)}
                   >
-                    <table className="funding-and-awards-table">
-                      <thead>
-                        <tr>
-                          <th style={{ background: "#333" }}>Milestone</th>
+                    {details.milestones.data.length ? (
+                      <table className="funding-and-awards-table">
+                        <thead>
+                          <tr>
+                            <th style={{ background: "#333" }}>Milestone</th>
 
-                          <th style={{ background: "#333" }}>Estimated Date</th>
+                            <th style={{ background: "#333" }}>
+                              Estimated Date
+                            </th>
 
-                          <th style={{ background: "#333" }}>Actual Date</th>
-                        </tr>
-                      </thead>
-                      <tbody style={{ background: colorScheme.lightest }}>
-                        {details.milestones &&
-                          details.milestones.data.map(row => (
+                            <th style={{ background: "#333" }}>Actual Date</th>
+                          </tr>
+                        </thead>
+                        <tbody style={{ background: colorScheme.lightest }}>
+                          {details.milestones.data.map(row => (
                             <tr className="table-data-rows">
                               <td>{row[0]}</td>
                               <td>{row[1]}</td>
                               <td>{row[2]}</td>
                             </tr>
                           ))}
-                      </tbody>
-                    </table>
+                        </tbody>
+                      </table>
+                    ) : (
+                      <h3 id="noMilestones">
+                        No milestones are available for this project.
+                      </h3>
+                    )}
                   </div>
                 </section>
               </div>
