@@ -47,6 +47,7 @@ class MapComponent extends Component {
 
     //toggle selected layer state
     Object.keys(layers).forEach(layer => {
+      console.log("layer is ", layer);
       let isVisible = this.map.getLayoutProperty(layer, "visibility");
 
       // set other layer states to false
@@ -160,12 +161,12 @@ class MapComponent extends Component {
       });
 
       //add layers and set initial visibility for each one to 'none'
-      this.map.addLayer(layers.ipd, "water shadow");
-      this.map.addLayer(layers.cmp, "water shadow");
-      this.map.addLayer(layers.connections, "admin-3-4-boundaries-bg");
-      this.map.addLayer(layers.freight, "admin-3-4-boundaries-bg");
-      this.map.addLayer(layers.landUse, "water shadow");
-      this.map.addLayer(layers.urbanizedAreas, "water shadow");
+      this.map.addLayer(layers.ipd.layout, "water shadow");
+      this.map.addLayer(layers.cmp.layout, "water shadow");
+      this.map.addLayer(layers.connections.layout, "admin-3-4-boundaries-bg");
+      this.map.addLayer(layers.freight.layout, "admin-3-4-boundaries-bg");
+      this.map.addLayer(layers.landUse.layout, "water shadow");
+      this.map.addLayer(layers.urbanizedAreas.layout, "water shadow");
     });
 
     this.map.on("click", "nj-tip-points", e => {
