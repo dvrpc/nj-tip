@@ -22,7 +22,7 @@ class MapComponent extends Component {
     super(props);
 
     this.state = {
-      layers: {
+      dropdownLayers: {
         "Indicators of Potential Disadvantage": false,
         "CMP Corridors": false,
         "Connections 2045 Centers": false,
@@ -43,33 +43,73 @@ class MapComponent extends Component {
   }
 
   updateLayerVisibility = selectedLayer => {
-    let { layers } = this.state;
+    let { dropdownLayers } = this.state;
+
+    const srcLookup = {
+      "Indicators of Potential Disadvantage": "IPD",
+      "CMP Corridors": "CMP",
+      "Connections 2045 Centers": "Connections",
+      "Freight Centers": "Freight",
+      "DVRPC Land Use (2015)": "LandUse",
+      "Urbanized Areas": "UrbanizedAreas"
+    };
+
+    const selectedSrc = srcLookup[selectedLayer];
+    const hasSrc = this.map.getSource(selectedSrc);
+
+    // if the layer doesn't exist yet, add it
+    if (!hasSrc) {
+      const srcInfo = layers[selectedSrc].source;
+
+      // handle different addSource() format for vector tiles and geojsons
+      if (srcInfo.type === "geojson") {
+        this.map.addSource(selectedSrc, {
+          type: srcInfo.type,
+          data: srcInfo.data
+        });
+      } else {
+        this.map.addSource(selectedSrc, {
+          type: srcInfo.type,
+          url: srcInfo.url
+        });
+      }
+
+      this.map.addLayer(layers[selectedSrc].layout, "water shadow");
+    }
 
     //toggle selected layer state
-    Object.keys(layers).forEach(layer => {
-      console.log("layer is ", layer);
-      let isVisible = this.map.getLayoutProperty(layer, "visibility");
+    Object.keys(dropdownLayers).forEach(layer => {
+      let layerCheck = this.map.getLayer(layer);
+
+      // move on to the next one if the layer hasn't been added yet
+      if (!layerCheck) return;
 
       // set other layer states to false
       if (layer !== selectedLayer) {
-        layers[layer] = false;
+        dropdownLayers[layer] = false;
 
-        if (isVisible) {
-          this.map.setLayoutProperty(layer, "visibility", "none");
+        // if a layer does exist, check it's visibility and set it to none if it was previously on
+        if (layerCheck) {
+          let isVisible = this.map.getLayoutProperty(layer, "visibility");
+          if (isVisible)
+            this.map.setLayoutProperty(layer, "visibility", "none");
         }
+
+        // turn currently active layer on or off depending on its current state
       } else {
-        // set currently active layer to true or false depending on its current state
-        layers[layer] ? (layers[layer] = false) : (layers[layer] = true);
+        dropdownLayers[layer]
+          ? (dropdownLayers[layer] = false)
+          : (dropdownLayers[layer] = true);
 
         this.map.setLayoutProperty(
           layer,
           "visibility",
-          layers[layer] ? "visible" : "none"
+          dropdownLayers[layer] ? "visible" : "none"
         );
       }
     });
 
-    this.setState({ layers });
+    this.setState({ dropdownLayers });
   };
 
   toggleDropdown = e => {
@@ -128,45 +168,6 @@ class MapComponent extends Component {
       // add zoom controls
       let zoom = new mapboxgl.NavigationControl();
       this.map.addControl(zoom, "bottom-left");
-
-      // add this info to the layers.js object. Whenever a user clicks on a layer overlay, check if the layer exists. Add it (and it's source) if it doesn't. Load it if it does.
-      this.map.addSource("IPD", {
-        type: "geojson",
-        data:
-          "https://opendata.arcgis.com/datasets/ab586640e7ab40e58c0615f9355cb35a_0.geojson"
-      });
-      this.map.addSource("CMP", {
-        type: "geojson",
-        data:
-          "https://services1.arcgis.com/LWtWv6q6BJyKidj8/ArcGIS/rest/services/DVRPC_CMP_2015/FeatureServer/0/query?where=1%3D1&returnGeometry=true&outFields=WEB_COLOR&geometryPrecision=4&outSR=4326&f=pgeojson"
-      });
-      this.map.addSource("Connections", {
-        type: "geojson",
-        data:
-          "https://services1.arcgis.com/LWtWv6q6BJyKidj8/arcgis/rest/services/DVRPC_Connections_2045_Planning_Centers/FeatureServer/0/query?where=State='NJ'&outFields=LUP_TYPE&geometryPrecision=4&outSR=4326&f=pgeojson"
-      });
-      this.map.addSource("Freight", {
-        type: "geojson",
-        data:
-          "https://services1.arcgis.com/LWtWv6q6BJyKidj8/arcgis/rest/services/DVRPC_Connections_2045_Freight_Centers/FeatureServer/0/query?where=1%3D1&outFields=TYPES&outSR=4326&f=geojson"
-      });
-      this.map.addSource("LandUse", {
-        type: "vector",
-        url: "https://tiles.dvrpc.org/data/dvrpc-landuse-2015.json"
-      });
-      this.map.addSource("UrbanizedAreas", {
-        type: "geojson",
-        data:
-          "https://services1.arcgis.com/LWtWv6q6BJyKidj8/arcgis/rest/services/DVRPC_Urban_Areas/FeatureServer/1/query?where=LSAD_TYPE%3D'Urbanized+Area'&sqlFormat=standard&geometryPrecision=4&outSR=4326&outFields=CENSUS_UA_&f=pgeojson"
-      });
-
-      //add layers and set initial visibility for each one to 'none'
-      this.map.addLayer(layers.ipd.layout, "water shadow");
-      this.map.addLayer(layers.cmp.layout, "water shadow");
-      this.map.addLayer(layers.connections.layout, "admin-3-4-boundaries-bg");
-      this.map.addLayer(layers.freight.layout, "admin-3-4-boundaries-bg");
-      this.map.addLayer(layers.landUse.layout, "water shadow");
-      this.map.addLayer(layers.urbanizedAreas.layout, "water shadow");
     });
 
     this.map.on("click", "nj-tip-points", e => {
@@ -224,8 +225,6 @@ class MapComponent extends Component {
       this.context.store.getState().getTIP.bounds = [];
       this.props.getTIPByKeywords(value);
     }
-
-    // add all of the overlay info
   }
 
   componentWillReceiveProps(nextProps) {
@@ -296,12 +295,12 @@ class MapComponent extends Component {
                 "layer-menu " + (this.state.toggleLayerList ? "show" : "")
               }
             >
-              {Object.keys(this.state.layers).map(layer => {
+              {Object.keys(this.state.dropdownLayers).map(layer => {
                 return (
                   <p
                     className={
                       "dropdown-item " +
-                      (this.state.layers[layer].show ? "selected" : "")
+                      (this.state.dropdownLayers[layer].show ? "selected" : "")
                     }
                     onClick={() => this.updateLayerVisibility(layer)}
                   >

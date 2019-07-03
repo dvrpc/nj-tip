@@ -1,4 +1,4 @@
-const ipd = {
+const IPD = {
   source: {
     name: "IPD",
     type: "geojson",
@@ -40,7 +40,7 @@ const ipd = {
     }
   }
 };
-const cmp = {
+const CMP = {
   source: {
     name: "CMP",
     type: "geojson",
@@ -60,7 +60,7 @@ const cmp = {
     }
   }
 };
-const connections = {
+const Connections = {
   source: {
     name: "Connections",
     type: "geojson",
@@ -107,7 +107,7 @@ const connections = {
     }
   }
 };
-const freight = {
+const Freight = {
   source: {
     name: "Freight",
     type: "geojson",
@@ -152,7 +152,7 @@ const freight = {
     }
   }
 };
-const landUse = {
+const LandUse = {
   source: {
     name: "LandUse",
     type: "vector",
@@ -212,7 +212,7 @@ const landUse = {
     }
   }
 };
-const urbanizedAreas = {
+const UrbanizedAreas = {
   source: {
     name: "UrbanizedAreas",
     type: "geojson",
@@ -255,4 +255,4 @@ const urbanizedAreas = {
   }
 };
 
-export default { ipd, cmp, connections, freight, landUse, urbanizedAreas };
+export default { IPD, CMP, Connections, Freight, LandUse, UrbanizedAreas };

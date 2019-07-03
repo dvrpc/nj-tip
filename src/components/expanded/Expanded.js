@@ -56,7 +56,7 @@ class Expanded extends Component {
         this.generateStreetview(newCoords);
       } else {
         const oldCoords = oldGeom.features[0].geometry.coordinates;
-        if (newCoords[0] != oldCoords[0]) {
+        if (newCoords[0] !== oldCoords[0]) {
           this.generateStreetview(newCoords);
         }
       }
