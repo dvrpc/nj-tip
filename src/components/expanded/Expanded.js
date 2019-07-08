@@ -218,8 +218,8 @@ class Expanded extends Component {
                           <td style={{ background: "#333" }}>FY21</td>
                           <td style={{ background: "#333" }}>FY22</td>
                           <td style={{ background: "#333" }}>FY23</td>
-                          <td style={{ background: "#666" }}>FY24-27</td>
-                          <td style={{ background: "#666" }}>FY28-31</td>
+                          <td style={{ background: "#666" }}>FY20-23</td>
+                          <td style={{ background: "#666" }}>FY24-29</td>
                         </tr>
                         {details.funding &&
                           details.funding.data.map(row => (
@@ -307,7 +307,7 @@ class Expanded extends Component {
                         <tr style={{ background: "#666" }} id="funding-totals">
                           <td colspan="2">Total FY20-23 Cost:</td>
                           <td style={{ fontWeight: "700" }}>{funding[4]}</td>
-                          <td colspan="2">Total FY20-31 Cost:</td>
+                          <td colspan="2">Total FY20-29 Cost:</td>
                           <td style={{ fontWeight: "700" }}>{funding[5]}</td>
                         </tr>
                       </tbody>

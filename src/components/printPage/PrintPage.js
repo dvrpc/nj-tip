@@ -43,10 +43,8 @@ class PrintPage extends Component {
         <div style={printSubheadersWrap}>
           <h2 style={{ fontSize: "1rem" }}>DB #: {this.props.details.id}</h2>
 
-          <h2 style={{ fontSize: "1rem" }}>{this.props.details.county}</h2>
-
           <h2 style={{ fontSize: "1rem" }}>
-            AQ Code: {this.props.details.aq_code}
+            {this.props.details.county} County
           </h2>
         </div>
 
@@ -75,12 +73,12 @@ class PrintPage extends Component {
               <td>
                 <a href="/TIP/Draft/pdf/CodesAbbrev.pdf">Fund</a>
               </td>
-              <td style={{ fontWeight: "700" }}>2019</td>
               <td style={{ fontWeight: "700" }}>2020</td>
               <td style={{ fontWeight: "700" }}>2021</td>
               <td style={{ fontWeight: "700" }}>2022</td>
-              <td>2023-2026</td>
-              <td>2027-2030</td>
+              <td style={{ fontWeight: "700" }}>2023</td>
+              <td>2020-2023</td>
+              <td>2024-2029</td>
             </tr>
 
             {this.props.details.funding.data.map(row => (
@@ -117,20 +115,18 @@ class PrintPage extends Component {
         </table>
 
         <p style={{ marginLeft: "2%" }}>
-          Total FY2020 - 2023 Cost: <strong>{this.props.totals[4]}</strong>
+          Total FY20 - FY23 Cost ($000): <strong>{this.props.totals[4]}</strong>
         </p>
 
         <p style={{ marginLeft: "2%" }}>
-          Total FY2020 - 2030 Cost: <strong>{this.props.totals[5]}</strong>
+          Total FY20 - FY29 Cost ($000): <strong>{this.props.totals[5]}</strong>
         </p>
 
-        <h1 style={subHeaders}>Project Milestones:</h1>
+        <h1 style={subHeaders}>Project Status:</h1>
         <table style={printTable}>
           <thead>
             <tr>
-              <th>PHS Type</th>
-
-              <th>Milestone</th>
+              <th style={{ textAlign: "left" }}>Milestone</th>
 
               <th>Estimated Date</th>
 
@@ -141,7 +137,7 @@ class PrintPage extends Component {
           <tbody>
             {this.props.details.milestones.data.map(row => (
               <tr>
-                <td>{row[0]}</td>
+                <td style={{ textAlign: "left" }}>{row[0]}</td>
                 <td>{row[1]}</td>
                 <td>{row[2]}</td>
               </tr>
