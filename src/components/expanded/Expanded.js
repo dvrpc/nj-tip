@@ -78,6 +78,10 @@ class Expanded extends Component {
     let funding;
     let loaded = false;
 
+    // @todo: put this somewhere else, just need the text to copy for later when the SD20 stuff is in the reponse
+    const sd20 =
+      "This project is in the Study and Development Program, which could become a candidate for consideration in a future TIP and STIP Update for the phases of Preliminary Engineering, Final Design, Right-of-Way Acquisition, and Construction.";
+
     if (this.props.details) {
       // handle fetching errors
       if (this.props.details.error) {
@@ -172,6 +176,7 @@ class Expanded extends Component {
                     )}
                   </div>
                 </section>
+                {/* @TODO: add a ternary here that checks for SD20  */}
                 <section className="right-column">
                   <div
                     className="tabs"

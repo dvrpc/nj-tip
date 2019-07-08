@@ -37,11 +37,11 @@ export const submitComment = comment => dispatch => {
       if (response.ok) {
         dispatch(posted_comment_response(true));
         alert(
-          "Success! Thank you for posting a public comment for the Draft FY20 NJ TIP"
+          "Success! Thank you for submitting a public comment for the Draft FY2020 TIP or Draft STIP."
         );
         window.location.reload();
       } else {
-        alert("Failed to post comment to database. Please try again.");
+        alert("Failed to submit a comment. Please try again.");
         console.log("comment post failed with status: ", response.status);
       }
     })

@@ -37,7 +37,6 @@ class PrintPage extends Component {
 
   render() {
     const details = this.props.details;
-    console.log("details is ", details);
     return (
       <PrintTemplate style={printMain}>
         <h1 style={header}>{details.road_name}</h1>
@@ -138,13 +137,13 @@ class PrintPage extends Component {
             </thead>
 
             <tbody>
-              {details.milestones.data.map(row => {
+              {details.milestones.data.map(row => (
                 <tr>
                   <td style={{ textAlign: "left" }}>{row[0]}</td>
                   <td>{row[1]}</td>
                   <td>{row[2]}</td>
-                </tr>;
-              })}
+                </tr>
+              ))}
             </tbody>
           </table>
         ) : (
