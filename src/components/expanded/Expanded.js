@@ -102,6 +102,7 @@ class Expanded extends Component {
         // extract project information from store props
       } else {
         details = this.props.details;
+        console.log("updated expanded details ", details);
         funding = getTotals(details.funding.data);
         // @TODO: comment this back in when the program information is part of the API response
         // program = programLookup(details.program)
@@ -161,20 +162,12 @@ class Expanded extends Component {
                         ? details.description
                         : "Project Description"}
                     </p>
-                    {details.limits && <div>{details.limits}</div>}
-                    <p>
-                      {details.municipalities && (
-                        <span>{details.municipalities}, </span>
-                      )}
-                      {details.county && (
-                        <span>
-                          {details.county}
-                          {counties.indexOf(details.county) > -1
-                            ? " County"
-                            : ""}
-                        </span>
-                      )}
-                    </p>
+                    <hr />
+                    {details.limits && <p>Limits: {details.limits}</p>}
+                    {details.municipalities && (
+                      <p>Municipality(s): {details.municipalities}</p>
+                    )}
+                    {details.county && <p>County(s): {details.county}</p>}
                     {details.aq_code && (
                       <p>Air Quality Code: {details.aq_code}</p>
                     )}

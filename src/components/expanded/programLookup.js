@@ -1,4 +1,4 @@
-export default {
+const programs = {
   "Transit (NJ Transit) Program": {
     planCode: "T2029",
     mpoFinan: "DVRPC"
@@ -19,3 +19,7 @@ export default {
     planCode: "SD20"
   }
 };
+
+const programLookup = code => {};
+
+export { programLookup };
