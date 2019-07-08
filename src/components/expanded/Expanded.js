@@ -8,8 +8,9 @@ import Comments from "../comments/Comments.js";
 
 import { getFullTIP, hydrateGeometry } from "../reducers/getTIPInfo";
 import { colors } from "../../utils/tileGeometryColorType.js";
-import { switchTabs } from "../../utils/switchTabs.js";
-import { getTotals } from "../../utils/calculateFundingTotals.js";
+import { switchTabs } from "./switchTabs.js";
+import { getTotals } from "./calculateFundingTotals.js";
+import { programLookup } from "./programLookup.js";
 import cat from "./cat.gif";
 import noStreetview from "./noStreetview.jpg";
 import counties from "../../utils/counties";
@@ -77,6 +78,7 @@ class Expanded extends Component {
     let toReturn;
     let funding;
     let loaded = false;
+    let program;
 
     // @todo: put this somewhere else, just need the text to copy for later when the SD20 stuff is in the reponse
     const sd20 =
@@ -101,6 +103,8 @@ class Expanded extends Component {
       } else {
         details = this.props.details;
         funding = getTotals(details.funding.data);
+        // @TODO: comment this back in when the program information is part of the API response
+        // program = programLookup(details.program)
         colorScheme = colors[details.category] || colors["Default"];
         navBackground = `background: linear-gradient(to right, white 35%, ${colorScheme.middle} 65%, ${colorScheme.darkest})`;
         loaded = true;
