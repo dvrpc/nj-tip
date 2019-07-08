@@ -167,7 +167,9 @@ class Expanded extends Component {
                         </span>
                       )}
                     </p>
-                    {details.aq_code && <p>AQ Code: {details.aq_code}</p>}
+                    {details.aq_code && (
+                      <p>Air Quality Code: {details.aq_code}</p>
+                    )}
                   </div>
                 </section>
                 <section className="right-column">
@@ -201,7 +203,7 @@ class Expanded extends Component {
                         <tr>
                           <td colspan="2" style={{ background: "#666" }} />
                           <td colspan="4" style={{ background: "#333" }}>
-                            <h3>FY20 TIP Program Years ($000)</h3>
+                            <h3>FY20 TIP Program Years (in Millions)</h3>
                           </td>
                           <td colspan="2" style={{ background: "#666" }} />
                         </tr>
@@ -267,7 +269,7 @@ class Expanded extends Component {
                             colspan="2"
                             style={{ fontWeight: "700", color: "#333" }}
                           >
-                            Program Year Totals ($000):
+                            Program Year Totals (in Millions):
                           </td>
                           <td
                             style={{
@@ -305,9 +307,9 @@ class Expanded extends Component {
                           <td />
                         </tr>
                         <tr style={{ background: "#666" }} id="funding-totals">
-                          <td colspan="2">Total FY20-23 Cost:</td>
+                          <td colspan="2">Total FY20-23 Cost (in Millions):</td>
                           <td style={{ fontWeight: "700" }}>{funding[4]}</td>
-                          <td colspan="2">Total FY20-29 Cost:</td>
+                          <td colspan="2">Total FY20-29 Cost (in Millions):</td>
                           <td style={{ fontWeight: "700" }}>{funding[5]}</td>
                         </tr>
                       </tbody>

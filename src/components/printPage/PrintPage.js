@@ -36,19 +36,19 @@ class PrintPage extends Component {
   }
 
   render() {
+    const details = this.props.details;
+    console.log("details is ", details);
     return (
       <PrintTemplate style={printMain}>
-        <h1 style={header}>{this.props.details.road_name}</h1>
+        <h1 style={header}>{details.road_name}</h1>
 
         <div style={printSubheadersWrap}>
-          <h2 style={{ fontSize: "1rem" }}>DB #: {this.props.details.id}</h2>
+          <h2 style={{ fontSize: "1rem" }}>DB #: {details.id}</h2>
 
-          <h2 style={{ fontSize: "1rem" }}>
-            {this.props.details.county} County
-          </h2>
+          <h2 style={{ fontSize: "1rem" }}>{details.county} County</h2>
         </div>
 
-        <p style={{ paddingTop: "2%" }}>{this.props.details.description}</p>
+        <p style={{ paddingTop: "2%" }}>{details.description}</p>
 
         <h1 style={subHeaders}>Project Funding:</h1>
         <table style={printTable}>
@@ -59,7 +59,7 @@ class PrintPage extends Component {
                 colspan="4"
                 style={{ fontWeight: "700", textAlign: "center" }}
               >
-                TIP Program Years ($000)
+                TIP Program Years (in Millions)
               </td>
               <td colspan="2" />
             </tr>
@@ -81,7 +81,7 @@ class PrintPage extends Component {
               <td>2024-2029</td>
             </tr>
 
-            {this.props.details.funding.data.map(row => (
+            {details.funding.data.map(row => (
               <tr className="table-data-rows">
                 <td>{row[0]}</td>
 
@@ -102,7 +102,7 @@ class PrintPage extends Component {
             ))}
             <tr>
               <td colspan="2" style={{ fontWeight: "700", color: "#333" }}>
-                Program Year Totals ($000):
+                Program Year Totals (in Millions):
               </td>
               <td style={{ fontWeight: "700" }}>{this.props.totals[0]}</td>
               <td style={{ fontWeight: "700" }}>{this.props.totals[1]}</td>
@@ -115,35 +115,43 @@ class PrintPage extends Component {
         </table>
 
         <p style={{ marginLeft: "2%" }}>
-          Total FY20 - FY23 Cost ($000): <strong>{this.props.totals[4]}</strong>
+          Total FY20 - FY23 Cost (in Millions):{" "}
+          <strong>{this.props.totals[4]}</strong>
         </p>
 
         <p style={{ marginLeft: "2%" }}>
-          Total FY20 - FY29 Cost ($000): <strong>{this.props.totals[5]}</strong>
+          Total FY20 - FY29 Cost (in Millions):{" "}
+          <strong>{this.props.totals[5]}</strong>
         </p>
 
         <h1 style={subHeaders}>Project Status:</h1>
-        <table style={printTable}>
-          <thead>
-            <tr>
-              <th style={{ textAlign: "left" }}>Milestone</th>
-
-              <th>Estimated Date</th>
-
-              <th>Actual Date</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {this.props.details.milestones.data.map(row => (
+        {details.milestones.data.length ? (
+          <table style={printTable}>
+            <thead>
               <tr>
-                <td style={{ textAlign: "left" }}>{row[0]}</td>
-                <td>{row[1]}</td>
-                <td>{row[2]}</td>
+                <th style={{ textAlign: "left" }}>Milestone</th>
+
+                <th>Estimated Date</th>
+
+                <th>Actual Date</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+
+            <tbody>
+              {details.milestones.data.map(row => {
+                <tr>
+                  <td style={{ textAlign: "left" }}>{row[0]}</td>
+                  <td>{row[1]}</td>
+                  <td>{row[2]}</td>
+                </tr>;
+              })}
+            </tbody>
+          </table>
+        ) : (
+          <h3 id="noMilestones">
+            No milestones are available for this project.
+          </h3>
+        )}
       </PrintTemplate>
     );
   }

@@ -27,24 +27,6 @@ export const getTotals = info => {
     totalFunding
   ];
 
-  return convertToCurrency(formattedFunds);
-};
-
-const convertToCurrency = jawns => {
-  const test = 0;
-
-  // check if browser supports the locales and options arguments of toLocaleString
-  try {
-    test.toLocaleString("en-US");
-  } catch (e) {
-    console.log("failed ", e);
-    return e.name === "RangeError";
-  }
-
-  // add commas
-  return jawns.map(fund =>
-    fund
-      .toLocaleString("en-US", { style: "currency", currency: "USD" })
-      .slice(0, -3)
-  );
+  // return funds as is w/o formatting for commas since we're expressing these in millions
+  return formattedFunds;
 };
