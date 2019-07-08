@@ -350,12 +350,12 @@ class Expanded extends Component {
                   </div>
                 </section>
               </div>
+              <Comments
+                colorScheme={colorScheme}
+                projectId={details.id ? details.id : null}
+                title={"Submit a Public Comment for this Project"}
+              />
             </div>
-            <Comments
-              colorScheme={colorScheme}
-              projectId={details.id ? details.id : null}
-              title={"Submit a Public Comment for this Project"}
-            />
           </div>
         ))
       : (toReturn = (
