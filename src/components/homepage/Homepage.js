@@ -124,23 +124,26 @@ class Homepage extends Component {
               </p>
               <p>
                 DVRPC invites you to review and comment on the Draft FY2020 TIP
-                for the NJ portion of the region and New Jersey's{" "}
+                for the NJ that shows a program of priority transportation
+                projects in the counties of Burlington, Camden, Gloucester, and
+                Mercer, including the cities of Camden and Trenton, and the{" "}
                 <a
                   href="https://www.state.nj.us/transportation/capital/"
                   rel="external"
                 >
                   Draft FY2020 Statewide TIP (STIP)
-                </a>
-                . The Draft TIP is included in the{" "}
+                </a>{" "}
+                for the entire state of New Jersey. The Draft TIP is included in
+                the{" "}
                 <a
                   href="https://www.state.nj.us/transportation/capital/"
                   rel="external"
                 >
-                  Draft (STIP)
+                  Draft STIP
                 </a>
                 . While{" "}
                 <strong>
-                  the public comment period will end at 5:00 PM Eastern Time on
+                  the public comment period ends at 5:00 PM Eastern Time on
                   Friday, August 9, 2019
                 </strong>
                 , the Draft STIP public comment period will remain open until
