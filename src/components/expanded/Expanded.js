@@ -50,7 +50,7 @@ class Expanded extends Component {
     const newGeom = this.props.geometry;
 
     // generate streetview if the project has geometry
-    if (newGeom) {
+    if (newGeom && newGeom.features.length) {
       const newCoords = newGeom.features[0].geometry.coordinates;
       if (!oldGeom) {
         this.generateStreetview(newCoords);
@@ -201,7 +201,7 @@ class Expanded extends Component {
                         <tr>
                           <td colspan="2" style={{ background: "#666" }} />
                           <td colspan="4" style={{ background: "#333" }}>
-                            <h3>FY19 TIP Program Years ($000)</h3>
+                            <h3>FY20 TIP Program Years ($000)</h3>
                           </td>
                           <td colspan="2" style={{ background: "#666" }} />
                         </tr>
@@ -214,12 +214,12 @@ class Expanded extends Component {
                           <td style={{ background: "#666" }}>
                             <a href="/TIP/Draft/pdf/CodesAbbrev.pdf">Fund</a>
                           </td>
-                          <td style={{ background: "#333" }}>FY19</td>
                           <td style={{ background: "#333" }}>FY20</td>
                           <td style={{ background: "#333" }}>FY21</td>
                           <td style={{ background: "#333" }}>FY22</td>
-                          <td style={{ background: "#666" }}>FY23-26</td>
-                          <td style={{ background: "#666" }}>FY27-30</td>
+                          <td style={{ background: "#333" }}>FY23</td>
+                          <td style={{ background: "#666" }}>FY24-27</td>
+                          <td style={{ background: "#666" }}>FY28-31</td>
                         </tr>
                         {details.funding &&
                           details.funding.data.map(row => (
@@ -305,9 +305,9 @@ class Expanded extends Component {
                           <td />
                         </tr>
                         <tr style={{ background: "#666" }} id="funding-totals">
-                          <td colspan="2">Total FY19-22 Cost:</td>
+                          <td colspan="2">Total FY20-23 Cost:</td>
                           <td style={{ fontWeight: "700" }}>{funding[4]}</td>
-                          <td colspan="2">Total FY219-30 Cost:</td>
+                          <td colspan="2">Total FY20-31 Cost:</td>
                           <td style={{ fontWeight: "700" }}>{funding[5]}</td>
                         </tr>
                       </tbody>

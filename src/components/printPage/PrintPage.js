@@ -41,7 +41,7 @@ class PrintPage extends Component {
         <h1 style={header}>{this.props.details.road_name}</h1>
 
         <div style={printSubheadersWrap}>
-          <h2 style={{ fontSize: "1rem" }}>MPMS ID: {this.props.details.id}</h2>
+          <h2 style={{ fontSize: "1rem" }}>DB #: {this.props.details.id}</h2>
 
           <h2 style={{ fontSize: "1rem" }}>{this.props.details.county}</h2>
 
