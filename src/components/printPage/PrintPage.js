@@ -50,78 +50,88 @@ class PrintPage extends Component {
         <p style={{ paddingTop: "2%" }}>{details.description}</p>
 
         <h1 style={subHeaders}>Project Funding:</h1>
-        <table style={printTable}>
-          <thead>
-            <tr>
-              <td colspan="2" />
-              <td
-                colspan="4"
-                style={{ fontWeight: "700", textAlign: "center" }}
-              >
-                TIP Program Years (in Millions)
-              </td>
-              <td colspan="2" />
-            </tr>
-          </thead>
+        {details.funding.data.length ? (
+          <div>
+            <table style={printTable}>
+              <thead>
+                <tr>
+                  <td colspan="2" />
+                  <td
+                    colspan="4"
+                    style={{ fontWeight: "700", textAlign: "center" }}
+                  >
+                    TIP Program Years (in Millions)
+                  </td>
+                  <td colspan="2" />
+                </tr>
+              </thead>
 
-          <tbody>
-            <tr style={{ color: "#f7f7f7" }}>
-              <td>
-                <a href="/TIP/Draft/pdf/CodesAbbrev.pdf">Phase</a>
-              </td>
-              <td>
-                <a href="/TIP/Draft/pdf/CodesAbbrev.pdf">Fund</a>
-              </td>
-              <td style={{ fontWeight: "700" }}>2020</td>
-              <td style={{ fontWeight: "700" }}>2021</td>
-              <td style={{ fontWeight: "700" }}>2022</td>
-              <td style={{ fontWeight: "700" }}>2023</td>
-              <td>2020-2023</td>
-              <td>2024-2029</td>
-            </tr>
+              <tbody>
+                <tr style={{ color: "#f7f7f7" }}>
+                  <td>
+                    <a href="/TIP/Draft/pdf/CodesAbbrev.pdf">Phase</a>
+                  </td>
+                  <td>
+                    <a href="/TIP/Draft/pdf/CodesAbbrev.pdf">Fund</a>
+                  </td>
+                  <td style={{ fontWeight: "700" }}>2020</td>
+                  <td style={{ fontWeight: "700" }}>2021</td>
+                  <td style={{ fontWeight: "700" }}>2022</td>
+                  <td style={{ fontWeight: "700" }}>2023</td>
+                  <td>2020-2023</td>
+                  <td>2024-2029</td>
+                </tr>
 
-            {details.funding.data.map(row => (
-              <tr className="table-data-rows">
-                <td>{row[0]}</td>
+                {details.funding.data.map(row => (
+                  <tr className="table-data-rows">
+                    <td>{row[0]}</td>
 
-                <td>{row[1]}</td>
+                    <td>{row[1]}</td>
 
-                <td>{row[2]}</td>
+                    <td>{row[2]}</td>
 
-                <td>{row[3]}</td>
+                    <td>{row[3]}</td>
 
-                <td>{row[4]}</td>
+                    <td>{row[4]}</td>
 
-                <td>{row[5]}</td>
+                    <td>{row[5]}</td>
 
-                <td>{row[6]}</td>
+                    <td>{row[6]}</td>
 
-                <td>{row[7]}</td>
-              </tr>
-            ))}
-            <tr>
-              <td colspan="2" style={{ fontWeight: "700", color: "#333" }}>
-                Program Year Totals (in Millions):
-              </td>
-              <td style={{ fontWeight: "700" }}>{this.props.totals[0]}</td>
-              <td style={{ fontWeight: "700" }}>{this.props.totals[1]}</td>
-              <td style={{ fontWeight: "700" }}>{this.props.totals[2]}</td>
-              <td style={{ fontWeight: "700" }}>{this.props.totals[3]}</td>
-              <td />
-              <td />
-            </tr>
-          </tbody>
-        </table>
+                    <td>{row[7]}</td>
+                  </tr>
+                ))}
+                <tr>
+                  <td colspan="2" style={{ fontWeight: "700", color: "#333" }}>
+                    Program Year Totals (in Millions):
+                  </td>
+                  <td style={{ fontWeight: "700" }}>{this.props.totals[0]}</td>
+                  <td style={{ fontWeight: "700" }}>{this.props.totals[1]}</td>
+                  <td style={{ fontWeight: "700" }}>{this.props.totals[2]}</td>
+                  <td style={{ fontWeight: "700" }}>{this.props.totals[3]}</td>
+                  <td />
+                  <td />
+                </tr>
+              </tbody>
+            </table>
+            <p style={{ marginLeft: "2%" }}>
+              Total FY20 - FY23 Cost (in Millions):{" "}
+              <strong>{this.props.totals[4]}</strong>
+            </p>
 
-        <p style={{ marginLeft: "2%" }}>
-          Total FY20 - FY23 Cost (in Millions):{" "}
-          <strong>{this.props.totals[4]}</strong>
-        </p>
-
-        <p style={{ marginLeft: "2%" }}>
-          Total FY20 - FY29 Cost (in Millions):{" "}
-          <strong>{this.props.totals[5]}</strong>
-        </p>
+            <p style={{ marginLeft: "2%" }}>
+              Total FY20 - FY29 Cost (in Millions):{" "}
+              <strong>{this.props.totals[5]}</strong>
+            </p>
+          </div>
+        ) : (
+          <h3>
+            This project is in the Study and Development Program, which could
+            become a candidate for consideration in a future TIP and STIP Update
+            for the phases of Preliminary Engineering, Final Design,
+            Right-of-Way Acquisition, and Construction.
+          </h3>
+        )}
 
         <h1 style={subHeaders}>Project Status:</h1>
         {details.milestones.data.length ? (
