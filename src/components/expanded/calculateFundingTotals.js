@@ -18,6 +18,9 @@ export const getTotals = info => {
   programYearsFunding = y1Funding + y2Funding + y3Funding + y4Funding;
   totalFunding += programYearsFunding;
 
+  // handle js doing weird floating point math and outputing numbers with too many decimals
+  totalFunding = totalFunding.toFixed(3);
+
   const formattedFunds = [
     y1Funding,
     y2Funding,
