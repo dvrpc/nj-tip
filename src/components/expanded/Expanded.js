@@ -108,7 +108,12 @@ class Expanded extends Component {
     loaded
       ? (toReturn = (
           <div>
-            <PrintPage details={details} totals={funding} id="print-mount" />
+            <PrintPage
+              details={details}
+              totals={funding}
+              program={program}
+              id="print-mount"
+            />
             <div className="expanded" id="react-no-print">
               <Navbar backgroundGradient={navBackground} id="expandedNav" />
               <div className="wrapper">
@@ -216,7 +221,9 @@ class Expanded extends Component {
                           <tr>
                             <td colspan="2" style={{ background: "#666" }} />
                             <td colspan="4" style={{ background: "#333" }}>
-                              <h3>FY20 TIP Program Years (in Millions)</h3>
+                              <h3>
+                                Draft FY2020 TIP Program Years (in Millions)
+                              </h3>
                             </td>
                             <td colspan="2" style={{ background: "#666" }} />
                           </tr>
@@ -247,7 +254,7 @@ class Expanded extends Component {
                                     fontWeight: "700"
                                   }}
                                 >
-                                  {row[2]}
+                                  ${row[2]}
                                 </td>
                                 <td
                                   style={{
@@ -255,7 +262,7 @@ class Expanded extends Component {
                                     fontWeight: "700"
                                   }}
                                 >
-                                  {row[3]}
+                                  ${row[3]}
                                 </td>
                                 <td
                                   style={{
@@ -263,7 +270,7 @@ class Expanded extends Component {
                                     fontWeight: "700"
                                   }}
                                 >
-                                  {row[4]}
+                                  ${row[4]}
                                 </td>
                                 <td
                                   style={{
@@ -271,10 +278,10 @@ class Expanded extends Component {
                                     fontWeight: "700"
                                   }}
                                 >
-                                  {row[5]}
+                                  ${row[5]}
                                 </td>
-                                <td>{row[6]}</td>
-                                <td>{row[7]}</td>
+                                <td>${row[6]}</td>
+                                <td>${row[7]}</td>
                               </tr>
                             ))}
                           <tr id="program-year-totals">
@@ -290,7 +297,7 @@ class Expanded extends Component {
                                 fontWeight: "700"
                               }}
                             >
-                              {funding[0]}
+                              ${funding[0]}
                             </td>
                             <td
                               style={{
@@ -298,7 +305,7 @@ class Expanded extends Component {
                                 fontWeight: "700"
                               }}
                             >
-                              {funding[1]}
+                              ${funding[1]}
                             </td>
                             <td
                               style={{
@@ -306,7 +313,7 @@ class Expanded extends Component {
                                 fontWeight: "700"
                               }}
                             >
-                              {funding[2]}
+                              ${funding[2]}
                             </td>
                             <td
                               style={{
@@ -314,7 +321,7 @@ class Expanded extends Component {
                                 fontWeight: "700"
                               }}
                             >
-                              {funding[3]}
+                              ${funding[3]}
                             </td>
                             <td />
                             <td />
@@ -326,11 +333,11 @@ class Expanded extends Component {
                             <td colspan="2">
                               Total FY20-23 Cost (in Millions):
                             </td>
-                            <td style={{ fontWeight: "700" }}>{funding[4]}</td>
+                            <td style={{ fontWeight: "700" }}>${funding[4]}</td>
                             <td colspan="2">
                               Total FY20-29 Cost (in Millions):
                             </td>
-                            <td style={{ fontWeight: "700" }}>{funding[5]}</td>
+                            <td style={{ fontWeight: "700" }}>${funding[5]}</td>
                           </tr>
                         </tbody>
                       </table>
