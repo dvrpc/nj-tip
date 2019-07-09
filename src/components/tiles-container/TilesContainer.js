@@ -86,25 +86,45 @@ class TilesContainer extends Component {
             <option selected value="All Categories">
               All Categories
             </option>
-            <option value="Bicycle/Pedestrian Improvement">
+            <option
+              style={{ color: "#f26522" }}
+              value="Bicycle/Pedestrian Improvement"
+            >
               Bicycle/Pedestrian Improvement
             </option>
-            <option value="Bridge Repair/Replacement">
+            <option
+              style={{ color: "#223860" }}
+              value="Bridge Repair/Replacement"
+            >
               Bridge Repair/Replacement
             </option>
-            <option value="Streetscape">Streetscape</option>
-            <option value="Transit Improvements">Transit Improvements</option>
-            <option value="Signal/ITS Improvements">
+            <option style={{ color: "#0b6d32" }} value="Streetscape">
+              Streetscape
+            </option>
+            <option style={{ color: "#729faa" }} value="Transit Improvements">
+              Transit Improvements
+            </option>
+            <option
+              style={{ color: "#ed1c24" }}
+              value="Signal/ITS Improvements"
+            >
               Signal/ITS Improvements
             </option>
-            <option value="Roadway Rehabilitation">
+            <option style={{ color: "#511851" }} value="Roadway Rehabilitation">
               Roadway Rehabilitation
             </option>
-            <option value="Roadway New Capacity">Roadway New Capacity</option>
-            <option value="Intersection/Interchange Improvements">
+            <option style={{ color: "#9d1d20" }} value="Roadway New Capacity">
+              Roadway New Capacity
+            </option>
+            <option
+              style={{ color: "#ffc10e" }}
+              value="Intersection/Interchange Improvements"
+            >
               Intersection/Interchange Improvements
             </option>
-            <option value="Other">Other</option>
+            <option style={{ color: "#5abf41" }} value="Other">
+              Other
+            </option>
           </select>
 
           <span className="vr" />
