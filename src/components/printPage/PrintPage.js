@@ -54,11 +54,14 @@ class PrintPage extends Component {
 
         <div style={printSubheadersWrap}>
           <h3 style={{ fontSize: "0.9rem" }}>Program: {program}</h3>
-          <h3 style={{ fontSize: "0.9rem" }}>Limits: {details.limits}</h3>
           <h3 style={{ fontSize: "0.9rem" }}>
             Air Quality Code: {details.aq_code}
           </h3>
         </div>
+
+        <h3 style={{ fontSize: "0.9rem", textAlign: "center" }}>
+          Limits: {details.limits}
+        </h3>
 
         <p style={{ paddingTop: "2%" }}>{details.description}</p>
 
