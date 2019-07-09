@@ -11,8 +11,8 @@ import { scrollToElement } from "../../utils/scrollToElement.js";
 import logo from "./logo.png";
 import TIP_logo from "./TIP_logo.png";
 import arrow from "./arrow.png";
-import nj from "./nj.mp4";
-import firstFrame from "./firstFrame.png";
+import nj from "./nj.webm";
+import firstFrame from "./firstFrame.jpg";
 
 class Homepage extends Component {
   render() {
@@ -45,7 +45,7 @@ class Homepage extends Component {
               poster={firstFrame}
               id="bgvid"
             >
-              <source src={nj} type="video/mp4" />
+              <source src={nj} type="video/webm" />
             </video>
             <div id="search-form">
               <Search />
