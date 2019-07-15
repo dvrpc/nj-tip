@@ -168,7 +168,7 @@
 /* Media Queries*/
 
 /* Phones and tablets (portrait) */
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 750px) {
   /* hide the video for smartphone users */
   .homepage {
     overflow: hidden;
@@ -209,6 +209,12 @@
     background-size: 13px;
     font-size: 0.8rem !important;
     padding: 3% 0 3% 10%;
+  }
+  .homepage-bottom-bar span{
+    font-size: 0.7em;
+  }
+  .homepage-bottom-bar img{
+    width: 20px;
   }
   #tip-info-paragraphs {
     margin-left: 0;
