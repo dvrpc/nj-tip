@@ -37,7 +37,9 @@ class Navbar extends Component {
             <img id="TIPlogo" src={TIP_logo} alt="TIP logo" />
           </a>
 
-          <h2 id="draft-text">Draft FY2020 TIP for NJ</h2>
+          <h2 id="draft-text">
+            Draft FY2020 <br /> TIP for NJ
+          </h2>
         </div>
 
         <div id="nav-search-form">

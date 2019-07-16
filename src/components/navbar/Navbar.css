@@ -48,8 +48,8 @@
 }
 @media screen and (max-width: 700px) {
   #nav-search-form {
-    width: 65%;
-    font-size: 0.8rem;
+    width: 80%;
+    font-size: 0.7rem;
   }
   #TIPlogo{
     display: none;
@@ -57,21 +57,24 @@
   #dvrpc-logo{
     width: 40px;
   }
+  .nav-vr {
+    height: 4vh;
+  }
   #draft-text{
-    font-size: 0.9em;
+    font-size: 0.7em;
     margin-left: 0;
   }
   ::-webkit-input-placeholder {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
   ::-moz-placeholder {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
   :-ms-input-placeholder {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
   ::placeholder {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
 }
 
