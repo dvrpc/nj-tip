@@ -90,8 +90,7 @@ class PrintPage extends Component {
                   <td style={{ fontWeight: "700" }}>2021</td>
                   <td style={{ fontWeight: "700" }}>2022</td>
                   <td style={{ fontWeight: "700" }}>2023</td>
-                  <td>2020-2023</td>
-                  <td>2024-2029</td>
+                  <td colSpan={2}>2024-2029</td>
                 </tr>
 
                 {details.funding.data.map(row => (
@@ -108,9 +107,7 @@ class PrintPage extends Component {
 
                     <td>${row[5]}</td>
 
-                    <td>${row[6]}</td>
-
-                    <td>${row[7]}</td>
+                    <td colSpan={2}>${row[6]}</td>
                   </tr>
                 ))}
                 <tr>

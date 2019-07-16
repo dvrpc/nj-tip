@@ -98,6 +98,7 @@ class Expanded extends Component {
       } else {
         details = this.props.details;
         funding = getTotals(details.funding.data);
+        console.log("funding table is ", funding);
         program = programLookup(details.plan, details.mpo_finan);
         colorScheme = colors[details.category] || colors["Default"];
         navBackground = `background: linear-gradient(to right, white 35%, ${colorScheme.middle} 65%, ${colorScheme.darkest})`;
@@ -240,8 +241,9 @@ class Expanded extends Component {
                             <td style={{ background: "#333" }}>FY21</td>
                             <td style={{ background: "#333" }}>FY22</td>
                             <td style={{ background: "#333" }}>FY23</td>
-                            <td style={{ background: "#666" }}>FY20-23</td>
-                            <td style={{ background: "#666" }}>FY24-29</td>
+                            <td colSpan={2} style={{ background: "#666" }}>
+                              FY24-29
+                            </td>
                           </tr>
                           {details.funding &&
                             details.funding.data.map(row => (
@@ -280,8 +282,7 @@ class Expanded extends Component {
                                 >
                                   ${row[5]}
                                 </td>
-                                <td>${row[6]}</td>
-                                <td>${row[7]}</td>
+                                <td colSpan={2}>${row[6]}</td>
                               </tr>
                             ))}
                           <tr id="program-year-totals">
