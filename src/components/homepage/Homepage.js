@@ -167,7 +167,7 @@ class Homepage extends Component {
                   <br />
                   6:00PM - 8:00PM (EST)
                   <br />
-                  <address id="draft-meeting-address">
+                  <address className="homepage-address">
                     ROOM 211
                     <br />
                     JOYCE MCDADE ADMINISTRATION BUILDING
@@ -205,8 +205,16 @@ class Homepage extends Component {
                 </li>
                 <li>fax to (215) 592 - 9125; or</li>
                 <li>
-                  mail to the address at the bottom of this page, Attention: NJ
-                  TIP Comments.
+                  mail to
+                  <address className="homepage-address">
+                    Attention: NJ TIP Comments
+                    <br />
+                    c/o DVRPC Office of Communications and Engagement
+                    <br />
+                    190 N. Independence Mall West, 8th Fl.
+                    <br />
+                    Philadelphia, PA 19106
+                  </address>
                 </li>
               </ul>
               <p
