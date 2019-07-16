@@ -25,14 +25,17 @@ class Homepage extends Component {
                 <img src={logo} alt="dvrpc logo" />
               </a>
             </div>
-            <img
-              id="banner-tip-logo"
-              src={TIP_logo}
-              alt="Transportation Improvement Program logo"
-            />
             <div className="stacked-headers">
-              <h1>Draft FY2020 Transportation Improvement</h1>
-              <h1>Program (TIP) for New Jersey (FY20-FY23)</h1>
+              <img
+                id="banner-tip-logo"
+                src={TIP_logo}
+                alt="Transportation Improvement Program logo"
+              />
+              <h1>
+                Draft FY2020 Transportation Improvement
+                <br />
+                Program (TIP) for New Jersey (FY20-FY23)
+              </h1>
             </div>
           </header>
 
