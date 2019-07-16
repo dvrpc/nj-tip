@@ -220,18 +220,18 @@ class Expanded extends Component {
                       <table className="funding-and-awards-table">
                         <thead>
                           <tr>
-                            <td colspan="2" style={{ background: "#666" }} />
-                            <td colspan="4" style={{ background: "#333" }}>
+                            <td colspan={3} style={{ background: "#666" }} />
+                            <td colspan={4} style={{ background: "#333" }}>
                               <h3>
                                 Draft FY2020 TIP Program Years (in Millions)
                               </h3>
                             </td>
-                            <td colspan="2" style={{ background: "#666" }} />
+                            <td colspan={1} style={{ background: "#666" }} />
                           </tr>
                         </thead>
                         <tbody style={{ background: colorScheme.lightest }}>
                           <tr id="funding-subheaders">
-                            <td style={{ background: "#666" }}>
+                            <td colSpan={2} style={{ background: "#666" }}>
                               <a href="/TIP/Draft/pdf/CodesAbbrev.pdf">Phase</a>
                             </td>
                             <td style={{ background: "#666" }}>
@@ -241,14 +241,12 @@ class Expanded extends Component {
                             <td style={{ background: "#333" }}>FY21</td>
                             <td style={{ background: "#333" }}>FY22</td>
                             <td style={{ background: "#333" }}>FY23</td>
-                            <td colSpan={2} style={{ background: "#666" }}>
-                              FY24-29
-                            </td>
+                            <td style={{ background: "#666" }}>FY24-29</td>
                           </tr>
                           {details.funding &&
                             details.funding.data.map(row => (
                               <tr className="table-data-rows">
-                                <td>{row[0]}</td>
+                                <td colSpan={2}>{row[0]}</td>
                                 <td>{row[1]}</td>
                                 <td
                                   style={{
@@ -282,12 +280,12 @@ class Expanded extends Component {
                                 >
                                   ${row[5]}
                                 </td>
-                                <td colSpan={2}>${row[6]}</td>
+                                <td>${row[6]}</td>
                               </tr>
                             ))}
                           <tr id="program-year-totals">
                             <td
-                              colspan="2"
+                              colspan={3}
                               style={{ fontWeight: "700", color: "#333" }}
                             >
                               Program Year Totals (in Millions):
@@ -325,17 +323,16 @@ class Expanded extends Component {
                               ${funding[3]}
                             </td>
                             <td />
-                            <td />
                           </tr>
                           <tr
                             style={{ background: "#666" }}
                             id="funding-totals"
                           >
-                            <td colspan="2">
+                            <td colspan={2}>
                               Total FY20-23 Cost (in Millions):
                             </td>
                             <td style={{ fontWeight: "700" }}>${funding[4]}</td>
-                            <td colspan="2">
+                            <td colspan={2}>
                               Total FY20-29 Cost (in Millions):
                             </td>
                             <td style={{ fontWeight: "700" }}>${funding[5]}</td>
