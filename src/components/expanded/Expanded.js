@@ -98,7 +98,6 @@ class Expanded extends Component {
       } else {
         details = this.props.details;
         funding = getTotals(details.funding.data);
-        console.log("funding table is ", funding);
         program = programLookup(details.plan, details.mpo_finan);
         colorScheme = colors[details.category] || colors["Default"];
         navBackground = `background: linear-gradient(to right, white 35%, ${colorScheme.middle} 65%, ${colorScheme.darkest})`;
