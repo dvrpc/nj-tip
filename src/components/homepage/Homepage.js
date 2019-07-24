@@ -132,7 +132,7 @@ class Homepage extends Component {
                 projects in the counties of Burlington, Camden, Gloucester, and
                 Mercer, including the cities of Camden and Trenton, and the{" "}
                 <a
-                  href="https://www.state.nj.us/transportation/capital/"
+                  href="https://www.state.nj.us/transportation/capital/stip2029/"
                   rel="external"
                 >
                   Draft FY2020 Statewide TIP (STIP)
@@ -140,7 +140,7 @@ class Homepage extends Component {
                 for the entire state of New Jersey. The Draft TIP is included in
                 the{" "}
                 <a
-                  href="https://www.state.nj.us/transportation/capital/"
+                  href="https://www.state.nj.us/transportation/capital/stip2029/"
                   rel="external"
                 >
                   Draft STIP
