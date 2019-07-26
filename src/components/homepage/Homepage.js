@@ -342,6 +342,10 @@ class Homepage extends Component {
                   Project Listings
                   <ul>
                     <li>
+                      <a href="/TIP/Draft/pdf/Roadmap.pdf">Roadmap</a>
+                      <span class="sm"> [0.2 MB pdf]</span>
+                    </li>
+                    <li>
                       <a href="/TIP/Draft/pdf/8.pdf">
                         All Projects in DVRPC NJ Region
                       </a>{" "}
@@ -367,6 +371,10 @@ class Homepage extends Component {
                           <span class="sm"> [0.2 MB pdf]</span>
                         </li>
                         <li>
+                          <a href="/TIP/Draft/pdf/drpa.pdf">DRPA/PATCO</a>
+                          <span class="sm"> [0.2 MB pdf]</span>
+                        </li>
+                        <li>
                           <a href="/TIP/Draft/pdf/gloucester.pdf">
                             Gloucester County
                           </a>{" "}
@@ -375,6 +383,10 @@ class Homepage extends Component {
                         <li>
                           <a href="/TIP/Draft/pdf/mercer.pdf">Mercer County</a>{" "}
                           <span class="sm"> [0.2 MB pdf]</span>
+                        </li>
+                        <li>
+                          <a href="/TIP/Draft/pdf/njt.pdf">NJ TRANSIT</a>
+                          <span class="sm"> [0.6 MB pdf]</span>
                         </li>
                         <li>
                           <a href="/TIP/Draft/pdf/various.pdf">
