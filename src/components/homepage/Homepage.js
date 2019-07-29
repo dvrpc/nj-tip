@@ -371,10 +371,6 @@ class Homepage extends Component {
                           <span class="sm"> [0.2 MB pdf]</span>
                         </li>
                         <li>
-                          <a href="/TIP/Draft/pdf/drpa.pdf">DRPA/PATCO</a>
-                          <span class="sm"> [0.2 MB pdf]</span>
-                        </li>
-                        <li>
                           <a href="/TIP/Draft/pdf/gloucester.pdf">
                             Gloucester County
                           </a>{" "}
@@ -385,14 +381,23 @@ class Homepage extends Component {
                           <span class="sm"> [0.2 MB pdf]</span>
                         </li>
                         <li>
-                          <a href="/TIP/Draft/pdf/njt.pdf">NJ TRANSIT</a>
-                          <span class="sm"> [0.6 MB pdf]</span>
-                        </li>
-                        <li>
                           <a href="/TIP/Draft/pdf/various.pdf">
                             Various Counties
                           </a>{" "}
                           <span class="sm"> [0.1 MB pdf]</span>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      DVRPC Regional Transit Program by Operator
+                      <ul>
+                        <li>
+                          <a href="/TIP/Draft/pdf/drpa.pdf">DRPA/PATCO</a>
+                          <span class="sm"> [0.2 MB pdf]</span>
+                        </li>
+                        <li>
+                          <a href="/TIP/Draft/pdf/njt.pdf">NJ TRANSIT</a>
+                          <span class="sm"> [0.6 MB pdf]</span>
                         </li>
                       </ul>
                     </li>
