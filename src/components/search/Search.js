@@ -139,7 +139,7 @@ class Search extends Component {
     }
 
     const inputProps = {
-      placeholder: "Click to Search & Comment on Draft TIP Projects",
+      placeholder: "Click to Search for Draft TIP Projects",
       value: this.state.value,
       onChange: this.onChange,
       id: "homepage-search-bar"

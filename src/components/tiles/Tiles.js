@@ -6,7 +6,6 @@ import "./Tiles.css";
 import { tileDetails } from "../../utils/tileDetails.js";
 import { clickTile } from "../../utils/clickTile.js";
 import { getMarkerInfo } from "../reducers/connectTilesToMap.js";
-import counties from "../../utils/counties.js";
 
 class Tile extends Component {
   constructor(props) {

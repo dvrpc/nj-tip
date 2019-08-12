@@ -10,8 +10,8 @@ export const layers = {
       ["Intersection/Interchange Improvements", "#ffc10e"],
       ["Other", "#5abf41"]
     ],
-    full: "Transportation Improvement Projects",
-    sub: "FY2020–FY2023"
+    full: "Draft Transportation Improvement Projects",
+    sub: "FY20–FY23"
   },
   IPD: {
     classifications: [

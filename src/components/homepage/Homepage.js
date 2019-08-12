@@ -2,7 +2,6 @@ import Inferno, { Component } from "inferno";
 import { withRouter } from "inferno-router";
 
 import Search from "../search/Search.js";
-import Comments from "../comments/Comments.js";
 import Footer from "../footer/Footer.js";
 
 import "./Homepage.css";
@@ -58,22 +57,12 @@ class Homepage extends Component {
 
           <div className="homepage-bottom-bar">
             <a
-              id="more-info-scroll"
               href="#tip-info"
               onClick={e => {
                 scrollToElement(this, e, "tipInfo");
               }}
             >
               <span>More Information</span>
-              <img src={arrow} alt="down navigation arrow" />
-            </a>
-            <a
-              href="#comments-anchor"
-              onClick={e => {
-                scrollToElement(this, e, "generalComment");
-              }}
-            >
-              <span>Submit a General Comment</span>
               <img src={arrow} alt="down navigation arrow" />
             </a>
           </div>
@@ -127,7 +116,7 @@ class Homepage extends Component {
                 September 26, 2019.
               </p>
               <p>
-                DVRPC invites you to review and comment on the Draft FY2020 TIP
+                DVRPC invited you to review and comment on the Draft FY2020 TIP
                 for the NJ that shows a program of priority transportation
                 projects in the counties of Burlington, Camden, Gloucester, and
                 Mercer, including the cities of Camden and Trenton, and the{" "}
@@ -147,7 +136,7 @@ class Homepage extends Component {
                 </a>
                 . While{" "}
                 <strong>
-                  the public comment period ends at 5:00 PM Eastern Time on
+                  the public comment period ended at 5:00 PM Eastern Time on
                   Friday, August 9, 2019
                 </strong>
                 , the Draft STIP public comment period will remain open until
@@ -158,9 +147,9 @@ class Homepage extends Component {
                 to serve as a vehicle for this federal requirement.
               </p>
               <p>
-                A public meeting/information session that DVRPC will jointly
-                conduct with NJDOT, NJ TRANSIT and the DRPA/PATCO is scheduled
-                on:
+                A public meeting/information session that DVRPC jointly
+                conducted with NJDOT, NJ TRANSIT and the DRPA/PATCO was
+                scheduled on:
                 <br />
                 <strong>
                   MONDAY, JULY 29, 2019
@@ -179,8 +168,8 @@ class Homepage extends Component {
                 </strong>
               </p>
               <p>
-                Although registration is not required, please RSVP by contacting
-                (215) 592-1800 or{" "}
+                Although registration is not required, RSVP was encouraged by
+                contacting (215) 592-1800 or{" "}
                 <a href="mailto:public_affairs@dvrpc.org">
                   public_affairs@dvrpc.org
                 </a>
@@ -193,11 +182,18 @@ class Homepage extends Component {
                 How to Submit a Public Comment:{" "}
               </h2>
               <p>
-                Submit comments online by clicking the "Search &amp; Comment on
-                Draft TIP Projects" feature above or "Submit a General Comment
-                on the Draft TIP or Statewide TIP (STIP)" feature below in order
-                for a response to be provided in the final TIP document. You can
-                still send comments by:
+                <strong>
+                  DVRPC is currently not accepting comments as the public
+                  comment period closed on August 9, 2019.
+                </strong>
+              </p>
+              <p>
+                During the public comment period, the public could submit
+                comments online by clicking the "Search &amp; Comment on Draft
+                TIP Projects" feature above or "Submit a General Comment on the
+                Draft TIP or Statewide TIP (STIP)" feature below in order for a
+                response to be provided in the final TIP document. They could
+                also send comments by:
               </p>
               <ul>
                 <li>
@@ -229,13 +225,6 @@ class Homepage extends Component {
                   effective
                 </strong>
               </p>
-              <Comments
-                colorScheme={null}
-                projectId={null}
-                title={
-                  "Submit a General Comment on the Draft TIP or Statewide TIP (STIP)"
-                }
-              />
             </section>
 
             <section>

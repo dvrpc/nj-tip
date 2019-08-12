@@ -4,7 +4,6 @@ import { connect } from "inferno-redux";
 import "./Expanded.css";
 import Navbar from "../navbar/Navbar.js";
 import PrintPage from "../printPage/PrintPage.js";
-import Comments from "../comments/Comments.js";
 
 import { getFullTIP, hydrateGeometry } from "../reducers/getTIPInfo";
 import { colors } from "../../utils/tileGeometryColorType.js";
@@ -385,11 +384,6 @@ class Expanded extends Component {
                   </div>
                 </section>
               </div>
-              <Comments
-                colorScheme={colorScheme}
-                projectId={details.id ? details.id : null}
-                title={"Submit a Public Comment for this Project"}
-              />
             </div>
           </div>
         ))

@@ -20,6 +20,7 @@ export const getTotals = info => {
 
   // handle js doing weird floating point math and outputing numbers with too many decimals
   totalFunding = totalFunding.toFixed(3);
+  programYearsFunding = programYearsFunding.toFixed(3);
 
   const formattedFunds = [
     y1Funding,
