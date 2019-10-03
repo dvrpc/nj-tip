@@ -111,8 +111,8 @@ class Homepage extends Component {
                 transportation funds. It has been developed in cooperation with
                 NJDOT, NJ TRANSIT, DRPA/PATCO and DVRPC's member counties and
                 cities. After consideration of public comments, the Draft TIP
-                with any recommended changes will be presented to the DVRPC
-                Board for adoption at the regularly scheduled Board meeting on
+                with any recommended changes were presented to the DVRPC Board
+                for adoption at the regularly scheduled Board meeting on
                 September 26, 2019.
               </p>
               <p>
@@ -236,11 +236,11 @@ class Homepage extends Component {
                 responses to those comments will be provided in the final
                 printed TIP document as part of the public record. After
                 consideration of the public comments received, the Draft TIP
-                with any recommended changes will be presented to the DVRPC
-                Board for adoption at the September 26, 2019 regularly scheduled
-                Board meeting. Note that comments received after the comment
-                period is over might not receive a response or be included in
-                the final TIP document.
+                with any recommended changes were presented to the DVRPC Board
+                for adoption at the September 26, 2019 regularly scheduled Board
+                meeting. Note that comments received after the comment period is
+                over might not receive a response or be included in the final
+                TIP document.
               </p>
             </section>
 
