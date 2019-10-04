@@ -10,6 +10,7 @@ class ReadOnlyComments extends Component {
 
   render() {
     const { comments } = this.props;
+    console.log("bruh ", comments);
     return (
       <div className="comments" id="comments-anchor">
         <h1>{this.props.title}</h1>
@@ -33,7 +34,7 @@ class ReadOnlyComments extends Component {
                           backgroundColor: "#666"
                         }}
                       >
-                        <b>{response.agency}</b>
+                        <b>Response from {response.agency}</b>
                         <p style={{ whiteSpace: "pre-line" }}>
                           {response.response_text}
                         </p>

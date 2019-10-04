@@ -1,11 +1,14 @@
 import Inferno, { Component } from "inferno";
+import { connect } from "inferno-redux";
 import { withRouter } from "inferno-router";
 
 import Search from "../search/Search.js";
 import Footer from "../footer/Footer.js";
+import ReadOnlyComments from "../comments/ReadOnlyComments.js";
 
 import "./Homepage.css";
 
+import { getGeneralComments } from "../reducers/commentsReducer.js";
 import { scrollToElement } from "../../utils/scrollToElement.js";
 
 import logo from "./logo.png";
@@ -15,7 +18,13 @@ import nj from "./nj.webm";
 import firstFrame from "./firstFrame.jpg";
 
 class Homepage extends Component {
+  componentDidMount() {
+    this.props.getGeneralComments();
+  }
+
   render() {
+    const comments = this.props.comments.comments || [];
+    console.log("comments ", comments);
     return (
       <div className="homepage">
         <div className="landing">
@@ -461,11 +470,30 @@ class Homepage extends Component {
               </ul>
             </section>
           </article>
+
+          <ReadOnlyComments
+            comments={comments}
+            title={"General Comments and Responses"}
+          />
         </main>
+
         <Footer />
       </div>
     );
   }
 }
 
-export default withRouter(Homepage);
+const mapStateToProps = state => ({
+  comments: state.getComments
+});
+
+const mapDispatchToProps = dispatch => ({
+  getGeneralComments: () => dispatch(getGeneralComments())
+});
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Homepage)
+);

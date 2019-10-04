@@ -4,6 +4,7 @@ import { connect } from "inferno-redux";
 import "./Expanded.css";
 import Navbar from "../navbar/Navbar.js";
 import PrintPage from "../printPage/PrintPage.js";
+import ReadOnlyComments from "../comments/ReadOnlyComments.js";
 
 import { getFullTIP, hydrateGeometry } from "../reducers/getTIPInfo";
 import { colors } from "../../utils/tileGeometryColorType.js";
@@ -385,6 +386,11 @@ class Expanded extends Component {
                 </section>
               </div>
             </div>
+            <ReadOnlyComments
+              colorScheme={colorScheme}
+              comments={details.comments || []}
+              title={"Comments and Responses"}
+            />
           </div>
         ))
       : (toReturn = (
@@ -404,7 +410,8 @@ class Expanded extends Component {
 const mapStateToProps = state => {
   return {
     details: state.getTIP.details,
-    geometry: state.getTIP.geometry
+    geometry: state.getTIP.geometry,
+    comments: state.getComments
   };
 };
 
