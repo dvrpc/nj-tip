@@ -10,7 +10,6 @@ class ReadOnlyComments extends Component {
 
   render() {
     const { comments } = this.props;
-    console.log("bruh ", comments);
     return (
       <div className="comments" id="comments-anchor">
         <h1>{this.props.title}</h1>

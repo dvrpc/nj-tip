@@ -7,6 +7,8 @@ import PrintPage from "../printPage/PrintPage.js";
 import ReadOnlyComments from "../comments/ReadOnlyComments.js";
 
 import { getFullTIP, hydrateGeometry } from "../reducers/getTIPInfo";
+import { getSpecificComment } from "../reducers/commentsReducer";
+
 import { colors } from "../../utils/tileGeometryColorType.js";
 import { switchTabs } from "./switchTabs.js";
 import { getTotals } from "./calculateFundingTotals.js";
@@ -43,6 +45,7 @@ class Expanded extends Component {
   componentDidMount() {
     this.props.hydrateGeometry(this.state.params);
     this.props.getFullTIP(this.state.params);
+    this.props.getComments(this.state.params);
   }
 
   componentDidUpdate(prevProps) {
@@ -418,7 +421,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getFullTIP: id => dispatch(getFullTIP(id)),
-    hydrateGeometry: id => dispatch(hydrateGeometry(id))
+    hydrateGeometry: id => dispatch(hydrateGeometry(id)),
+    getComments: id => dispatch(getSpecificComment(id))
   };
 };
 

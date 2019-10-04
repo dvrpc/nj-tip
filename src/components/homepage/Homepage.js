@@ -24,7 +24,7 @@ class Homepage extends Component {
 
   render() {
     const comments = this.props.comments.comments || [];
-    console.log("comments ", comments);
+
     return (
       <div className="homepage">
         <div className="landing">
