@@ -188,13 +188,15 @@ class Homepage extends Component {
 
             <section>
               <h2 className="info-section-header">
-                How to Submit a Public Comment:{" "}
+                Read Submitted Public Comments:{" "}
               </h2>
               <p>
-                <strong>
-                  DVRPC is currently not accepting comments as the public
-                  comment period closed on August 9, 2019.
-                </strong>
+                The public comment period for the Draft TIP document closed on
+                August 9, 2019. Scroll to the bottom of this webpage to view
+                submitted general comments about the Draft TIP, or go to the web
+                map to see project-specific submitted comments. All submitted
+                comments and agency responses to the comments are also found in
+                Appendix G.
               </p>
               <p>
                 During the public comment period, the public could submit
