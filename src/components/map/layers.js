@@ -3,7 +3,7 @@ const IPD = {
     name: "IPD",
     type: "geojson",
     data:
-      "https://opendata.arcgis.com/datasets/ab586640e7ab40e58c0615f9355cb35a_0.geojson"
+      "https://opendata.arcgis.com/datasets/44fdcc72f46e4e3f90126f4f9c5f7629_0.geojson"
   },
   layout: {
     id: "Indicators of Potential Disadvantage",
@@ -16,7 +16,7 @@ const IPD = {
       "fill-color": [
         "interpolate",
         ["linear"],
-        ["get", "IPD_Score"],
+        ["get", "IPD_SCORE"],
         9,
         "#ffffd9",
         13,
@@ -37,7 +37,8 @@ const IPD = {
         "#081d58"
       ],
       "fill-opacity": 0.5
-    }
+    },
+    filter: ["==", "STATE_FIPS", "34"]
   }
 };
 const CMP = {
