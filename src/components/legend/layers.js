@@ -30,25 +30,23 @@ export const layers = {
   },
   CMP: {
     classifications: [
-      ["PA 611 & PA 309", "#80AEDD"],
-      ["US 202, 322, 30, PA 100", "#82D4F2"],
-      ["I-276 (PA Turnpike)", "#92D3C8"],
-      ["Ridge-Lincoln-Cheltenham", "#9DCB3B"],
-      ["PA 3 & Center City", "#B57DB6"],
-      ["US 13/MacDade Blvd/PA 291", "#C7E6DC"],
-      ["US 30", "#D7C19E"],
-      ["PA 332", "#D7D79E"],
-      ["US 422", "#DABEDB"],
-      ["PA 132_63, Co. Line Rd", "#DB7DB3"],
-      ["I-476", "#F37D80"],
-      ["PA 113 area", "#FAF078"],
-      ["I-95", "#F9BDBF"],
-      ["I-76 & I-676", "#FBF7C0"],
-      ["US 1", "#FFD380"],
-      ["PA 100", "#FFEBBE"]
+      ["I-295 NJ Turnpike (N)", "#82d4f2"],
+      ["I-295 NJ Turnpike (S)", "#37c3f2"],
+      ["AC Expressway/NJ 42", "#b57db7"],
+      ["US 1, US 206", "#91d3c8"],
+      ["US 30", "#d7c19e"],
+      ["US 130", "#f9bdbf"],
+      ["US 322 & Cross Keys Area", "#8ac867"],
+      ["NJ 31", "#fcebad"],
+      ["NJ 33", "#d7b19e"],
+      ["NJ 38", "#ffd380"],
+      ["NJ 41, 45, 47, 55", "#91d3c8"],
+      ["NJ 70", "#f4c0d9"],
+      ["NJ 73", "#d9bedb"],
+      ["CR 571", "#f7cb7a"]
     ],
     full: "CMP Corridors",
-    sub: "Pennsylvania, 2015 (DVRPC)"
+    sub: "New Jersey, 2015 (DVRPC)"
   },
   LRP: {
     classifications: [
