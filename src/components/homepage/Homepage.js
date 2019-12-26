@@ -116,16 +116,16 @@ class Homepage extends Component {
               <p>
                 On September 26, 2019 after a 30+ day public comment period, the
                 DVRPC Board adopted the DVRPC FY2020 Transportation Improvement
-                Program (TIP) for FY20-23 with Recommended Changes (see Appendix
-                G) as the priority program of highway and transit projects for
-                Burlington, Camden, Gloucester, and Mercer counties, including
-                the cities of Camden and Trenton. It effectively became the
-                official DVRPC TIP for New Jersey after federal approval by
-                FHWA, FTA, and EPA on December 5, 2019. This regional TIP is
-                included in the Statewide TIP (STIP), and was developed in
-                cooperation with NJDOT, NJ TRANSIT, DRPA/PATCO, and DVRPC's
-                member cities and counties in NJ. The TIP is a dynamic document.
-                Project Listings below are regularly updated via{" "}
+                Program (TIP) for FY20-23 with Recommended Changes as the
+                priority program of highway and transit projects for Burlington,
+                Camden, Gloucester, and Mercer counties, including the cities of
+                Camden and Trenton. It effectively became the official DVRPC TIP
+                for New Jersey after federal approval by FHWA, FTA, and EPA on
+                December 5, 2019. This regional TIP is included in the Statewide
+                TIP (STIP), and was developed in cooperation with NJDOT, NJ
+                TRANSIT, DRPA/PATCO, and DVRPC's member cities and counties in
+                NJ. The TIP is a dynamic document. Project Listings below are
+                regularly updated via{" "}
                 <a href="/TIP/NJ/pdf/Act20.pdf">
                   TIP amendments or modifications
                 </a>{" "}
@@ -204,7 +204,9 @@ class Homepage extends Component {
                   Project Listings
                   <ul>
                     <li>
-                      <a href="/TIP/NJ/pdf/Roadmap.pdf">Roadmap</a>
+                      <a href="/TIP/NJ/pdf/Roadmap.pdf">
+                        TIP Project Listing Roadmap
+                      </a>
                       <span class="sm"> [0.2 MB pdf]</span>
                     </li>
                     <li>
@@ -212,12 +214,6 @@ class Homepage extends Component {
                         All Projects in DVRPC NJ Region
                       </a>{" "}
                       <span class="sm"> [3 MB pdf]</span>
-                    </li>
-                    <li>
-                      <a href="/TIP/NJ/pdf/Roadmap.pdf">
-                        TIP Project Listing Roadmap
-                      </a>{" "}
-                      <span class="sm"> [0.2 MB pdf]</span>
                     </li>
                     <li>
                       DVRPC Regional Highway Program by County
