@@ -1,13 +1,9 @@
-import Inferno, { Component } from "inferno";
+import { Component } from "inferno";
 
 import "../comments/Comments.css";
 
 // This component will replace the comment form in expanded.js once the public comment period is over
 class ReadOnlyComments extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { comments } = this.props;
     return (

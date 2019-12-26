@@ -1,4 +1,4 @@
-import Inferno, { Component } from "inferno";
+import { Component } from "inferno";
 import { withRouter } from "inferno-router";
 import Autosuggest from "react-autosuggest";
 
@@ -139,7 +139,7 @@ class Search extends Component {
     }
 
     const inputProps = {
-      placeholder: "Click to Search for Draft TIP Projects",
+      placeholder: "Click to Search for TIP Projects",
       value: this.state.value,
       onChange: this.onChange,
       id: "homepage-search-bar"
@@ -173,9 +173,4 @@ const mapDispatchToProps = dispatch => ({
   hydrateGeometry: id => dispatch(hydrateGeometry(id))
 });
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Search)
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Search));

@@ -1,4 +1,4 @@
-import Inferno, { Component } from "inferno";
+import { Component } from "inferno";
 import PrintTemplate from "react-print";
 
 const printMain = {
@@ -31,10 +31,6 @@ const subHeaders = {
 };
 
 class PrintPage extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const details = this.props.details;
     const totals = this.props.totals;
@@ -76,7 +72,7 @@ class PrintPage extends Component {
                     colspan="4"
                     style={{ fontWeight: "700", textAlign: "center" }}
                   >
-                    Draft FY2020 TIP for New Jersey Program Years (in Millions)
+                    FY2020 TIP for New Jersey Program Years (in Millions)
                   </td>
                   <td colspan="2" />
                 </tr>

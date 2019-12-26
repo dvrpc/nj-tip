@@ -1,4 +1,4 @@
-# NJ TIP 2019
+# NJ TIP 2020
 The DVRPC Draft TIP for NJ represents the region's federally funded transportation improvement priorities and is required by federal law in order for the region to receive and spend federal transportation funds. It has been developed in cooperation with NJDOT, NJ TRANSIT, DRPA/PATCO and DVRPC's member counties and cities. After consideration of public comments, the Draft TIP with any recommended changes will be presented to the DVRPC Board for adoption at the regularly scheduled Board meeting on September 26, 2019.
 
 ## What is the NJ TIP web viewer?
@@ -15,6 +15,6 @@ The app is built on Inferno, a React-like library. The web mapping component is 
 
 ## Build
 Make sure your current working tree is clean and up to date with the latest, stable version of the TIP.
-- (optional) delete the 'static' folder from /TIP/Draft/ to make sure old, unused bundles with different names are removed
+- (optional) delete the 'static' folder from /TIP/NJ/ to make sure old, unused bundles with different names are removed
 - `npm run build`
-- copy files from the 'build' folder to the /TIP/Draft/ folder on staging
+- copy files from the 'build' folder to the /TIP/NJ/ folder on staging

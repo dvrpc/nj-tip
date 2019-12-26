@@ -1,4 +1,4 @@
-import Inferno, { Component } from "inferno";
+import { Component } from "inferno";
 import "./Footer.css";
 
 class Footer extends Component {

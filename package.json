@@ -1,8 +1,8 @@
 {
   "name": "nj-tip",
-  "version": "0.1.64",
+  "version": "0.1.65",
   "private": true,
-  "homepage": "https://www.dvrpc.org/TIP/Draft/",
+  "homepage": "https://www.dvrpc.org/TIP/NJ/",
   "scripts": {
     "start": "inferno-scripts start",
     "build": "inferno-scripts build && npm version patch",

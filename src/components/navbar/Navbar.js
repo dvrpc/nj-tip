@@ -1,4 +1,4 @@
-import Inferno, { Component } from "inferno";
+import { Component } from "inferno";
 import { connect } from "inferno-redux";
 import { withRouter } from "inferno-router";
 
@@ -33,12 +33,12 @@ class Navbar extends Component {
 
           <span className="nav-vr"></span>
 
-          <a href="/TIP/Draft/">
+          <a href="/TIP/NJ/">
             <img id="TIPlogo" src={TIP_logo} alt="TIP logo" />
           </a>
 
-          <h2 id="draft-text">
-            Draft FY2020 <br /> TIP for NJ
+          <h2 id="NJ-text">
+            FY2020 TIP for NJ
           </h2>
         </div>
 
@@ -58,9 +58,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default withRouter(
-  connect(
-    null,
-    mapDispatchToProps
-  )(Navbar)
-);
+export default withRouter(connect(null, mapDispatchToProps)(Navbar));

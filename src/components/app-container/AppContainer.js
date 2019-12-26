@@ -1,4 +1,4 @@
-import Inferno, { Component } from "inferno";
+import { Component } from "inferno";
 import { withRouter } from "inferno-router";
 import "./AppContainer.css";
 

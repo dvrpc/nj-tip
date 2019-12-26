@@ -1,4 +1,4 @@
-import Inferno, { Component, linkEvent } from "inferno";
+import { Component, linkEvent } from "inferno";
 import { connect } from "inferno-redux";
 
 import "./TilesContainer.css";
@@ -182,7 +182,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TilesContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(TilesContainer);

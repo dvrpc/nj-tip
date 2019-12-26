@@ -1,4 +1,4 @@
-import Inferno, { Component, linkEvent } from "inferno";
+import { Component, linkEvent } from "inferno";
 import { connect } from "inferno-redux";
 import { withRouter } from "inferno-router";
 
@@ -60,9 +60,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default withRouter(
-  connect(
-    null,
-    mapDispatchToProps
-  )(Tile)
-);
+export default withRouter(connect(null, mapDispatchToProps)(Tile));

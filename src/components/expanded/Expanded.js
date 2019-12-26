@@ -1,4 +1,4 @@
-import Inferno, { Component, linkEvent } from "inferno";
+import { Component, linkEvent } from "inferno";
 import { connect } from "inferno-redux";
 
 import "./Expanded.css";
@@ -225,7 +225,7 @@ class Expanded extends Component {
                             <td colspan={3} style={{ background: "#666" }} />
                             <td colspan={4} style={{ background: "#333" }}>
                               <h3>
-                                Draft FY2020 TIP Program Years (in Millions)
+                                NJ FY2020 TIP Program Years (in Millions)
                               </h3>
                             </td>
                             <td colspan={1} style={{ background: "#666" }} />
@@ -234,10 +234,10 @@ class Expanded extends Component {
                         <tbody style={{ background: colorScheme.lightest }}>
                           <tr id="funding-subheaders">
                             <td colSpan={2} style={{ background: "#666" }}>
-                              <a href="/TIP/Draft/pdf/CodesAbbrev.pdf">Phase</a>
+                              <a href="/TIP/NJ/pdf/CodesAbbrev.pdf">Phase</a>
                             </td>
                             <td style={{ background: "#666" }}>
-                              <a href="/TIP/Draft/pdf/CodesAbbrev.pdf">Fund</a>
+                              <a href="/TIP/NJ/pdf/CodesAbbrev.pdf">Fund</a>
                             </td>
                             <td style={{ background: "#333" }}>FY20</td>
                             <td style={{ background: "#333" }}>FY21</td>
@@ -426,7 +426,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Expanded);
+export default connect(mapStateToProps, mapDispatchToProps)(Expanded);

@@ -1,4 +1,4 @@
-import Inferno, { Component } from "inferno";
+import { Component } from "inferno";
 import mapboxgl from "mapbox-gl";
 import { connect } from "inferno-redux";
 import { withRouter } from "inferno-router";
@@ -350,8 +350,5 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(MapComponent)
+  connect(mapStateToProps, mapDispatchToProps)(MapComponent)
 );
