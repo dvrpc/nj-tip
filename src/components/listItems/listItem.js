@@ -18,8 +18,10 @@ class ListItem extends Component {
   }
 
   componentWillMount() {
-    let category = this.props.data.TYPE_DESC;
-
+    let category =
+      this.props.data.TYPE_DESC === "null"
+        ? "Other"
+        : this.props.data.TYPE_DESC;
     fetchSprite.then(response => {
       this.setState({
         coords: `-${response[category].x}px -${response[category].y}px`

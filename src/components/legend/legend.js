@@ -54,6 +54,9 @@ class Legend extends Component {
           <li className="legendLink" id="legendLink-LU">
             Land Use
           </li>
+          <li className="legendLink" id="legendLink-Urban">
+            Urbanized Areas
+          </li>
         </ul>
 
         {this.state.selected ? (

@@ -10,7 +10,7 @@ export const layers = {
       ["Intersection/Interchange Improvements", "#ffc10e"],
       ["Other", "#5abf41"]
     ],
-    full: "Draft Transportation Improvement Projects",
+    full: "Transportation Improvement Project Categories",
     sub: "FY20–FY23"
   },
   IPD: {
@@ -89,5 +89,21 @@ export const layers = {
     ],
     full: "Land Use",
     sub: "DVRPC (2015)"
+  },
+  Urban: {
+    classifications: [
+      ["Allentown, PA--NJ", "rgba(0, 219, 219, 0.5)"],
+      ["Atlantic City, NJ", "rgba(230, 0, 0, 0.5)"],
+      ["East Stroudsburg, PA--NJ", "rgba(54, 84, 135, 0.5)"],
+      ["New York--Newark, NY--NJ--CT", "rgba(115, 115, 0, 0.5)"],
+      ["Philadelphia, PA--NJ--DE--MD", "rgba(230, 117, 83, 0.5)"],
+      ["Poughkeepsie--Newburgh, NY--NJ", "rgba(255, 211, 127, 0.5)"],
+      ["Trenton, NJ", "rgba(0, 115, 76, 0.5)"],
+      ["Twin Rivers--Hightstown, NJ", "rgba(85, 255, 0, 0.5)"],
+      ["Villas, NJ", "rgba(197, 96, 247, 0.5)"],
+      ["Vineland, NJ", "rgba(115, 0, 76, 0.5)"]
+    ],
+    full: "Urbanized Areas",
+    sub: "NJDOT (2017)"
   }
 };

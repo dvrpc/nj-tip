@@ -114,6 +114,13 @@ class Homepage extends Component {
                 (FY20-FY23)
               </h2>
               <p>
+                <em>
+                  Solutions to technical difficulties that users could
+                  experience with this webmap is in progress. Sorry for the
+                  inconvenience, and thank you for your patience.
+                </em>
+              </p>
+              <p>
                 On September 26, 2019 after a 30+ day public comment period, the
                 DVRPC Board adopted the DVRPC FY2020 Transportation Improvement
                 Program (TIP) for FY20-23 with Recommended Changes as the
@@ -131,6 +138,14 @@ class Homepage extends Component {
                 </a>{" "}
                 <span class="sm">[0.1 MB pdf]</span> to the program.
               </p>
+              <p>
+                <strong>
+                  <a href="/TIP/NJ/pdf/tips.pdf">Click here</a>{" "}
+                  <span class="sm"> [0.3 MB pdf] </span>
+                  to view helpful tips that can make a public comment more
+                  effective
+                </strong>
+              </p>
             </section>
 
             <section>
@@ -141,14 +156,6 @@ class Homepage extends Component {
                     Highlights of the FY2020 TIP for NJ
                   </a>{" "}
                   <span class="sm">[43.3 MB pdf]</span>
-                </li>
-                <li class="list-group-item">
-                  <a href="/TIP/NJ/pdf/20001Ces.pdf">
-                    Aspectos destacados del Borrador del Programa de Mejora del
-                    Transporte (TIP) de la DVRPC para el FY2020 de Nueva Jersey
-                    (FY20 - FY23)
-                  </a>{" "}
-                  <span class="sm">[2.0 MB pdf]</span>
                 </li>
                 <li class="list-group-item">
                   <a href="/TIP/NJ/pdf/1.pdf">General Overview of the TIP</a>{" "}
@@ -178,7 +185,7 @@ class Homepage extends Component {
                 <li class="list-group-item">
                   <a href="/TIP/NJ/pdf/6.pdf">
                     Mapping Application and Listings Overview (Includes Codes
-                    and abbreviations)
+                    and Abbreviations)
                   </a>{" "}
                   <span class="sm">[0.2 MB pdf]</span>
                 </li>
@@ -280,22 +287,20 @@ class Homepage extends Component {
               <h2 className="info-section-header">Appendices</h2>
               <ul class="list-group">
                 <li class="list-group-item">
-                  <a href="/TIP/NJ/pdf/A.pdf">
-                    A - Acknowledgement of Board Resolutions
-                  </a>{" "}
+                  <a href="/TIP/NJ/pdf/A.pdf">A - Board Resolutions</a>{" "}
                   <span class="sm">[0.3 MB pdf]</span>
                 </li>
                 <li class="list-group-item">
                   <a href="/TIP/NJ/pdf/B.pdf">
-                    B - Financial Tables Used in Developing the Program,
-                    including the STIP Introduction
+                    B - Statewide TIP (STIP) Financial Tables, including the
+                    STIP Introduction
                   </a>{" "}
                   <span class="sm">[2 MB pdf]</span>
                 </li>
                 <li class="list-group-item">
                   <a href="/TIP/NJ/pdf/C.pdf">
-                    C - Acknowledgement of the Executive Summary of the Draft
-                    Documentation of the Conformity Finding (Executive Summary)
+                    C - Executive Summary of the Documentation of the Conformity
+                    Finding
                   </a>{" "}
                   <span class="sm">[0.3 MB pdf]</span>
                 </li>
@@ -318,10 +323,8 @@ class Homepage extends Component {
                 </li>
                 <li class="list-group-item">
                   <a href="/TIP/NJ/pdf/G.pdf">
-                    G - Acknowledgement of Summary of the TIP Public Involvement
-                    Process, Summary of Public Comments, Original Public
-                    Comments, Agency Responses, Public Comment Outreach
-                    Documentation, and List of Recommended Changes
+                    G - Summary of the TIP Public Involvement Process, Public
+                    Comments, Agency Responses, and List of Recommended Changes
                   </a>{" "}
                   <span class="sm">[0.3 MB pdf]</span>
                 </li>
@@ -334,7 +337,7 @@ class Homepage extends Component {
 
             <section>
               <h2 className="info-section-header">
-                Read Submitted Public Comments:{" "}
+                Read Submitted Public Comments:
               </h2>
               <p>
                 The public comment period for the Draft TIP and STIP documents
@@ -345,30 +348,23 @@ class Homepage extends Component {
                 <a href="/TIP/NJ/pdf/20001A.pdf">final printed TIP document</a>{" "}
                 <span class="sm">[7.6 MB pdf]</span>, as part of the public
                 record. Project-specific comments submitted are also shown on
-                the web map. After consideration of the public comments
-                received, the Draft TIP with any recommended changes were
-                presented to the DVRPC Board for adoption at the September 26,
-                2019 Board meeting.
+                the web map.{" "}
+                <a href="/TIP/NJ/pdf/general.pdf">
+                  View general comments and responses here
+                </a>
+                , <span class="sm">[0.5 MB pdf]</span> or use the webmap to see
+                project-specific comments and responses. After consideration of
+                the public comments received, the Draft TIP with any recommended
+                changes were presented to the DVRPC Board for adoption at the
+                September 26, 2019 Board meeting.
               </p>
               <p
                 ref={el => {
                   this.generalComment = el;
                 }}
-              >
-                <strong>
-                  <a href="/TIP/NJ/pdf/tips.pdf">Click here</a>{" "}
-                  <span class="sm"> [0.3 MB pdf] </span>
-                  to view helpful tips that can make a public comment more
-                  effective
-                </strong>
-              </p>
+              ></p>
             </section>
           </article>
-
-          <ReadOnlyComments
-            comments={comments}
-            title={"General Comments and Responses"}
-          />
         </main>
 
         <Footer />

@@ -95,10 +95,14 @@ const keywordRequest = keyword =>
                     TYPE_DESC: project.category,
                     DBNUM: project.id,
                     PROJECTNAM: project.road_name,
-                    LATITUDE: 40.018,
-                    LONGITUDE: -75.148,
+                    LATITUDE: 39.9,
+                    LONGITUDE: -74.875,
                     NOT_MAPPED: true
                   };
+              project.properties.LONGITUDE =
+                project.properties.LONGITUDE || project.properties.LONG_;
+              project.properties.LATITUDE =
+                project.properties.LATITUDE || project.properties.LAT;
             });
             resolve({ features });
           });

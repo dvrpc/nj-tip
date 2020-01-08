@@ -54,7 +54,10 @@ export const keywordBounds = (mapReference, data) => {
     }
 
     mapReference.map.fitBounds(
-      [[bounds.xMin, bounds.yMin], [bounds.xMax, bounds.yMax]],
+      [
+        [bounds.xMin, bounds.yMin],
+        [bounds.xMax, bounds.yMax]
+      ],
       { padding: 20 }
     );
 
@@ -90,7 +93,9 @@ export const showPopup = (marker, map) => {
   tilePopup
     .setLngLat([details.LONGITUDE, details.LATITUDE])
     .setHTML(
-      `<h2>${details.DBNUM}</h2><p style="border-bottom: 8px solid #${colors[details.TYPE_DESC].forMap};">${details.PROJECTNAM}</p>`
+      `<h2>${details.DBNUM}</h2><p style="border-bottom: 8px solid #${
+        colors[details.TYPE_DESC].forMap
+      };">${details.PROJECTNAM}</p>`
     )
     .addTo(map);
 
