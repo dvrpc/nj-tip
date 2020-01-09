@@ -1,6 +1,6 @@
-import { Component } from "inferno";
-import { connect } from "inferno-redux";
-import { withRouter } from "inferno-router";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 import Search from "../search/Search";
 
@@ -25,7 +25,7 @@ class Navbar extends Component {
 
   render() {
     return (
-      <nav className="navBar" style={this.props.backgroundGradient}>
+      <nav className="navBar">
         <div className="navbar-links">
           <a href="https://www.dvrpc.org/" rel="external">
             <img src={logo} alt="DVRPC logo" id="dvrpc-logo" />
@@ -37,9 +37,7 @@ class Navbar extends Component {
             <img id="TIPlogo" src={TIP_logo} alt="TIP logo" />
           </a>
 
-          <h2 id="NJ-text">
-            FY2020 TIP for NJ
-          </h2>
+          <h2 id="NJ-text">FY2020 TIP for NJ</h2>
         </div>
 
         <div id="nav-search-form">

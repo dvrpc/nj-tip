@@ -1,4 +1,4 @@
-import { Component } from "inferno";
+import React, { Component } from "react";
 import "./legend.css";
 import { layers } from "./layers.js";
 

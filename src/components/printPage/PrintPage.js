@@ -1,4 +1,4 @@
-import { Component } from "inferno";
+import React, { Component } from "react";
 import PrintTemplate from "react-print";
 
 const printMain = {
@@ -67,14 +67,14 @@ class PrintPage extends Component {
             <table style={printTable}>
               <thead>
                 <tr>
-                  <td colspan="2" />
+                  <td colSpan="2" />
                   <td
-                    colspan="4"
+                    colSpan="4"
                     style={{ fontWeight: "700", textAlign: "center" }}
                   >
                     FY2020 TIP for New Jersey Program Years (in Millions)
                   </td>
-                  <td colspan="2" />
+                  <td colSpan="2" />
                 </tr>
               </thead>
 
@@ -90,7 +90,7 @@ class PrintPage extends Component {
                 </tr>
 
                 {details.funding.data.map(row => (
-                  <tr className="table-data-rows">
+                  <tr className="table-data-rows" key={row.join()}>
                     <td>{row[0]}</td>
 
                     <td>{row[1]}</td>
@@ -107,7 +107,7 @@ class PrintPage extends Component {
                   </tr>
                 ))}
                 <tr>
-                  <td colspan="2" style={{ fontWeight: "700", color: "#333" }}>
+                  <td colSpan="2" style={{ fontWeight: "700", color: "#333" }}>
                     Program Year Totals (in Millions):
                   </td>
                   <td style={{ fontWeight: "700" }}>${totals[0]}</td>
@@ -153,7 +153,7 @@ class PrintPage extends Component {
 
             <tbody>
               {details.milestones.data.map(row => (
-                <tr>
+                <tr key={row.join()}>
                   <td style={{ textAlign: "left" }}>{row[0]}</td>
                   <td>{row[1]}</td>
                   <td>{row[2]}</td>

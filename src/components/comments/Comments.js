@@ -1,5 +1,5 @@
-import Inferno, { Component, linkEvent } from "inferno";
-import { connect } from "inferno-redux";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import "./Comments.css";
 import { POSTComment } from "./POSTComment.js";
@@ -20,7 +20,7 @@ class Comments extends Component {
         }}
       >
         <h1>{this.props.title}</h1>
-        <form className="comments-form" onSubmit={linkEvent(this, POSTComment)}>
+        <form className="comments-form" onSubmit={e => POSTComment(this, e)}>
           <textarea placeholder="Enter your public comment here" />
           <div className="input-fields">
             <input
@@ -72,7 +72,4 @@ const mapDispatchToProps = dispatch => {
     submitComment: comment => dispatch(submitComment(comment))
   };
 };
-export default connect(
-  null,
-  mapDispatchToProps
-)(Comments);
+export default connect(null, mapDispatchToProps)(Comments);

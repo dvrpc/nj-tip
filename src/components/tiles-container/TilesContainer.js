@@ -1,5 +1,5 @@
-import { Component, linkEvent } from "inferno";
-import { connect } from "inferno-redux";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import "./TilesContainer.css";
 import Tile from "../tiles/Tiles.js";
@@ -20,13 +20,14 @@ class TilesContainer extends Component {
   }
 
   componentDidMount() {
-    if (typeof this.props.category === "undefined")
-      this.props.category = "All Categories";
-
-    if (this.props.category !== "All Categories") {
+    let { category } = this.props;
+    if (typeof category === "undefined") {
+      category = "All Categories";
+    }
+    if (category !== "All Categories") {
       this.setState({
         filtered: true,
-        categoryToFilter: this.props.category
+        categoryToFilter: category
       });
     }
   }
@@ -79,13 +80,12 @@ class TilesContainer extends Component {
           <select
             id="selectedCategory"
             name="category"
-            onChange={linkEvent(this, filterByCategory)}
+            onChange={e => filterByCategory(this, e)}
             ref={e => (this.categorySelector = e)}
             value={this.props.category}
+            defaultValue="All Categories"
           >
-            <option selected value="All Categories">
-              All Categories
-            </option>
+            <option value="All Categories">All Categories</option>
             <option
               style={{ color: "#f26522" }}
               value="Bicycle/Pedestrian Improvement"
@@ -147,16 +147,13 @@ class TilesContainer extends Component {
             projects.map(feature => (
               <ListItem
                 data={feature.properties || feature}
-                key={feature.mapbox_id}
+                key={feature.id}
                 length={projects.length}
               />
             ))
           ) : (
             projects.map(feature => (
-              <Tile
-                data={feature.properties || feature}
-                key={feature.mapbox_id}
-              />
+              <Tile data={feature.properties || feature} key={feature.id} />
             ))
           )
         ) : (

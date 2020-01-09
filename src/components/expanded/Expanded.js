@@ -1,5 +1,5 @@
-import { Component, linkEvent } from "inferno";
-import { connect } from "inferno-redux";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import "./Expanded.css";
 import Navbar from "../navbar/Navbar.js";
@@ -76,7 +76,7 @@ class Expanded extends Component {
   render() {
     let details;
     let colorScheme;
-    let navBackground;
+    let navBackground = {};
     let toReturn;
     let funding;
     let loaded = false;
@@ -103,7 +103,9 @@ class Expanded extends Component {
         funding = getTotals(details.funding.data);
         program = programLookup(details.plan, details.mpo_finan);
         colorScheme = colors[details.category] || colors["Default"];
-        navBackground = `background: linear-gradient(to right, white 35%, ${colorScheme.middle} 65%, ${colorScheme.darkest})`;
+        navBackground = {
+          background: `linear-gradient(to right, white 35%, ${colorScheme.middle} 65%, ${colorScheme.darkest})`
+        };
         loaded = true;
       }
     }
@@ -198,15 +200,15 @@ class Expanded extends Component {
                     style={{ background: colorScheme.darkest }}
                   >
                     <button
-                      class="tablinks active"
-                      onClick={linkEvent(this, switchTabs)}
+                      className="tablinks active"
+                      onClick={e => switchTabs(this, e)}
                       ref={e => (this.fundingButton = e)}
                     >
                       Funding
                     </button>
                     <button
-                      class="tablinks"
-                      onClick={linkEvent(this, switchTabs)}
+                      className="tablinks"
+                      onClick={e => switchTabs(this, e)}
                       ref={e => (this.milestonesButton = e)}
                     >
                       Status
@@ -215,20 +217,18 @@ class Expanded extends Component {
 
                   <div
                     id="Funding"
-                    class="table-wrapper"
+                    className="table-wrapper"
                     ref={e => (this.funding = e)}
                   >
                     {details.funding.data.length ? (
                       <table className="funding-and-awards-table">
                         <thead>
                           <tr>
-                            <td colspan={3} style={{ background: "#666" }} />
-                            <td colspan={4} style={{ background: "#333" }}>
-                              <h3>
-                                NJ FY2020 TIP Program Years (in Millions)
-                              </h3>
+                            <td colSpan={3} style={{ background: "#666" }} />
+                            <td colSpan={4} style={{ background: "#333" }}>
+                              <h3>NJ FY2020 TIP Program Years (in Millions)</h3>
                             </td>
-                            <td colspan={1} style={{ background: "#666" }} />
+                            <td colSpan={1} style={{ background: "#666" }} />
                           </tr>
                         </thead>
                         <tbody style={{ background: colorScheme.lightest }}>
@@ -247,7 +247,10 @@ class Expanded extends Component {
                           </tr>
                           {details.funding &&
                             details.funding.data.map(row => (
-                              <tr className="table-data-rows">
+                              <tr
+                                className="table-data-rows"
+                                key={row[0] + row[1]}
+                              >
                                 <td colSpan={2}>{row[0]}</td>
                                 <td>{row[1]}</td>
                                 <td
@@ -287,7 +290,7 @@ class Expanded extends Component {
                             ))}
                           <tr id="program-year-totals">
                             <td
-                              colspan={3}
+                              colSpan={3}
                               style={{ fontWeight: "700", color: "#333" }}
                             >
                               Program Year Totals (in Millions):
@@ -330,11 +333,11 @@ class Expanded extends Component {
                             style={{ background: "#666" }}
                             id="funding-totals"
                           >
-                            <td colspan={2}>
+                            <td colSpan={2}>
                               Total FY20-23 Cost (in Millions):
                             </td>
                             <td style={{ fontWeight: "700" }}>${funding[4]}</td>
-                            <td colspan={2}>
+                            <td colSpan={2}>
                               Total FY20-29 Cost (in Millions):
                             </td>
                             <td style={{ fontWeight: "700" }}>${funding[5]}</td>
@@ -354,7 +357,7 @@ class Expanded extends Component {
 
                   <div
                     id="Milestones"
-                    class="table-wrapper hidden"
+                    className="table-wrapper hidden"
                     ref={e => (this.milestones = e)}
                   >
                     {details.milestones.data.length ? (
@@ -372,7 +375,7 @@ class Expanded extends Component {
                         </thead>
                         <tbody style={{ background: colorScheme.lightest }}>
                           {details.milestones.data.map(row => (
-                            <tr className="table-data-rows">
+                            <tr className="table-data-rows" key={row.join()}>
                               <td>{row[0]}</td>
                               <td>{row[1]}</td>
                               <td>{row[2]}</td>

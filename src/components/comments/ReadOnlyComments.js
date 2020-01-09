@@ -1,4 +1,4 @@
-import { Component } from "inferno";
+import React, { Component } from "react";
 
 import "../comments/Comments.css";
 
@@ -10,19 +10,19 @@ class ReadOnlyComments extends Component {
       <div className="comments" id="comments-anchor">
         <h1>{this.props.title}</h1>
         {comments.length ? (
-          <ul class="list-group">
+          <ul className="list-group">
             {comments.map(comment => (
               <li
-                class="list-group-item"
+                className="list-group-item"
                 style={{ borderBottom: "1px solid #fff", color: "#fff" }}
               >
                 <b>{comment.name}</b>
                 <p style={{ whiteSpace: "pre-line" }}>{comment.comment_text}</p>
                 {comment.responses.length && (
-                  <ul class="list-group">
+                  <ul className="list-group">
                     {comment.responses.map(response => (
                       <li
-                        class="list-group-item"
+                        className="list-group-item"
                         style={{
                           margin: "1rem 0",
                           padding: "1rem",

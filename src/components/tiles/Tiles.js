@@ -1,6 +1,6 @@
-import { Component, linkEvent } from "inferno";
-import { connect } from "inferno-redux";
-import { withRouter } from "inferno-router";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 import "./Tiles.css";
 import { tileDetails } from "../../utils/tileDetails.js";
@@ -29,15 +29,14 @@ class Tile extends Component {
   render() {
     const calculatedProjectInfo = this.state.details;
     const project = this.props.data;
-    console.log("tiles projects are ", project);
 
     return (
       <div
         className="tile"
-        onClick={linkEvent(this, clickTile)}
-        onMouseEnter={linkEvent(project, this.props.getMarkerInfo)}
-        onMouseLeave={linkEvent(null, this.props.getMarkerInfo)}
-        style={`background: url(${calculatedProjectInfo.background})`}
+        onClick={e => clickTile(this, e)}
+        onMouseEnter={e => this.props.getMarkerInfo(project, e)}
+        onMouseLeave={e => this.props.getMarkerInfo(null, e)}
+        style={{ background: `url(${calculatedProjectInfo.background})` }}
         ref={tile => (this.tileRef = tile)}
       >
         <div

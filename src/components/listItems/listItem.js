@@ -1,6 +1,6 @@
-import { Component, linkEvent } from "inferno";
-import { connect } from "inferno-redux";
-import { withRouter } from "inferno-router";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 import { clickTile } from "../../utils/clickTile.js";
 import { getMarkerInfo } from "../reducers/connectTilesToMap.js";
@@ -17,7 +17,7 @@ class ListItem extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     let category =
       this.props.data.TYPE_DESC === "null"
         ? "Other"
@@ -47,9 +47,9 @@ class ListItem extends Component {
     return (
       <div
         className="list-item"
-        onClick={linkEvent(this, clickTile)}
-        onMouseEnter={linkEvent(this.props.data, this.props.getMarkerInfo)}
-        onMouseLeave={linkEvent(null, this.props.getMarkerInfo)}
+        onClick={e => clickTile(this, e)}
+        onMouseEnter={e => this.props.getMarkerInfo(this.props.data, e)}
+        onMouseLeave={e => this.props.getMarkerInfo(null, e)}
       >
         <img
           src="https://tiles.dvrpc.org/data/styles/dvrpc-pa-tip/sprite.png"

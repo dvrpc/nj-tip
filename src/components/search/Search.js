@@ -1,40 +1,30 @@
-import { Component } from "inferno";
-import { withRouter } from "inferno-router";
-import Autosuggest from "react-autosuggest";
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import Select from "react-select";
 
-import { connect } from "inferno-redux";
+import { connect } from "react-redux";
 import {
   fetchTIPByKeywords,
   getFullTIP,
   hydrateGeometry
 } from "../reducers/getTIPInfo";
 
-import "./search.css";
-
-const getSuggestionValue = suggestion => suggestion.name;
-
-const renderSuggestion = suggestion => (
-  <span style={{ color: "#000" }}>{suggestion.name}</span>
-);
-
-const renderSectionTitle = section => <strong>{section.title}</strong>;
-
-const getSectionSuggestions = section => section.results;
+const formatGroupLabel = section => <strong>{section.label}</strong>;
 
 const transformLocationSuggestions = data => ({
-  title: "Location",
-  results: data.map(location => ({
-    name: location.description,
-    id: location.place_id,
+  label: "Location",
+  options: data.map(location => ({
+    label: location.description,
+    value: location.place_id,
     type: "location"
   }))
 });
 
 const transformKeywordSuggestions = data => ({
-  title: "TIP Projects",
-  results: data.features.slice(0, 5).map(project => ({
-    name: `${project.properties.DBNUM}: ${project.properties.PROJECTNAM}`,
-    id: `${project.properties.DBNUM}`,
+  label: "TIP Projects",
+  options: data.features.slice(0, 5).map(project => ({
+    label: `${project.properties.DBNUM}: ${project.properties.PROJECTNAM}`,
+    value: `${project.properties.DBNUM}`,
     type: "expanded"
   }))
 });
@@ -70,16 +60,23 @@ class Search extends Component {
     this.props.fetchTIPByKeywords(input);
   };
 
-  onChange = (event, { newValue }) => {
+  onChange = newValue => {
     this.setState({ value: newValue });
+    this.loadKeywordSuggestions(newValue);
+    this.loadLocationSuggestions(newValue).then(locations => {
+      if (locations !== null) {
+        this.setState({ locations });
+      }
+    });
   };
 
-  onSelect = (event, { suggestion }) => {
+  onSelect = suggestion => {
+    console.log("selected: ", suggestion);
     let oldPath = this.props.history.location.pathname.split("/")[1];
     let newPath = suggestion.type;
 
     this.props.history.push(
-      `/${suggestion.type}/${suggestion.id.replace(/\s/g, "_")}`
+      `/${suggestion.type}/${suggestion.value.replace(/\s/g, "_")}`
     );
 
     if (oldPath === "expanded" && newPath === "expanded") {
@@ -89,30 +86,15 @@ class Search extends Component {
     }
   };
 
-  onSuggestionsFetchRequested = ({ value }) => {
-    this.loadKeywordSuggestions(value);
-    this.loadLocationSuggestions(value).then(locations => {
-      if (locations !== null) {
-        this.setState({ locations });
-      }
-    });
-  };
-
-  onSuggestionsClearRequested = () => {
-    this.setState({
-      suggestions: []
-    });
-  };
-
-  componentWillReceiveProps({ keywordProjects }) {
+  static getDerivedStateFromProps({ keywordProjects }, state) {
     if (
       keywordProjects &&
       keywordProjects.hasOwnProperty("features") &&
-      keywordProjects.features.length !==
-        this.state.keywordProjects.features.length
+      keywordProjects.features.length !== state.keywordProjects.features.length
     ) {
-      this.setState({ keywordProjects });
+      return { keywordProjects };
     }
+    return null;
   }
 
   render() {
@@ -120,44 +102,35 @@ class Search extends Component {
     const locations = transformLocationSuggestions(this.state.locations);
     const keywords = transformKeywordSuggestions(this.state.keywordProjects);
     const search = {
-      title: "Keyword",
-      results: [
+      label: "Keyword",
+      options: [
         {
-          name: this.state.value,
-          id: this.state.value,
+          label: this.state.value,
+          value: this.state.value,
           type: "keyword"
         }
       ]
     };
-
     suggestions.push(search);
-    if (keywords.results.length) suggestions.push(keywords);
-    if (locations.results.length) {
+
+    if (keywords.options.length) {
+      suggestions.push(keywords);
+    }
+
+    if (locations.options.length) {
       // because google wont let you limit results to > 5
-      locations.results = locations.results.slice(0, 2);
+      locations.options = locations.options.slice(0, 2);
       suggestions.push(locations);
     }
 
-    const inputProps = {
-      placeholder: "Click to Search for TIP Projects",
-      value: this.state.value,
-      onChange: this.onChange,
-      id: "homepage-search-bar"
-    };
-
     return (
-      <Autosuggest
-        multiSection={true}
-        suggestions={suggestions}
-        onSuggestionSelected={this.onSelect}
-        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-        getSuggestionValue={getSuggestionValue}
-        renderSuggestion={renderSuggestion}
-        renderSectionTitle={renderSectionTitle}
-        getSectionSuggestions={getSectionSuggestions}
-        highlightFirstSuggestion={true}
-        inputProps={inputProps}
+      <Select
+        options={suggestions}
+        formatGroupLabel={formatGroupLabel}
+        onInputChange={this.onChange}
+        onChange={(value, { action }) => {
+          action === "select-option" && this.onSelect(value);
+        }}
       />
     );
   }

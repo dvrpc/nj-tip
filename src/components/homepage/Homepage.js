@@ -1,6 +1,6 @@
-import { Component } from "inferno";
-import { connect } from "inferno-redux";
-import { withRouter } from "inferno-router";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 import Search from "../search/Search.js";
 import Footer from "../footer/Footer.js";
@@ -50,8 +50,8 @@ class Homepage extends Component {
 
           <div className="homepage-main">
             <video
-              playsinline
-              autoplay
+              playsInline
+              autoPlay
               muted
               loop
               poster={firstFrame}
@@ -136,12 +136,12 @@ class Homepage extends Component {
                 <a href="/TIP/NJ/pdf/Act20.pdf">
                   TIP amendments or modifications
                 </a>{" "}
-                <span class="sm">[0.1 MB pdf]</span> to the program.
+                <span className="sm">[0.1 MB pdf]</span> to the program.
               </p>
               <p>
                 <strong>
                   <a href="/TIP/NJ/pdf/tips.pdf">Click here</a>{" "}
-                  <span class="sm"> [0.3 MB pdf] </span>
+                  <span className="sm"> [0.3 MB pdf] </span>
                   to view helpful tips that can make a public comment more
                   effective
                 </strong>
@@ -150,77 +150,77 @@ class Homepage extends Component {
 
             <section>
               <h2 className="info-section-header">Detailed Information</h2>
-              <ul class="list-group">
-                <li class="list-group-item">
+              <ul className="list-group">
+                <li className="list-group-item">
                   <a href="/TIP/NJ/pdf/20001B.pdf">
                     Highlights of the FY2020 TIP for NJ
                   </a>{" "}
-                  <span class="sm">[43.3 MB pdf]</span>
+                  <span className="sm">[43.3 MB pdf]</span>
                 </li>
-                <li class="list-group-item">
+                <li className="list-group-item">
                   <a href="/TIP/NJ/pdf/1.pdf">General Overview of the TIP</a>{" "}
-                  <span class="sm">[1 MB pdf]</span>
+                  <span className="sm">[1 MB pdf]</span>
                 </li>
-                <li class="list-group-item">
+                <li className="list-group-item">
                   <a href="/TIP/NJ/pdf/2.pdf">Program Summaries</a>{" "}
-                  <span class="sm">[0.3 MB pdf]</span>
+                  <span className="sm">[0.3 MB pdf]</span>
                 </li>
-                <li class="list-group-item">
+                <li className="list-group-item">
                   <a href="/TIP/NJ/pdf/3.pdf">
                     Responding to Environmental Justice (EJ) and Title VI
                     Concerns
                   </a>{" "}
-                  <span class="sm">[0.2 MB pdf]</span>
+                  <span className="sm">[0.2 MB pdf]</span>
                 </li>
-                <li class="list-group-item">
+                <li className="list-group-item">
                   <a href="/TIP/NJ/pdf/4.pdf">
                     Performance-Based Planning and Programming (PBPP)
                   </a>{" "}
-                  <span class="sm">[0.2 MB pdf]</span>
+                  <span className="sm">[0.2 MB pdf]</span>
                 </li>
-                <li class="list-group-item">
+                <li className="list-group-item">
                   <a href="/TIP/NJ/pdf/5.pdf">Public Involvement</a>{" "}
-                  <span class="sm">[0.1 MB pdf]</span>
+                  <span className="sm">[0.1 MB pdf]</span>
                 </li>
-                <li class="list-group-item">
+                <li className="list-group-item">
                   <a href="/TIP/NJ/pdf/6.pdf">
                     Mapping Application and Listings Overview (Includes Codes
                     and Abbreviations)
                   </a>{" "}
-                  <span class="sm">[0.2 MB pdf]</span>
+                  <span className="sm">[0.2 MB pdf]</span>
                 </li>
-                <li class="list-group-item">
+                <li className="list-group-item">
                   <a href="/TIP/NJ/pdf/7.pdf">Programs</a>{" "}
-                  <span class="sm">[0.2 MB pdf]</span>
+                  <span className="sm">[0.2 MB pdf]</span>
                   <ul>
                     <li>
                       <a href="/TIP/NJ/pdf/NJ-CorresByTitle.pdf">
                         Project Index By Title
                       </a>{" "}
-                      <span class="sm"> [0.2 MB pdf]</span>
+                      <span className="sm"> [0.2 MB pdf]</span>
                     </li>
                     <li>
                       <a href="/TIP/NJ/pdf/NJ-CorresByDB.pdf">
                         Project Index By DB#
                       </a>{" "}
-                      <span class="sm"> [0.1 MB pdf]</span>
+                      <span className="sm"> [0.1 MB pdf]</span>
                     </li>
                   </ul>
                 </li>
-                <li class="list-group-item">
+                <li className="list-group-item">
                   Project Listings
                   <ul>
                     <li>
                       <a href="/TIP/NJ/pdf/Roadmap.pdf">
                         TIP Project Listing Roadmap
                       </a>
-                      <span class="sm"> [0.2 MB pdf]</span>
+                      <span className="sm"> [0.2 MB pdf]</span>
                     </li>
                     <li>
                       <a href="/TIP/NJ/pdf/8.pdf">
                         All Projects in DVRPC NJ Region
                       </a>{" "}
-                      <span class="sm"> [3 MB pdf]</span>
+                      <span className="sm"> [3 MB pdf]</span>
                     </li>
                     <li>
                       DVRPC Regional Highway Program by County
@@ -229,25 +229,25 @@ class Homepage extends Component {
                           <a href="/TIP/NJ/pdf/burlington.pdf">
                             Burlington County
                           </a>{" "}
-                          <span class="sm"> [0.1 MB pdf]</span>
+                          <span className="sm"> [0.1 MB pdf]</span>
                         </li>
                         <li>
                           <a href="/TIP/NJ/pdf/camden.pdf">Camden County</a>{" "}
-                          <span class="sm"> [0.2 MB pdf]</span>
+                          <span className="sm"> [0.2 MB pdf]</span>
                         </li>
                         <li>
                           <a href="/TIP/NJ/pdf/gloucester.pdf">
                             Gloucester County
                           </a>{" "}
-                          <span class="sm"> [0.1 MB pdf]</span>
+                          <span className="sm"> [0.1 MB pdf]</span>
                         </li>
                         <li>
                           <a href="/TIP/NJ/pdf/mercer.pdf">Mercer County</a>{" "}
-                          <span class="sm"> [0.2 MB pdf]</span>
+                          <span className="sm"> [0.2 MB pdf]</span>
                         </li>
                         <li>
                           <a href="/TIP/NJ/pdf/various.pdf">Various Counties</a>{" "}
-                          <span class="sm"> [0.1 MB pdf]</span>
+                          <span className="sm"> [0.1 MB pdf]</span>
                         </li>
                       </ul>
                     </li>
@@ -256,81 +256,81 @@ class Homepage extends Component {
                       <ul>
                         <li>
                           <a href="/TIP/NJ/pdf/drpa.pdf">DRPA/PATCO</a>
-                          <span class="sm"> [0.2 MB pdf]</span>
+                          <span className="sm"> [0.2 MB pdf]</span>
                         </li>
                         <li>
                           <a href="/TIP/NJ/pdf/njt.pdf">NJ TRANSIT</a>
-                          <span class="sm"> [0.6 MB pdf]</span>
+                          <span className="sm"> [0.6 MB pdf]</span>
                         </li>
                       </ul>
                     </li>
                     <li>
                       <a href="/TIP/NJ/pdf/stwd.pdf">Statewide Program</a>{" "}
-                      <span class="sm"> [0.9 MB pdf]</span>
+                      <span className="sm"> [0.9 MB pdf]</span>
                     </li>
                     <li>
                       <a href="/TIP/NJ/pdf/sd20.pdf">
                         Study and Development Program
                       </a>{" "}
-                      <span class="sm"> [0.2 MB pdf]</span>
+                      <span className="sm"> [0.2 MB pdf]</span>
                     </li>
                   </ul>
                 </li>
                 <li>
                   <a href="/TIP/NJ/pdf/9.pdf">Major Project Status Report</a>{" "}
-                  <span class="sm"> [0.1 MB pdf]</span>
+                  <span className="sm"> [0.1 MB pdf]</span>
                 </li>
               </ul>
             </section>
 
             <section>
               <h2 className="info-section-header">Appendices</h2>
-              <ul class="list-group">
-                <li class="list-group-item">
+              <ul className="list-group">
+                <li className="list-group-item">
                   <a href="/TIP/NJ/pdf/A.pdf">A - Board Resolutions</a>{" "}
-                  <span class="sm">[0.3 MB pdf]</span>
+                  <span className="sm">[0.3 MB pdf]</span>
                 </li>
-                <li class="list-group-item">
+                <li className="list-group-item">
                   <a href="/TIP/NJ/pdf/B.pdf">
                     B - Statewide TIP (STIP) Financial Tables, including the
                     STIP Introduction
                   </a>{" "}
-                  <span class="sm">[2 MB pdf]</span>
+                  <span className="sm">[2 MB pdf]</span>
                 </li>
-                <li class="list-group-item">
+                <li className="list-group-item">
                   <a href="/TIP/NJ/pdf/C.pdf">
                     C - Executive Summary of the Documentation of the Conformity
                     Finding
                   </a>{" "}
-                  <span class="sm">[0.3 MB pdf]</span>
+                  <span className="sm">[0.3 MB pdf]</span>
                 </li>
-                <li class="list-group-item">
+                <li className="list-group-item">
                   <a href="/TIP/NJ/pdf/D.pdf">
                     D – Memorandum of Understanding on Procedures to Amend and
                     Modify the TIP
                   </a>{" "}
-                  <span class="sm">[1 MB pdf]</span>
+                  <span className="sm">[1 MB pdf]</span>
                 </li>
-                <li class="list-group-item">
+                <li className="list-group-item">
                   <a href="/TIP/NJ/pdf/E.pdf">E – DVRPC Local Program</a>{" "}
-                  <span class="sm">[0.5 MB pdf]</span>
+                  <span className="sm">[0.5 MB pdf]</span>
                 </li>
-                <li class="list-group-item">
+                <li className="list-group-item">
                   <a href="/TIP/NJ/pdf/F.pdf">
                     F – DVRPC TIP Project Benefit Criteria
                   </a>{" "}
-                  <span class="sm">[0.5 MB pdf]</span>
+                  <span className="sm">[0.5 MB pdf]</span>
                 </li>
-                <li class="list-group-item">
+                <li className="list-group-item">
                   <a href="/TIP/NJ/pdf/G.pdf">
                     G - Summary of the TIP Public Involvement Process, Public
                     Comments, Agency Responses, and List of Recommended Changes
                   </a>{" "}
-                  <span class="sm">[0.3 MB pdf]</span>
+                  <span className="sm">[0.3 MB pdf]</span>
                 </li>
-                <li class="list-group-item">
+                <li className="list-group-item">
                   <a href="/TIP/NJ/pdf/20001A.pdf">Full TIP Document</a>{" "}
-                  <span class="sm">[7.6 MB pdf]</span>
+                  <span className="sm">[7.6 MB pdf]</span>
                 </li>
               </ul>
             </section>
@@ -344,19 +344,19 @@ class Homepage extends Component {
                 closed on August 9, 2019. Written comments received during the
                 public comment period and responses to those comments are
                 included in <a href="/TIP/NJ/pdf/G.pdf">Appendix G</a>{" "}
-                <span class="sm">[3.8 MB pdf]</span> of the{" "}
+                <span className="sm">[3.8 MB pdf]</span> of the{" "}
                 <a href="/TIP/NJ/pdf/20001A.pdf">final printed TIP document</a>{" "}
-                <span class="sm">[7.6 MB pdf]</span>, as part of the public
+                <span className="sm">[7.6 MB pdf]</span>, as part of the public
                 record. Project-specific comments submitted are also shown on
                 the web map.{" "}
                 <a href="/TIP/NJ/pdf/general.pdf">
                   View general comments and responses here
                 </a>
-                , <span class="sm">[0.5 MB pdf]</span> or use the webmap to see
-                project-specific comments and responses. After consideration of
-                the public comments received, the Draft TIP with any recommended
-                changes were presented to the DVRPC Board for adoption at the
-                September 26, 2019 Board meeting.
+                , <span className="sm">[0.5 MB pdf]</span> or use the webmap to
+                see project-specific comments and responses. After consideration
+                of the public comments received, the Draft TIP with any
+                recommended changes were presented to the DVRPC Board for
+                adoption at the September 26, 2019 Board meeting.
               </p>
               <p
                 ref={el => {

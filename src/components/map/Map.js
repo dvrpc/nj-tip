@@ -1,15 +1,16 @@
-import { Component } from "inferno";
+import React, { Component } from "react";
 import mapboxgl from "mapbox-gl";
-import { connect } from "inferno-redux";
-import { withRouter } from "inferno-router";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 import {
   getTIPByKeywords,
   getTIPByMapBounds,
   setMapCenter,
-  setMapState
+  setMapState,
+  setBounds
 } from "../reducers/getTIPInfo";
-import { updateBounds, keywordBounds, showPopup } from "../../utils/updateMap";
+import { updateBounds, showPopup } from "../../utils/updateMap";
 import { clickTile } from "../../utils/clickTile.js";
 
 import "./Map.css";
@@ -137,11 +138,28 @@ class MapComponent extends Component {
     return ["!=", "DBNUM", ""];
   };
 
-  componentWillMount() {
-    if (this.props.category) this.buildCategoryFilter(this.props.category);
-  }
-
   componentDidMount() {
+    if (this.props.category) this.buildCategoryFilter(this.props.category);
+
+    // check if center has been updated by the search bar and flyTo if so (adjust zoom level if on mobile/tablet)
+    /*if (this.props.center !== this.props.center)
+      this.map.flyTo({
+        center: [this.props.center.lng, this.props.center.lat],
+        zoom: window.innerWidth > 900 ? 12.5 : 11
+      });
+*/
+    if (this.props.markerFromTiles) {
+      const marker = this.props.markerFromTiles;
+      const tilePopup = showPopup(marker, this.map);
+      this.setState({ tilePopup });
+    }
+
+    // remove any existing popups from hover
+    if (Object.keys(this.state.tilePopup).length) {
+      this.state.tilePopup.remove();
+      this.setState({ tilePopup: {} });
+    }
+
     const { history } = this.props;
     const position =
       this.props.position && this.props.position.center
@@ -211,7 +229,8 @@ class MapComponent extends Component {
     const { type, value } = this.props.match.params;
 
     if (type === "location") {
-      this.context.store.getState().getTIP.keyword = [];
+      //@TODO: add getTIP to Connect
+      //this.context.store.getState().getTIP.keyword = [];
       this.Places.getDetails(
         { placeId: value, fields: ["geometry.location"] },
         results => {
@@ -222,36 +241,9 @@ class MapComponent extends Component {
         }
       );
     } else {
-      this.context.store.getState().getTIP.bounds = [];
+      //@TODO: add getTIP to Connect
+      this.props.setBounds([]);
       this.props.getTIPByKeywords(value);
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.keywordProjects !== this.props.keywordProjects) {
-      let keyFilter = keywordBounds(this, nextProps.keywordProjects);
-      this.setState({ keyFilter });
-    }
-
-    if (nextProps.category) this.buildCategoryFilter(nextProps.category);
-
-    // check if center has been updated by the search bar and flyTo if so (adjust zoom level if on mobile/tablet)
-    if (nextProps.center !== this.props.center)
-      this.map.flyTo({
-        center: [nextProps.center.lng, nextProps.center.lat],
-        zoom: window.innerWidth > 900 ? 12.5 : 11
-      });
-
-    if (nextProps.markerFromTiles) {
-      const marker = nextProps.markerFromTiles;
-      const tilePopup = showPopup(marker, this.map);
-      this.setState({ tilePopup });
-    }
-
-    // remove any existing popups from hover
-    if (Object.keys(this.state.tilePopup).length) {
-      this.state.tilePopup.remove();
-      this.setState({ tilePopup: {} });
     }
   }
 
@@ -278,7 +270,7 @@ class MapComponent extends Component {
     return (
       <div className="map" ref={e => (this.tipMap = e)}>
         <nav className="dropdown-nav">
-          <div class="dropdown-layers">
+          <div className="dropdown-layers">
             <button
               className="btn dropdown-toggle"
               type="button"
@@ -298,6 +290,7 @@ class MapComponent extends Component {
               {Object.keys(this.state.dropdownLayers).map(layer => {
                 return (
                   <p
+                    key={layer}
                     className={
                       "dropdown-item " +
                       (this.state.dropdownLayers[layer].show ? "selected" : "")
@@ -310,7 +303,7 @@ class MapComponent extends Component {
               })}
             </div>
           </div>
-          <div class="dropdown-legend">
+          <div className="dropdown-legend">
             <button
               className="btn dropdown-toggle"
               type="button"
@@ -345,7 +338,8 @@ const mapDispatchToProps = dispatch => {
     getTIPByKeywords: keywords => dispatch(getTIPByKeywords(keywords)),
     getTIPByMapBounds: features => dispatch(getTIPByMapBounds(features)),
     setMapCenter: latlng => dispatch(setMapCenter(latlng)),
-    setMapState: position => dispatch(setMapState(position))
+    setMapState: position => dispatch(setMapState(position)),
+    setBounds: bounds => dispatch(setBounds(bounds))
   };
 };
 
