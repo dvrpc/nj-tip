@@ -70,7 +70,7 @@ class TilesContainer extends Component {
     // determine whether to display all projects, or filtered projects
     if (this.state.filtered) {
       projects = projects.filter(
-        project => project.TYPE_DESC === this.state.categoryToFilter
+        project => project.category === this.state.categoryToFilter
       );
     }
 
@@ -147,13 +147,16 @@ class TilesContainer extends Component {
             projects.map(feature => (
               <ListItem
                 data={feature.properties || feature}
-                key={feature.id}
+                key={feature.id || feature.mapbox_id}
                 length={projects.length}
               />
             ))
           ) : (
             projects.map(feature => (
-              <Tile data={feature.properties || feature} key={feature.id} />
+              <Tile
+                data={feature.properties || feature}
+                key={feature.id || feature.mapbox_id}
+              />
             ))
           )
         ) : (

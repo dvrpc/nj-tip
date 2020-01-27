@@ -29,6 +29,34 @@ const transformKeywordSuggestions = data => ({
   }))
 });
 
+const ContainerStyles = base => ({
+  ...base,
+  position: "relative"
+});
+
+const IndicatorsContainerStyles = base => ({
+  display: "none"
+});
+
+const ControlStyles = base => ({
+  ...base,
+  border: "none",
+  background:
+    "url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAUCAYAAABvVQZ0AAAACXBIWXMAAAsSAAALEgHS3X78AAABOUlEQVQ4jZ3SsVHkQBCF4Q95Z7EZgH/GbQgiArWPQwhrEMDWRbAXwFUtGfRFgCACyIAMkIG/Z+zoShyrKcGzpkY9f7+n7rPD4WBURKzQYl2uXtBn5osFOhthEbHBFkOBDAV6gV+ZuVkEi4gdbrDNzN20ICJaZHEYVVjXdS3ucZWZ/amiiFijxy4zt3OwBhvczYEgM59KXTVqgw77WtHIxHlxOQtTczVxN5TjqgqrdfuMGjyjOqXSMKinaLDDpixsTVvcVZ1l5h5P6CPi8oSjVUTc4zt+12Dj0q4cJ9qV7n35vnZc5ldc4g2PuJ4M5D1s4qItj0eHAzIz9xFxi5/45vif2/+B72A1Ffc9fpSrD8BmEcm/PWsLRIH208Ethi0BLo451VzkL8FmgFefijnVJPIfPGD4srNT+gtF2pJbvxg/cAAAAABJRU5ErkJggg==) no-repeat scroll 3% 50%",
+  fontSize: "1.1rem",
+  width: "100%",
+  padding: "12px 10px 12px 40px",
+  "&:focus": {
+    outline: "none",
+    border: "10px solid red"
+  }
+});
+
+const PlaceholderStyles = base => ({
+  ...base,
+  color: "black"
+});
+
 class Search extends Component {
   constructor(props) {
     super(props);
@@ -36,9 +64,9 @@ class Search extends Component {
     this.state = {
       value: "",
       keywordProjects: { features: [] },
-      locations: []
+      locations: [],
+      menuIsOpen: false
     };
-
     this.Autocomplete = new window.google.maps.places.AutocompleteService();
   }
 
@@ -61,17 +89,20 @@ class Search extends Component {
   };
 
   onChange = newValue => {
-    this.setState({ value: newValue });
-    this.loadKeywordSuggestions(newValue);
-    this.loadLocationSuggestions(newValue).then(locations => {
-      if (locations !== null) {
-        this.setState({ locations });
-      }
-    });
+    if (!newValue.length) {
+      this.setState({ menuIsOpen: false });
+    } else {
+      this.setState({ value: newValue, menuIsOpen: true });
+      this.loadKeywordSuggestions(newValue);
+      this.loadLocationSuggestions(newValue).then(locations => {
+        if (locations !== null) {
+          this.setState({ locations });
+        }
+      });
+    }
   };
 
   onSelect = suggestion => {
-    console.log("selected: ", suggestion);
     let oldPath = this.props.history.location.pathname.split("/")[1];
     let newPath = suggestion.type;
 
@@ -128,6 +159,14 @@ class Search extends Component {
         options={suggestions}
         formatGroupLabel={formatGroupLabel}
         onInputChange={this.onChange}
+        placeholder={"Click to Search for TIP Projects"}
+        menuIsOpen={this.state.menuIsOpen}
+        styles={{
+          container: ContainerStyles,
+          control: ControlStyles,
+          indicatorsContainer: IndicatorsContainerStyles,
+          placeholder: PlaceholderStyles
+        }}
         onChange={(value, { action }) => {
           action === "select-option" && this.onSelect(value);
         }}

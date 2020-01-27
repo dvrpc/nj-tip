@@ -1,9 +1,8 @@
-.map {
-  width: 60%;
-  height: 100%;
-}
 .marker:hover {
   cursor: pointer;
+}
+.mapboxgl-ctrl-icon {
+  padding: 0;
 }
 .mapboxgl-popup {
   min-width: 100px;

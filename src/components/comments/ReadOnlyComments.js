@@ -13,6 +13,7 @@ class ReadOnlyComments extends Component {
           <ul className="list-group">
             {comments.map(comment => (
               <li
+                key={comment.comment_id}
                 className="list-group-item"
                 style={{ borderBottom: "1px solid #fff", color: "#fff" }}
               >
@@ -22,6 +23,7 @@ class ReadOnlyComments extends Component {
                   <ul className="list-group">
                     {comment.responses.map(response => (
                       <li
+                        key={response.response_id}
                         className="list-group-item"
                         style={{
                           margin: "1rem 0",

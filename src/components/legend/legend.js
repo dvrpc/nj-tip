@@ -74,21 +74,23 @@ class Legend extends Component {
               className={"legendItem-content"}
               id={`legendTable-${this.state.selected}`}
             >
-              {layers[this.state.selected].classifications.map(row => {
-                return (
-                  <tr>
-                    <td
-                      style={{
-                        height: "25px",
-                        width: "25px",
-                        backgroundColor: `${row[1]}`,
-                        borderRadius: "3px"
-                      }}
-                    />
-                    <td>{row[0]}</td>
-                  </tr>
-                );
-              })}
+              <tbody>
+                {layers[this.state.selected].classifications.map(row => {
+                  return (
+                    <tr key={row[0]}>
+                      <td
+                        style={{
+                          height: "25px",
+                          width: "25px",
+                          backgroundColor: row[1],
+                          borderRadius: "3px"
+                        }}
+                      />
+                      <td>{row[0]}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
             </table>
           </div>
         ) : null}

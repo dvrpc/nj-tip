@@ -1,326 +1,281 @@
-import React, { Component } from "react";
-import mapboxgl from "mapbox-gl";
+import React, { useState, useEffect, useRef } from "react";
+import ReactMapGL, {
+  Layer,
+  Popup,
+  Source,
+  NavigationControl
+} from "react-map-gl";
+import { getBoundingBox } from "geolocation-utils";
+import WebMercatorViewport from "@math.gl/web-mercator";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-
+import { colors } from "../../utils/tileGeometryColorType";
+import { clickTile } from "../../utils/clickTile";
 import {
   getTIPByKeywords,
   getTIPByMapBounds,
+  setBounds,
   setMapCenter,
-  setMapState,
-  setBounds
+  setMapState
 } from "../reducers/getTIPInfo";
-import { updateBounds, showPopup } from "../../utils/updateMap";
-import { clickTile } from "../../utils/clickTile.js";
-
+import LayerControl from "../layer/layerControl";
+import LegendControl from "../legend/legendControl";
+import layers from "./layers";
+import "mapbox-gl/dist/mapbox-gl.css";
 import "./Map.css";
-import layers from "./layers.js";
 import mapStyle from "./style.json";
-import Legend from "../legend/legend.js";
 
-class MapComponent extends Component {
-  constructor(props) {
-    super(props);
+const buildCatFilter = cat => {
+  return cat === "All Categories"
+    ? ["!=", "TYPE_DESC", ""]
+    : ["==", "TYPE_DESC", cat];
+};
 
-    this.state = {
-      dropdownLayers: {
-        "Indicators of Potential Disadvantage": false,
-        "CMP Corridors": false,
-        "Connections 2045 Centers": false,
-        "Freight Centers": false,
-        "DVRPC Land Use (2015)": false,
-        "Urbanized Areas": false
-      },
-      toggleLayerList: false,
-      toggleLegendList: false,
-      keyFilter: ["!=", "DBNUM", ""],
-      catFilter: ["!=", "TYPE_DESC", ""],
-      tilePopup: {}
-    };
-
-    this.Places = new window.google.maps.places.PlacesService(
-      document.createElement("div")
-    );
+const buildKeywordFilter = ({ features }) => {
+  if (features && features.length) {
+    return [
+      "in",
+      "DBNUM",
+      ...features.map(feature => feature.properties.DBNUM)
+    ];
   }
+  return ["!=", "DBNUM", ""];
+};
 
-  updateLayerVisibility = selectedLayer => {
-    let { dropdownLayers } = this.state;
+function MapComponent({
+  history,
+  category,
+  keywordProjects,
+  match,
+  getTIPByKeywords,
+  getTIPByMapBounds,
+  markerFromTiles
+}) {
+  const [details, setDetails] = useState(null);
+  let keyFilter = buildKeywordFilter(keywordProjects || { features: [] });
+  let catFilter = buildCatFilter(category || "All Categories");
+  const [viewport, setViewport] = useState({
+    width: "60%",
+    height: "100%",
+    latitude: 40.018,
+    longitude: -75.148,
+    zoom: 9
+  });
+  const [layerList, toggleLayerList] = useState(false);
+  const [legendList, toggleLegendList] = useState(false);
+  const [dropdownLayers, setDropdownLayers] = useState({
+    "Indicators of Potential Disadvantage": false,
+    "CMP Corridors": false,
+    "Connections 2045 Centers": false,
+    "Freight Centers": false,
+    "DVRPC Land Use (2015)": false,
+    "Urbanized Areas": false
+  });
+  const mapRef = useRef(null);
 
-    const srcLookup = {
-      "Indicators of Potential Disadvantage": "IPD",
-      "CMP Corridors": "CMP",
-      "Connections 2045 Centers": "Connections",
-      "Freight Centers": "Freight",
-      "DVRPC Land Use (2015)": "LandUse",
-      "Urbanized Areas": "UrbanizedAreas"
-    };
-
-    const selectedSrc = srcLookup[selectedLayer];
-    const hasSrc = this.map.getSource(selectedSrc);
-
-    // if the layer doesn't exist yet, add it
-    if (!hasSrc) {
-      const srcInfo = layers[selectedSrc].source;
-
-      // handle different addSource() format for vector tiles and geojsons
-      if (srcInfo.type === "geojson") {
-        this.map.addSource(selectedSrc, {
-          type: srcInfo.type,
-          data: srcInfo.data
-        });
-      } else {
-        this.map.addSource(selectedSrc, {
-          type: srcInfo.type,
-          url: srcInfo.url
-        });
-      }
-
-      this.map.addLayer(layers[selectedSrc].layout, "water shadow");
-    }
-
-    //toggle selected layer state
-    Object.keys(dropdownLayers).forEach(layer => {
-      let layerCheck = this.map.getLayer(layer);
-
-      // move on to the next one if the layer hasn't been added yet
-      if (!layerCheck) return;
-
-      // set other layer states to false
-      if (layer !== selectedLayer) {
-        dropdownLayers[layer] = false;
-
-        // if a layer does exist, check it's visibility and set it to none if it was previously on
-        if (layerCheck) {
-          let isVisible = this.map.getLayoutProperty(layer, "visibility");
-          if (isVisible)
-            this.map.setLayoutProperty(layer, "visibility", "none");
-        }
-
-        // turn currently active layer on or off depending on its current state
-      } else {
-        dropdownLayers[layer]
-          ? (dropdownLayers[layer] = false)
-          : (dropdownLayers[layer] = true);
-
-        this.map.setLayoutProperty(
-          layer,
-          "visibility",
-          dropdownLayers[layer] ? "visible" : "none"
-        );
-      }
-    });
-
-    this.setState({ dropdownLayers });
-  };
-
-  toggleDropdown = e => {
-    e.preventDefault();
-    e.target.id === "layerMenuButton"
-      ? this.setState({ toggleLayerList: !this.state.toggleLayerList })
-      : this.setState({ toggleLegendList: !this.state.toggleLegendList });
-  };
-
-  buildCategoryFilter = cat => {
-    switch (cat) {
-      case "All Categories":
-        this.setState({ catFilter: ["!=", "TYPE_DESC", ""] });
-        break;
-      default:
-        this.setState({ catFilter: ["==", "TYPE_DESC", cat || ""] });
+  const handleHover = ({ features }) => {
+    if (features && features.length) {
+      setDetails(features[0]);
     }
   };
 
-  buildKeywordFilter = projects => {
-    let ids = projects.features.map(feature => feature.properties.DBNUM);
-    if (projects.features && projects.features.length) {
-      return ["in", "DBNUM"].concat(ids);
-    }
-    return ["!=", "DBNUM", ""];
-  };
-
-  componentDidMount() {
-    if (this.props.category) this.buildCategoryFilter(this.props.category);
-
-    // check if center has been updated by the search bar and flyTo if so (adjust zoom level if on mobile/tablet)
-    /*if (this.props.center !== this.props.center)
-      this.map.flyTo({
-        center: [this.props.center.lng, this.props.center.lat],
-        zoom: window.innerWidth > 900 ? 12.5 : 11
-      });
-*/
-    if (this.props.markerFromTiles) {
-      const marker = this.props.markerFromTiles;
-      const tilePopup = showPopup(marker, this.map);
-      this.setState({ tilePopup });
-    }
-
-    // remove any existing popups from hover
-    if (Object.keys(this.state.tilePopup).length) {
-      this.state.tilePopup.remove();
-      this.setState({ tilePopup: {} });
-    }
-
-    const { history } = this.props;
-    const position =
-      this.props.position && this.props.position.center
-        ? { center: this.props.position.center, zoom: this.props.position.zoom }
-        : { center: this.props.center || [-75.148, 40.018], zoom: 9 };
-
-    mapboxgl.accessToken =
-      "pk.eyJ1IjoibW1vbHRhIiwiYSI6ImNqZDBkMDZhYjJ6YzczNHJ4cno5eTcydnMifQ.RJNJ7s7hBfrJITOBZBdcOA";
-    this.map = new mapboxgl.Map({
-      container: this.tipMap,
-      style: mapStyle,
-      center: position.center,
-      zoom: position.zoom,
-      dragRotate: false
-    });
-
-    this.map.on("load", () => {
-      // check for keyword search
-      if (this.props.keywordProjects && this.props.keywordProjects.features) {
-        let keyFilter = this.buildKeywordFilter(this.props.keywordProjects);
-        this.setState({ keyFilter });
-      }
-
-      // add zoom controls
-      let zoom = new mapboxgl.NavigationControl();
-      this.map.addControl(zoom, "bottom-left");
-    });
-
-    this.map.on("click", "nj-tip-points", e => {
+  const handleClick = ({ target, features }) => {
+    if (
+      features.length ||
+      target.className.indexOf("mapboxgl-popup-content") > -1
+    ) {
       clickTile({
         props: {
           history,
-          data: { id: e.features[0].properties.DBNUM }
+          data: { id: details.properties.DBNUM }
         }
       });
-    });
+    }
+  };
 
-    let popup;
+  const handleLoad = () => {
+    const map = mapRef.current.getMap();
+    map.setFilter("nj-tip-points", ["all", catFilter, keyFilter]);
+    map.setFilter("nj-tip-lines", ["all", catFilter, keyFilter]);
+  };
 
-    // show popup when a user hovers over a marker.
-    this.map.on("mouseenter", "nj-tip-points", e => {
-      this.map.getCanvas().style.cursor = "pointer";
-
-      const coordinates = e.features[0].geometry.coordinates.slice();
-      const LONGITUDE = coordinates[0];
-      const LATITUDE = coordinates[1];
-
-      const marker = { ...e.features[0].properties, LONGITUDE, LATITUDE };
-      popup = showPopup(marker, this.map);
-    });
-
-    // remove popup when the user leaves
-    this.map.on("mouseleave", "nj-tip-points", () => {
-      this.map.getCanvas().style.cursor = "";
-      popup.remove();
-    });
-
-    // handle user events to update map results
-    this.map.on("zoomend", () => updateBounds(this));
-    this.map.on("moveend", () => updateBounds(this));
-
-    // this handles the edge case of setting a filter without map movement, but only sometimes.
-    this.map.on("data", () => {
-      if (this.map.isStyleLoaded()) updateBounds(this);
-    });
-
-    const { type, value } = this.props.match.params;
-
+  useEffect(() => {
+    const Places = new window.google.maps.places.PlacesService(
+      document.createElement("div")
+    );
+    const { type, value } = match.params;
     if (type === "location") {
-      //@TODO: add getTIP to Connect
-      //this.context.store.getState().getTIP.keyword = [];
-      this.Places.getDetails(
+      getTIPByKeywords(null);
+      Places.getDetails(
         { placeId: value, fields: ["geometry.location"] },
         results => {
-          this.props.setMapCenter({
-            lng: results.geometry.location.lng(),
-            lat: results.geometry.location.lat()
-          });
+          setViewport(prev => ({
+            ...prev,
+            longitude: results.geometry.location.lng(),
+            latitude: results.geometry.location.lat(),
+            zoom: 12
+          }));
         }
       );
     } else {
-      //@TODO: add getTIP to Connect
-      this.props.setBounds([]);
-      this.props.getTIPByKeywords(value);
+      getTIPByKeywords(value);
     }
+  }, [match, getTIPByKeywords]);
+
+  useEffect(() => {
+    markerFromTiles &&
+      setDetails({
+        geometry: {
+          coordinates: [markerFromTiles.LONGITUDE, markerFromTiles.LATITUDE]
+        },
+        properties: {
+          DBNUM: markerFromTiles.DBNUM,
+          TYPE_DESC: markerFromTiles.TYPE_DESC,
+          PROJECTNAM: markerFromTiles.PROJECTNAM
+        }
+      });
+
+    return () => setDetails(null);
+  }, [markerFromTiles]);
+
+  if (
+    mapRef.current &&
+    !isNaN(+mapRef.current.props.width) &&
+    keywordProjects &&
+    keywordProjects.length
+  ) {
+    const vw = new WebMercatorViewport({
+      width: mapRef.current.props.width,
+      height: mapRef.current.props.height
+    });
+    const locations = keywordProjects.features.map(f => ({
+      lon: f.properties.LONGITUDE,
+      lat: f.properties.LATITUDE,
+      id: f.properties.DBNUM
+    }));
+    const bounds = getBoundingBox(locations);
+    const extent = vw.fitBounds(
+      [
+        [bounds.topLeft.lon, bounds.topLeft.lat],
+        [bounds.bottomRight.lon, bounds.bottomRight.lat]
+      ],
+      { padding: 50 }
+    );
+
+    keyFilter = ["in", "DBNUM", ...locations.map(f => f.id)];
+    setViewport(v => ({ ...v, ...extent }));
   }
 
-  componentWillUnmount() {
-    this.map.remove();
-  }
+  if (match.params.type === "location" && mapRef.current) {
+    const renderedProjects = {
+      allMPMS: [],
+      features: []
+    };
+    let rendered = mapRef.current.queryRenderedFeatures();
 
-  render() {
-    if (this.map) {
-      let lines = this.map.getLayer("nj-tip-lines");
-      let points = this.map.getLayer("nj-tip-points");
-
-      if (points && lines) {
-        ["nj-tip-points", "nj-tip-lines"].forEach(layer => {
-          this.map.setFilter(layer, [
-            "all",
-            this.state.catFilter,
-            this.state.keyFilter
-          ]);
+    rendered.forEach(item => {
+      if (renderedProjects.allMPMS.indexOf(item.properties.DBNUM) === -1) {
+        renderedProjects.allMPMS.push(item.properties.DBNUM);
+        // add descriptive info for tiles + lat/lng for the tile hover + map popup link
+        renderedProjects.features.push({
+          DBNUM: item.properties.DBNUM,
+          TYPE_DESC: item.properties.TYPE_DESC,
+          PROJECTNAM: item.properties.PROJECTNAM,
+          LATITUDE:
+            item.layer.id === "nj-tip-points"
+              ? item.geometry.coordinates[1]
+              : item.geometry.coordinates[0][1],
+          LONGITUDE:
+            item.layer.id === "nj-tip-points"
+              ? item.geometry.coordinates[0]
+              : item.geometry.coordinates[0][0],
+          mapbox_id: `${item.properties.DBNUM}_${item._vectorTileFeature._geometry}`
         });
       }
-    }
+    });
+    getTIPByMapBounds(renderedProjects);
+  }
 
-    return (
-      <div className="map" ref={e => (this.tipMap = e)}>
-        <nav className="dropdown-nav">
-          <div className="dropdown-layers">
-            <button
-              className="btn dropdown-toggle"
-              type="button"
-              id="layerMenuButton"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded={this.state.toggleLayerList}
-              onClick={this.toggleDropdown}
-            >
-              Layers
-            </button>
-            <div
-              className={
-                "layer-menu " + (this.state.toggleLayerList ? "show" : "")
-              }
-            >
-              {Object.keys(this.state.dropdownLayers).map(layer => {
-                return (
-                  <p
-                    key={layer}
-                    className={
-                      "dropdown-item " +
-                      (this.state.dropdownLayers[layer].show ? "selected" : "")
-                    }
-                    onClick={() => this.updateLayerVisibility(layer)}
-                  >
-                    {layer}
-                  </p>
-                );
-              })}
-            </div>
-          </div>
-          <div className="dropdown-legend">
-            <button
-              className="btn dropdown-toggle"
-              type="button"
-              id="legendMenuButton"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded={this.state.toggleLegendList}
-              onClick={this.toggleDropdown}
-            >
-              Legend
-            </button>
-            {this.state.toggleLegendList ? <Legend show={"show"} /> : null}
-          </div>
-        </nav>
-      </div>
+  if (mapRef.current && mapRef.current.getMap().loaded()) {
+    const map = mapRef.current.getMap();
+    map.setFilter("nj-tip-points", ["all", catFilter, keyFilter]);
+    map.setFilter("nj-tip-lines", ["all", catFilter, keyFilter]);
+
+    Object.keys(dropdownLayers).forEach(layer =>
+      map.setLayoutProperty(
+        layer,
+        "visibility",
+        dropdownLayers[layer] ? "visible" : "none"
+      )
     );
   }
+
+  return (
+    <ReactMapGL
+      {...viewport}
+      ref={mapRef}
+      mapStyle={mapStyle}
+      mapboxApiAccessToken="pk.eyJ1IjoibW1vbHRhIiwiYSI6ImNqZDBkMDZhYjJ6YzczNHJ4cno5eTcydnMifQ.RJNJ7s7hBfrJITOBZBdcOA"
+      onLoad={handleLoad}
+      onHover={handleHover}
+      onClick={handleClick}
+      onViewportChange={viewState => setViewport(viewState)}
+      interactiveLayerIds={["nj-tip-points"]}
+    >
+      {Object.entries(layers).map(([key, value]) => {
+        const { source, layout } = value;
+        return (
+          <Source key={source.id} {...source}>
+            <Layer {...layout} />
+          </Source>
+        );
+      })}
+      {details && (
+        <Popup
+          longitude={details.geometry.coordinates[0]}
+          latitude={details.geometry.coordinates[1]}
+          onClose={() => setDetails(null)}
+          onClick={handleClick}
+          closeOnClick={false}
+          captureClick={false}
+        >
+          <h2 style={{ pointerEvents: "none" }}>{details.properties.DBNUM}</h2>
+          <p
+            style={{
+              borderBottom: `8px solid #${
+                colors[details.properties.TYPE_DESC].forMap
+              }`,
+              pointerEvents: "none"
+            }}
+          >
+            {details.properties.PROJECTNAM}
+          </p>
+        </Popup>
+      )}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 30,
+          left: 0,
+          padding: 10
+        }}
+      >
+        <NavigationControl />
+      </div>
+      <nav className="dropdown-nav">
+        <LayerControl
+          layerList={layerList}
+          toggleLayerList={toggleLayerList}
+          dropdownLayers={dropdownLayers}
+          setDropdownLayers={setDropdownLayers}
+        />
+        <LegendControl
+          legendList={legendList}
+          toggleLegendList={toggleLegendList}
+        />
+      </nav>
+    </ReactMapGL>
+  );
 }
 
 const mapStateToProps = state => {

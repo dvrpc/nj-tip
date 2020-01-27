@@ -19,7 +19,8 @@ class ListItem extends Component {
 
   componentDidMount() {
     let category =
-      this.props.data.TYPE_DESC === "null"
+      this.props.data.TYPE_DESC === "null" ||
+      typeof this.props.data.TYPE_DESC === "undefined"
         ? "Other"
         : this.props.data.TYPE_DESC;
     fetchSprite.then(response => {

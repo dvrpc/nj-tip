@@ -114,13 +114,6 @@ class Homepage extends Component {
                 (FY20-FY23)
               </h2>
               <p>
-                <em>
-                  Solutions to technical difficulties that users could
-                  experience with this webmap is in progress. Sorry for the
-                  inconvenience, and thank you for your patience.
-                </em>
-              </p>
-              <p>
                 On September 26, 2019 after a 30+ day public comment period, the
                 DVRPC Board adopted the DVRPC FY2020 Transportation Improvement
                 Program (TIP) for FY20-23 with Recommended Changes as the

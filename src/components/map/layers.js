@@ -1,6 +1,6 @@
 const IPD = {
   source: {
-    name: "IPD",
+    id: "IPD",
     type: "geojson",
     data:
       "https://opendata.arcgis.com/datasets/44fdcc72f46e4e3f90126f4f9c5f7629_0.geojson"
@@ -43,7 +43,7 @@ const IPD = {
 };
 const CMP = {
   source: {
-    name: "CMP",
+    id: "CMP",
     type: "geojson",
     data:
       "https://services1.arcgis.com/LWtWv6q6BJyKidj8/ArcGIS/rest/services/DVRPC_CMP_2015/FeatureServer/0/query?where=1%3D1&returnGeometry=true&outFields=WEB_COLOR&geometryPrecision=4&outSR=4326&f=pgeojson"
@@ -63,7 +63,7 @@ const CMP = {
 };
 const Connections = {
   source: {
-    name: "Connections",
+    id: "Connections",
     type: "geojson",
     data:
       "https://services1.arcgis.com/LWtWv6q6BJyKidj8/arcgis/rest/services/DVRPC_Connections_2045_Planning_Centers/FeatureServer/0/query?where=State='NJ'&outFields=LUP_TYPE&geometryPrecision=4&outSR=4326&f=pgeojson"
@@ -110,7 +110,7 @@ const Connections = {
 };
 const Freight = {
   source: {
-    name: "Freight",
+    id: "Freight",
     type: "geojson",
     data:
       "https://services1.arcgis.com/LWtWv6q6BJyKidj8/arcgis/rest/services/DVRPC_Connections_2045_Freight_Centers/FeatureServer/0/query?where=1%3D1&outFields=TYPES&outSR=4326&f=geojson"
@@ -155,7 +155,7 @@ const Freight = {
 };
 const LandUse = {
   source: {
-    name: "LandUse",
+    id: "LandUse",
     type: "vector",
     url: "https://tiles.dvrpc.org/data/dvrpc-landuse-2015.json"
   },
@@ -215,7 +215,7 @@ const LandUse = {
 };
 const UrbanizedAreas = {
   source: {
-    name: "UrbanizedAreas",
+    id: "UrbanizedAreas",
     type: "geojson",
     data:
       "https://services1.arcgis.com/LWtWv6q6BJyKidj8/arcgis/rest/services/DVRPC_Urban_Areas/FeatureServer/1/query?where=LSAD_TYPE%3D'Urbanized+Area'&sqlFormat=standard&geometryPrecision=4&outSR=4326&outFields=CENSUS_UA_&f=pgeojson"
@@ -251,7 +251,8 @@ const UrbanizedAreas = {
         ["==", ["get", "CENSUS_UA_"], "69076"],
         "#E67553",
         "#b4b4b4"
-      ]
+      ],
+      "fill-opacity": 0.25
     }
   }
 };
