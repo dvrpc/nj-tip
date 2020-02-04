@@ -148,7 +148,9 @@ class Homepage extends Component {
                   <a href="/TIP/NJ/pdf/20001B.pdf">
                     Highlights of the FY2020 TIP for NJ
                   </a>{" "}
-                  <span className="sm">[43.3 MB pdf]</span>
+                  <span className="sm">[43.3 MB pdf]</span> (
+                  <a href="/TIP/NJ/pdf/20001Bes.pdf">en Español</a>{" "}
+                  <span class="sm">[2.0 MB pdf]</span>)
                 </li>
                 <li className="list-group-item">
                   <a href="/TIP/NJ/pdf/1.pdf">General Overview of the TIP</a>{" "}
