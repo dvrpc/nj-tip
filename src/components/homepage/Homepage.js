@@ -324,7 +324,9 @@ class Homepage extends Component {
                   <span className="sm">[0.3 MB pdf]</span>
                 </li>
                 <li className="list-group-item">
-                  <a href="/TIP/NJ/pdf/20001A.pdf">Full TIP Document</a>{" "}
+                  <a href="/TIP/NJ/pdf/20001A.pdf">
+                    Full TIP Document, as adopted by the Board
+                  </a>{" "}
                   <span className="sm">[7.6 MB pdf]</span>
                 </li>
               </ul>
