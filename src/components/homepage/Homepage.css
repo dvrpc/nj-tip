@@ -9,7 +9,7 @@
   border-bottom: 10px solid white;
   justify-content: space-between;
 }
-#banner-logo{
+#banner-logo {
   margin-top: 5px;
 }
 #banner-tip-logo {
@@ -21,7 +21,7 @@
   font-weight: 600;
   font-size: 1.5rem;
 }
-.stacked-headers{
+.stacked-headers {
   display: flex;
   align-items: center;
 }
@@ -93,7 +93,7 @@
   padding-bottom: 1%;
   margin-top: 4%;
 }
-#main-section-header{
+#main-section-header {
   margin-top: 0;
 }
 #tip-info p,
@@ -102,7 +102,7 @@
   font-size: 1.2rem;
   margin: 0 0 1rem;
 }
-.homepage-address{
+.homepage-address {
   font-style: normal;
 }
 #tip-info-paragraphs {
@@ -128,7 +128,8 @@
   background: linear-gradient(to right, #303030 0, transparent 65%);
   color: #ffffff;
   border-radius: 10px;
-  box-shadow: 0 2px 2px 0 rgba(48, 48, 48, 0.7), 0 3px 5px 0 rgba(48, 48, 48, 0.8);
+  box-shadow: 0 2px 2px 0 rgba(48, 48, 48, 0.7),
+    0 3px 5px 0 rgba(48, 48, 48, 0.8);
 }
 #nav-links-box p {
   padding: 0 1.2rem 0 1.2rem;
@@ -157,20 +158,39 @@
   text-transform: uppercase;
   font-size: 1rem;
 }
-#obligation-summary-table{
+#obligation-summary-table {
   width: 100%;
 }
-.homepage input[type="submit"]{
+.homepage input[type="submit"] {
   color: #333333 !important;
 }
 
 .sm {
   font-style: italic;
   font-size: 1rem;
-  color: #DEDEDE;
+  color: #dedede;
 }
 
-
+figure {
+  max-width: 100%;
+  display: inline-block;
+  float: right;
+  padding-top: 2%;
+  margin: 0 auto;
+  text-align: center;
+  border: 1px solid #888;
+  background-color: #626060;
+  padding: 5px;
+  border-radius: 3px;
+}
+figure img {
+  max-height: 200px;
+  box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.7);
+}
+figure figcaption {
+  font-style: italic;
+  padding: 5px 5px 0;
+}
 /* Media Queries*/
 
 /* Phones and tablets (portrait) */
@@ -199,10 +219,10 @@
     background-position: center;
     background-size: cover;
   }
-  .stacked-headers h1{
+  .stacked-headers h1 {
     font-size: 0.8rem;
   }
-  #search-form{
+  #search-form {
     width: 90%;
     margin: 0 auto !important;
     margin-top: 25vh !important;
@@ -213,10 +233,10 @@
     font-size: 0.8rem !important;
     padding: 3% 0 3% 10%;
   }
-  .homepage-bottom-bar span{
+  .homepage-bottom-bar span {
     font-size: 0.7em;
   }
-  .homepage-bottom-bar img{
+  .homepage-bottom-bar img {
     width: 20px;
   }
   #tip-info-paragraphs {
@@ -261,6 +281,9 @@
   }
   #tip-info p {
     font-size: 1rem;
+  }
+  figure {
+    float: none;
   }
 }
 

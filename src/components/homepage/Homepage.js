@@ -67,7 +67,7 @@ class Homepage extends Component {
           <div className="homepage-bottom-bar">
             <a
               href="#tip-info"
-              onClick={e => {
+              onClick={(e) => {
                 scrollToElement(this, e, "tipInfo");
               }}
             >
@@ -79,7 +79,7 @@ class Homepage extends Component {
 
         <main
           id="tip-info"
-          ref={el => {
+          ref={(el) => {
             this.tipInfo = el;
           }}
         >
@@ -143,6 +143,15 @@ class Homepage extends Component {
 
             <section>
               <h2 className="info-section-header">Detailed Information</h2>
+              <a href="https://arcg.is/19nnb0" rel="external">
+                <figure>
+                  <img
+                    src="https://www.dvrpc.org/TIP/img/TIPStoryMapScreenshot.png"
+                    alt="TIP Fundamentals"
+                  />
+                  <figcaption>TIP Fundamentals: Learn the Basics</figcaption>
+                </figure>
+              </a>
               <ul className="list-group">
                 <li className="list-group-item">
                   <a href="/TIP/NJ/pdf/20001B.pdf">
@@ -356,7 +365,7 @@ class Homepage extends Component {
                 adoption at the September 26, 2019 Board meeting.
               </p>
               <p
-                ref={el => {
+                ref={(el) => {
                   this.generalComment = el;
                 }}
               ></p>
@@ -370,12 +379,12 @@ class Homepage extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  comments: state.getComments
+const mapStateToProps = (state) => ({
+  comments: state.getComments,
 });
 
-const mapDispatchToProps = dispatch => ({
-  getGeneralComments: () => dispatch(getGeneralComments())
+const mapDispatchToProps = (dispatch) => ({
+  getGeneralComments: () => dispatch(getGeneralComments()),
 });
 
 export default withRouter(
