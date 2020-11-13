@@ -97,7 +97,7 @@ class Homepage extends Component {
                 <a href="https://www.dvrpc.org/Products/17065/">TIP Guide</a>
               </li>
               <li>
-                <a href="https://www.dvrpc.org/TIP/PA/">FY2019 TIP for PA</a>
+                <a href="https://www.dvrpc.org/TIP/PA/">FY2021 TIP for PA</a>
               </li>
               <li>
                 <a href="https://www.dvrpc.org/ProjectImplementation/">
@@ -150,7 +150,7 @@ class Homepage extends Component {
                   </a>{" "}
                   <span className="sm">[43.3 MB pdf]</span> (
                   <a href="/TIP/NJ/pdf/20001Bes.pdf">en Español</a>{" "}
-                  <span class="sm">[2.0 MB pdf]</span>)
+                  <span className="sm">[2.0 MB pdf]</span>)
                 </li>
                 <li className="list-group-item">
                   <a href="/TIP/NJ/pdf/1.pdf">General Overview of the TIP</a>{" "}
