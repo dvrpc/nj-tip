@@ -60,6 +60,7 @@ const keywordRequest = keyword =>
       .then(response => response.json())
       .then(features => {
         // get geometry & rest of project information from the arcGIS server (nj tip endpoint requires quotes around each ID in the string)
+        features = Array.isArray(features) ? features : [];
         let id_array = features.map(project => `'${project.id}'`).join(",");
         let params = {
           where: `DBNUM in (${id_array})`,
@@ -76,7 +77,7 @@ const keywordRequest = keyword =>
           )
           .join("&");
         fetch(
-          `https://services1.arcgis.com/LWtWv6q6BJyKidj8/ArcGIS/rest/services/DVRPC_Draft_New_Jersey_Transportation_Improvement_Program_2020_to_2023/FeatureServer/0/query`,
+          `https://arcgis.dvrpc.org/portal/rest/services/Transportation/NJTIP_FY2020_2023_Point/FeatureServer/0/query`,
           {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
@@ -92,7 +93,16 @@ const keywordRequest = keyword =>
                 feature => feature.properties.DBNUM === project.id
               );
               project.properties = matchedProject.length
-                ? matchedProject[0].properties
+                ? {
+                    OBJECTID: matchedProject[0].properties.objectid,
+                    CTY: matchedProject[0].properties.county,
+                    TYPE_DESC: matchedProject[0].properties.type,
+                    DBNUM: matchedProject[0].properties.dbnum,
+                    PROJECTNAM: matchedProject[0].properties.projectnam,
+                    LATITUDE: matchedProject[0].properties.lat,
+                    LONGITUDE: matchedProject[0].properties.long_,
+                    NOT_MAPPED: false
+                  }
                 : {
                     OBJECTID: project.id + project.road_name,
                     CTY: project.county,
@@ -157,7 +167,7 @@ export const hydrateGeometry = id => dispatch => {
   if (id === null) return dispatch(hydrate_geometry(null));
 
   fetch(
-    `https://services1.arcgis.com/LWtWv6q6BJyKidj8/ArcGIS/rest/services/DVRPC_Draft_New_Jersey_Transportation_Improvement_Program_2020_to_2023/FeatureServer/0/query?where=DBNUM=%27${id}%27&geometryType=esriGeometryPoint&returnGeometry=true&geometryPrecision=&outSR=4326&f=pgeojson`
+    `https://arcgis.dvrpc.org/portal/rest/services/Transportation/NJTIP_FY2020_2023_Point/FeatureServer/0/query?where=DBNUM=%27${id}%27&geometryType=esriGeometryPoint&returnGeometry=true&geometryPrecision=&outSR=4326&f=pgeojson`
   )
     .then(response => {
       if (response.ok)
