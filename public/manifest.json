@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "NJ TIP",
+  "name": "NJ Transportation Improvement Program Web Viewer",
   "icons": [
     {
       "src": "favicon.ico",

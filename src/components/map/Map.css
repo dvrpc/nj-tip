@@ -1,15 +1,14 @@
-.marker:hover {
-  cursor: pointer;
+.map {
+  width: 57%;
+  height: 100%;
 }
-.mapboxgl-ctrl-icon {
-  padding: 0;
+.marker {
+  cursor: pointer;
 }
 .mapboxgl-popup {
   min-width: 100px;
   max-width: 250px;
   min-height: 100px;
-}
-.mapboxgl-popup:hover {
   cursor: pointer;
 }
 .mapboxgl-popup-content {
@@ -33,7 +32,7 @@
   justify-content: space-between;
   width: calc(100% - 20px);
   margin: 10px 10px 0 10px;
-  font-family: 'Open Sans', tahoma, Arial, Helvetica, sans-serif;
+  font-family: "Open Sans", tahoma, Arial, Helvetica, sans-serif;
 }
 .btn {
   user-select: none;
@@ -64,7 +63,11 @@
   border-bottom: 0;
   border-left: 0.3em solid transparent;
 }
-.layer-menu, .legend-menu {
+.mapboxgl-ctrl-top-right {
+  top: calc(50% - 60px);
+}
+.layer-menu,
+.legend-menu {
   display: none;
   border: 0;
   opacity: 0;
@@ -84,19 +87,19 @@
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
     0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
-.layer-menu.show{
+.layer-menu.show {
   display: block;
   opacity: 1;
   transform: scale(1);
   left: 0;
 }
-.legend-menu.show{
+.legend-menu.show {
   display: block;
   opacity: 1;
   transform: scale(1);
   right: 0;
 }
-.legend-links{
+.legend-links {
   display: flex;
   padding-inline-start: 0;
   border-bottom: 2px solid #333;
@@ -104,11 +107,12 @@
   width: 100%;
   background-color: #ddd;
 }
-.dropdown-item, .legendLink {
+.dropdown-item,
+.legendLink {
   display: flex;
   align-items: center;
   min-height: 2.25rem;
-  padding: 0 .5rem;
+  padding: 0 0.5rem;
   overflow: hidden;
   line-height: 1;
   text-overflow: ellipsis;
@@ -116,28 +120,51 @@
   color: inherit;
   white-space: nowrap;
   transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
 }
 .dropdown-item:hover {
-  cursor: pointer;
   background-color: #ddd;
   color: #000;
 }
-.selected, .legendLink.active {
+.selected,
+.legendLink.active {
   color: white;
   background-color: #333;
 }
-.legend-content{
+.legend-content {
   display: flex;
   flex-flow: row;
   justify-content: center;
 }
-/*just guessing here...*/
- @media screen and (max-width: 880px) {
-  .map{
-    height: 50vh;
+#default-extent-btn {
+  height: 18px;
+  width: 18px;
+  right: 10px;
+  top: calc(50% + 42px);
+  padding: 5px;
+  cursor: pointer;
+  z-index: 10;
+  position: absolute;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+#default-extent-img {
+  height: 100%;
+}
+
+@media screen and (max-width: 880px) {
+  .map {
+    height: 45vh;
     width: 100%;
   }
   .btn {
     padding: 0.3rem 0.4rem;
   }
- }
+  .mapboxgl-ctrl-top-right,
+  .btn,
+  .dropdown-item,
+  .legend-link {
+    font-size: 0.7rem;
+  }
+}

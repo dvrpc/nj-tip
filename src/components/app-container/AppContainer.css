@@ -1,16 +1,17 @@
-.overflow-wrap{
-    overflow-x: hidden;
+.overflow-wrap {
+  overflow-x: hidden;
 }
 .appContainer {
-	display: flex;
-	height: 89vh;
-    margin: 0;
-    padding: 0;
+  display: flex;
+  justify-content: space-between;
+  height: 90vh;
+  margin: 0;
+  padding: 0;
 }
 
- @media screen and (max-width: 880px) {
-  .appContainer{
+@media screen and (max-width: 880px) {
+  .appContainer {
     flex-direction: column;
     height: 100%;
   }
- }
+}

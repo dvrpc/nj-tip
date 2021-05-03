@@ -1,21 +1,21 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import "./TilesContainer.css";
+import "./Results.css";
+
 import Tile from "../tiles/Tiles.js";
 import ListItem from "../listItems/listItem.js";
-import Footer from "../footer/Footer.js";
-import loading from "./loading.gif";
-import { setFilter } from "../reducers/getTIPInfo.js";
-import { filterByCategory } from "../../utils/filterByCategory.js";
+import { setFilter } from "../../redux/reducers/getTIPInfo.js";
 
-class TilesContainer extends Component {
+class Results extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       filtered: false,
       categoryToFilter: "",
-      showList: true
+      showList: true,
+      loading: true,
     };
   }
 
@@ -27,63 +27,74 @@ class TilesContainer extends Component {
     if (category !== "All Categories") {
       this.setState({
         filtered: true,
-        categoryToFilter: category
+        categoryToFilter: category,
       });
     }
   }
 
-  showList = e => {
-    // flip the bool to show tiles
-    this.setState({ showList: true });
-
+  showList = (e) => {
     // update active-toggle class
     if (!e.target.classList.contains("active-toggle")) {
       e.target.classList.toggle("active-toggle");
       e.target.nextElementSibling.classList.toggle("active-toggle");
     }
+
+    // flip the bool to show tiles
+    this.setState({ showList: true });
   };
 
-  showTiles = e => {
-    // flip the bool to show tiles
-    this.setState({ showList: false });
-
+  showTiles = (e) => {
     // update active-toggle class
     if (!e.target.classList.contains("active-toggle")) {
       e.target.classList.toggle("active-toggle");
       e.target.previousElementSibling.classList.toggle("active-toggle");
     }
+
+    // flip the bool to show tiles
+    this.setState({ showList: false });
   };
 
+  filterByCategory = (e) => {
+    // get a handle on the selected option
+    const selector = this.categorySelector;
+    const categoryToFilter = selector.options[selector.selectedIndex].text;
+
+    // apply or remove filter depending on the selected option
+    if (categoryToFilter === "All Categories") {
+      this.setState({ filtered: false });
+    } else {
+      this.setState({
+        filtered: true,
+        categoryToFilter,
+      });
+    }
+    this.props.setFilter(categoryToFilter);
+  };
+
+  componentDidUpdate() {
+    if (this.state.loading && this.props.projects)
+      this.setState({ loading: false });
+  }
+
   render() {
-    // handle keyword and bounds projects
-    let keywordProjects =
-      this.props.keywordProjects && this.props.keywordProjects.features
-        ? this.props.keywordProjects.features
-        : [];
-    let boundsProjects =
-      this.props.boundsProjects && this.props.boundsProjects.features
-        ? this.props.boundsProjects.features
-        : [];
-
-    let projects = keywordProjects.length ? keywordProjects : boundsProjects;
-
+    let projects = this.props.projects ? this.props.projects.features : null;
+    console.log(projects);
     // determine whether to display all projects, or filtered projects
-    if (this.state.filtered) {
+    if (this.state.filtered && projects) {
       projects = projects.filter(
-        project => project.category === this.state.categoryToFilter
+        (project) => project.TYPE_DESC === this.state.categoryToFilter
       );
     }
 
     return (
-      <div className="tilesContainer">
+      <div id="results">
         <div className="header">
           <select
             id="selectedCategory"
             name="category"
-            onChange={e => filterByCategory(this, e)}
-            ref={e => (this.categorySelector = e)}
+            onChange={(e) => this.filterByCategory(e)}
+            ref={(e) => (this.categorySelector = e)}
             value={this.props.category}
-            defaultValue="All Categories"
           >
             <option value="All Categories">All Categories</option>
             <option
@@ -142,44 +153,52 @@ class TilesContainer extends Component {
             /<h2 onClick={this.showTiles}>Tiles</h2>
           </span>
         </div>
-        {projects ? (
+
+        {this.state.loading ? (
+          <div id="results-loading" ref={(el) => (this.loadingProjects = el)}>
+            LOADING...
+          </div>
+        ) : projects ? (
           this.state.showList ? (
-            projects.map(feature => (
+            projects.map((feature) => (
               <ListItem
                 data={feature.properties || feature}
-                key={feature.id || feature.mapbox_id}
+                key={feature.mapbox_id}
                 length={projects.length}
               />
             ))
           ) : (
-            projects.map(feature => (
-              <Tile
-                data={feature.properties || feature}
-                key={feature.id || feature.mapbox_id}
-              />
-            ))
+            <div id="tiles-wrapper">
+              {projects.map((feature) => (
+                <Tile
+                  data={feature.properties || feature}
+                  key={feature.mapbox_id}
+                />
+              ))}
+            </div>
           )
         ) : (
-          <img id="no-results" src={loading} alt="loading" />
+          <p id="no-results">
+            Sorry! No projects matched your search criteria. Please try again or
+            contact Rick Murphy at rmurphy@dvrpc.org. <br />
+            <br /> Thank you for using the DVRPC FY2020 TIP for NJ.
+          </p>
         )}
-        <Footer />
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    keywordProjects: state.getTIP.keyword,
-    boundsProjects: state.getTIP.projects,
-    category: state.getTIP.category
+    projects: state.getTIP.projects,
+    category: state.getTIP.category,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    setFilter: category => dispatch(setFilter(category))
+    setFilter: (filter) => dispatch(setFilter(filter)),
   };
 };
-
-export default connect(mapStateToProps, mapDispatchToProps)(TilesContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(Results);

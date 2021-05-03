@@ -12,9 +12,9 @@ class Modal extends Component {
       title: "Comment Successfully posted",
       text: "Thank you for your feedback!",
       showConfirmButton: false,
-      timer: 3000
+      timer: 3000,
       // update commentBool to hide the message until another comment is posted
-    }).then(result => this.props.resetCommentBool(false));
+    }).then((result) => this.props.resetCommentBool(false));
   }
 
   render() {
