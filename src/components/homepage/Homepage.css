@@ -1,6 +1,3 @@
-.homepage {
-  overflow: hidden;
-}
 .homepage-banner {
   display: flex;
   align-items: center;
@@ -19,27 +16,27 @@
   line-height: 1.1;
   color: #303030;
   font-weight: 600;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
 }
 .stacked-headers {
   display: flex;
   align-items: center;
 }
 .homepage-main {
+  position: relative;
   background: linear-gradient(
     to right,
     rgba(245, 181, 10, 0.6),
     rgba(0, 0, 0, 0.3) 50%
   );
-  height: 75vh;
+  height: 65vh;
   border: thin solid rgba(0, 0, 0, 0);
 }
 #bgvid {
   position: absolute;
-  top: 45%;
+  top: 70%;
   left: 50%;
   width: 100%;
-  min-height: 85%;
   z-index: -100;
   -ms-transform: translateX(-50%) translateY(-40%);
   -moz-transform: translateX(-50%) translateY(-40%);
@@ -47,34 +44,41 @@
   transform: translateX(-50%) translateY(-45%);
 }
 #search-form {
+  position: absolute;
   border-radius: 10px;
-  margin: 5% 2% 0 auto;
+  left: 54%;
+  right: 0;
+  top: 20%;
   background: rgba(238, 238, 238, 0.7);
   color: black;
-  width: 645px;
+  width: 44%;
   box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.55);
-}
-#homepage-search-bar {
-  border: none;
-  background: url("./magnifying-glass.png") no-repeat scroll 3% 50%;
-  font-size: 1.1rem;
-  width: 100%;
-  padding: 3% 5% 3% 10%;
 }
 #search-form input:focus {
   outline: none;
 }
 .homepage-bottom-bar {
   background: #303030;
-  padding: 1.5% 2.5%;
+  padding: 0.9% 2%;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  align-items: center;
 }
-.homepage-bottom-bar a {
+.homepage-bottom-bar-a {
   color: #e5c942;
   white-space: nowrap;
   font-weight: 700;
+}
+.homepage-bottom-bar-icon {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-left: 5px;
+}
+.homepage-bottom-bar-vr {
+  margin: 0 5px;
+  font-size: 1.5rem;
+  color: #e5c942;
 }
 .homepage-bottom-bar img {
   padding-left: 2%;
@@ -82,19 +86,27 @@
 
 /* Information Section */
 #tip-info {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
   background: #494848;
+  color: #fff;
   padding: 3% 4%;
   line-height: 1.4;
+}
+.info-section-header,
+.homepage strong {
+  color: #e5c942;
 }
 .info-section-header {
   font-weight: 500;
   font-size: 1.8rem;
-  color: #e5c942;
-  padding-bottom: 1%;
+  padding-bottom: 2%;
   margin-top: 4%;
 }
 #main-section-header {
   margin-top: 0;
+  max-width: 75ch;
 }
 #tip-info p,
 #tip-info ul,
@@ -102,17 +114,12 @@
   font-size: 1.2rem;
   margin: 0 0 1rem;
 }
-.homepage-address {
-  font-style: normal;
-}
 #tip-info-paragraphs {
-  margin-left: 30%;
   width: 70%;
-  color: #ffffff;
 }
 #tip-info hr {
-  width: 70%;
-  margin: 2% 0 2% 30%;
+  width: 100%;
+  margin: 1% auto;
   background-color: #e5c942;
   height: 2px;
   border: 0;
@@ -122,26 +129,49 @@
   text-decoration: underline;
 }
 #nav-links-box {
-  position: absolute;
-  width: 23%;
-  padding: 2% 0 0;
-  background: linear-gradient(to right, #303030 0, transparent 65%);
-  color: #ffffff;
+  position: sticky;
+  top: 5%;
+  width: 21%;
+  margin-top: -1%;
+  padding-top: 1%;
+  background: #662967;
+  color: #f6e8f6;
   border-radius: 10px;
-  box-shadow: 0 2px 2px 0 rgba(48, 48, 48, 0.7),
-    0 3px 5px 0 rgba(48, 48, 48, 0.8);
+  box-shadow: 0 2px 2px 0 rgba(48, 48, 48, 0.5),
+    0 3px 5px 0 rgba(48, 48, 48, 0.6);
 }
 #nav-links-box p {
   padding: 0 1.2rem 0 1.2rem;
-  font-weight: bold;
 }
 #nav-links-box ul {
   list-style-type: none;
   padding: 0 1.2rem;
-  background: linear-gradient(to right, #3d3c3c 0, transparent 65%);
 }
 #nav-links-box li {
-  padding: 5% 0 5% 0;
+  padding: 5% 0;
+}
+#homepage-to-top {
+  width: 98%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 0 auto;
+  padding: 5% 1%;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #e5c942;
+  /* background: #2e282a;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px; */
+}
+#homepage-to-top span {
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-right: 5px;
+}
+#nav-links-hr {
+  background-color: #f6e8f6 !important;
 }
 .list-group {
   padding: 0;
@@ -159,22 +189,20 @@
   font-size: 1rem;
 }
 #obligation-summary-table {
+  font-size: 1.2rem;
   width: 100%;
 }
-.homepage input[type="submit"] {
-  color: #333333 !important;
-}
-
 .sm {
   font-style: italic;
   font-size: 1rem;
   color: #dedede;
 }
-
+.homepage .btn {
+  margin-top: 6px;
+}
 figure {
   max-width: 100%;
-  display: inline-block;
-  float: right;
+  width: min-content;
   padding-top: 2%;
   margin: 0 auto;
   text-align: center;
@@ -192,9 +220,53 @@ figure figcaption {
   padding: 5px 5px 0;
 }
 /* Media Queries*/
+/* Special case for video  */
+@media only screen and (max-width: 1200px) {
+  .homepage-main {
+    height: 50vh;
+  }
+  #bgvid {
+    transform: translateX(-50%) translateY(-58%);
+  }
+}
+
+/* Tablets (landscape)  */
+@media only screen and (max-width: 900px) {
+  .homepage-main {
+    height: 40vh;
+  }
+  .homepage-banner {
+    justify-content: center;
+  }
+  #banner-tip-logo,
+  #dvrpc-logo {
+    width: 75px;
+  }
+  .homepage-banner h1 {
+    font-size: 1.1rem;
+  }
+  #bgvid {
+    top: 80%;
+    transform: translateX(-50%) translateY(-67%);
+  }
+  #search-form {
+    width: 80%;
+    left: 11%;
+    top: 45%;
+  }
+  .info-section-header {
+    font-size: 1.3rem;
+  }
+  #tip-info p {
+    font-size: 1rem;
+  }
+  figure {
+    float: none;
+  }
+}
 
 /* Phones and tablets (portrait) */
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 700px) {
   /* hide the video for smartphone users */
   .homepage-main {
     height: 65vh !important;
@@ -202,14 +274,9 @@ figure figcaption {
   .homepage-banner {
     border-bottom: 10px solid white;
   }
-  #banner-logo {
-    padding-right: 5vw;
-  }
-  #banner-logo img {
-    width: 70px;
-  }
-  #banner-tip-logo {
-    width: 70px;
+  #banner-tip-logo,
+  #dvrpc-logo {
+    width: 55px;
   }
   #bgvid {
     display: none;
@@ -220,33 +287,19 @@ figure figcaption {
     background-size: cover;
   }
   .stacked-headers h1 {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
   #search-form {
-    width: 90%;
-    margin: 0 auto !important;
-    margin-top: 25vh !important;
+    width: 96% !important;
+    left: 2% !important;
+    font-size: 0.8rem;
   }
-  #homepage-search-bar {
-    background: url("./magnifying-glass.png") no-repeat scroll 2% 50%;
-    background-size: 13px;
-    font-size: 0.8rem !important;
-    padding: 3% 0 3% 10%;
-  }
-  .homepage-bottom-bar span {
-    font-size: 0.7em;
-  }
-  .homepage-bottom-bar img {
-    width: 20px;
+  .homepage-bottom-bar a {
+    font-weight: 300;
   }
   #tip-info-paragraphs {
     margin-left: 0;
     width: 100%;
-  }
-  #tip-info p,
-  #tip-info ul,
-  #tip-info ol {
-    font-size: inherit;
   }
   #nav-links-box {
     display: none;
@@ -260,42 +313,14 @@ figure figcaption {
   .list-group-item {
     font-size: 1rem;
   }
-}
-
-/* Tablets (landscape)  */
-@media only screen and (max-width: 900px) {
-  .homepage-main {
-    height: 40vh;
-  }
-  #bgvid {
-    transform: translateX(-50%) translateY(-67%);
-  }
-  #search-form {
-    margin: 5% 5% 0 calc(30vw + 12% + 2.5vw);
-  }
-  #homepage-search-bar {
-    text-overflow: wrap;
-  }
-  .info-section-header {
-    font-size: 1.3rem;
-  }
-  #tip-info p {
+  #obligation-summary-table {
     font-size: 1rem;
   }
-  figure {
-    float: none;
-  }
 }
 
-/* Special case for video  */
-@media only screen and (max-width: 1200px) {
-  .homepage-main {
-    height: 50vh;
-  }
-  #bgvid {
-    transform: translateX(-50%) translateY(-58%);
-  }
-  #homepage-search-bar {
-    font-size: 1.2rem;
+@media only screen and (max-width: 473px) {
+  #banner-tip-logo,
+  #dvrpc-logo {
+    width: 42px;
   }
 }

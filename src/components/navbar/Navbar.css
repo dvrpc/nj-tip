@@ -1,8 +1,9 @@
 .navBar {
   position: relative;
+  z-index: 10;
   width: 100%;
   height: 10vh;
-  margin-bottom: 1vh;
+  box-shadow: 0 -3px 3px 3px rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -14,33 +15,33 @@
   align-items: center;
   width: 50%;
 }
-#TIPlogo{
-  width: 74px;
+#tip-logo-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
-.nav-vr{
+.nj-text {
+  font-size: 1.1rem;
+}
+#TIPlogo {
+  width: 70px;
+  margin-right: 5%;
+}
+.nav-vr {
   border: 1px solid #333333;
-  margin: 0 3%;
-  height: 6vh;
-}
-#draft-text {
-  font-size: 1.3em;
-  font-weight: 700;
-  color: #333333;
-  margin-left: 3%;
+  margin: 0 2%;
+  height: 5vh;
 }
 #nav-search-form {
   margin-right: 1%;
-  width: calc(39% - 1vh);
+  width: calc(42.5% - 1%);
   background: #f7f7f7;
   border-radius: 5px;
 }
 
 @media screen and (max-width: 850px) {
   .navBar {
-    height: 10vh;
-  }
-  .navbar-logo {
-    display: none;
+    height: 8vh;
   }
   #nav-search-form {
     font-size: 1rem;
@@ -51,17 +52,16 @@
     width: 80%;
     font-size: 0.7rem;
   }
-  #TIPlogo{
-    display: none;
-  }
-  #dvrpc-logo{
+
+  #dvrpc-logo,
+  #TIPlogo {
     width: 40px;
   }
   .nav-vr {
     height: 4vh;
   }
-  #draft-text{
-    font-size: 0.7em;
+  .pa-text {
+    font-size: 0.5em;
     margin-left: 0;
   }
   ::-webkit-input-placeholder {
@@ -78,3 +78,43 @@
   }
 }
 
+@media screen and (max-width: 628px) {
+  .navbar-links {
+    position: relative;
+    flex-direction: column;
+    align-items: baseline;
+  }
+  #TIPlogo {
+    position: absolute;
+    width: 35px;
+    left: 70px;
+    top: 0;
+    margin-right: 0;
+  }
+  .nav-vr {
+    display: none;
+  }
+  #tip-logo-wrapper {
+    border-top: 1px solid black;
+    padding-top: 4px;
+  }
+}
+
+@media screen and (max-width: 473px) {
+  #TIPlogo {
+    width: 30px;
+    left: 55px;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  #tip-logo-wrapper {
+    padding-top: 1px;
+  }
+  #dvrpc-logo {
+    width: 38px !important;
+  }
+  #nav-search-form {
+    font-size: 0.5rem;
+  }
+}

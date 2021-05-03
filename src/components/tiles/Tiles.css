@@ -1,70 +1,75 @@
-.tile{
-    background: #ffffff;
-    position: relative;
-    height: 30%;
-    width: 29%;
-    margin: 2%;
-    overflow: hidden;
-    border-radius: 10px 10px 5px 5px;
+.tile {
+  background: #ffffff;
+  position: relative;
+  height: 200px;
+  width: 31%;
+  margin: 1%;
+  overflow: hidden;
+  border-radius: 6px;
+  cursor: pointer;
 }
-.tile:hover{
-    box-shadow: 0px 0px 5px 1px rgba(255,255,255,0.6);
-    cursor: pointer;
+.tile:hover {
+  box-shadow: 0px 0px 5px 1px rgba(255, 255, 255, 0.6);
 }
 
 /* Text Content */
-.tile-caption{
-    background: linear-gradient(to bottom, rgba(51, 51, 51, 0), rgba(51, 51, 51, 0.4), rgba(51, 51, 51, 0.9) 25%);
-    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
-    position: absolute;
-    z-index: 1;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 2rem 3px 3px;
+.tile-caption {
+  background: linear-gradient(
+    to bottom,
+    rgba(51, 51, 51, 0),
+    rgba(51, 51, 51, 0.4),
+    rgba(51, 51, 51, 0.9) 25%
+  );
+  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 2rem 3px 3px;
 }
-.tile-caption-text{
-    color: #ffffff;
-    margin: 1% 0 2% 2%;
+.tile-caption-text {
+  color: #ffffff;
+  margin: 1% 0 2% 2%;
 }
 .tile-caption h2 {
-    font-size: 0.8rem;
+  font-size: 0.8rem;
 }
 .tile-caption p {
-    padding-top: 1%;
-    font-size: 0.8rem;
+  padding-top: 1%;
+  font-size: 0.8rem;
 }
-.tile-link{
-    position: absolute;
-    z-index: 2;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+.tile-link {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 /*media queries*/
- @media screen and (max-width: 880px) {
-  .tile{
+@media screen and (max-width: 880px) {
+  .tile {
     margin: 0 auto;
     margin-bottom: 2%;
     margin-top: 2%;
     padding: 10%;
     width: 10%;
   }
-  .tile-caption h2{
+  .tile-caption h2 {
     font-size: 1rem;
   }
-  .tile-caption p{
+  .tile-caption p {
     font-size: 0.7rem;
   }
- }
+}
 
- @media screen and (max-width: 600px) {
-    .tile-caption h2{
-        font-size: 0.7rem;
-    }
-    .tile-caption p{
-        display: none;
-    }
- }
+@media screen and (max-width: 600px) {
+  .tile-caption h2 {
+    font-size: 0.7rem;
+  }
+  .tile-caption p {
+    display: none;
+  }
+}

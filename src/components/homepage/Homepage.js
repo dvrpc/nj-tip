@@ -1,37 +1,29 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 import Search from "../search/Search.js";
 import Footer from "../footer/Footer.js";
-import ReadOnlyComments from "../comments/ReadOnlyComments.js";
 
 import "./Homepage.css";
 
-import { getGeneralComments } from "../reducers/commentsReducer.js";
 import { scrollToElement } from "../../utils/scrollToElement.js";
 
 import logo from "./logo.png";
 import TIP_logo from "./TIP_logo.png";
-import arrow from "./arrow.png";
 import nj from "./nj.webm";
 import firstFrame from "./firstFrame.jpg";
 
 class Homepage extends Component {
-  componentDidMount() {
-    this.props.getGeneralComments();
-  }
+  toTop = () => window.scroll({ top: 0, behavior: "smooth" });
 
   render() {
-    const comments = this.props.comments.comments || [];
-
     return (
       <div className="homepage">
         <div className="landing">
           <header className="homepage-banner">
             <div id="banner-logo">
               <a href="https://www.dvrpc.org/">
-                <img src={logo} alt="dvrpc logo" />
+                <img src={logo} alt="dvrpc logo" id="dvrpc-logo" />
               </a>
             </div>
             <div className="stacked-headers">
@@ -43,7 +35,7 @@ class Homepage extends Component {
               <h1>
                 FY2020 Transportation Improvement
                 <br />
-                Program (TIP) for New Jersey (FY20-FY23)
+                Program for New Jersey (FY20-FY23)
               </h1>
             </div>
           </header>
@@ -57,7 +49,7 @@ class Homepage extends Component {
               poster={firstFrame}
               id="bgvid"
             >
-              <source src={nj} type="video/webm" />
+              <source src={nj} type="video/webm " />
             </video>
             <div id="search-form">
               <Search />
@@ -65,33 +57,41 @@ class Homepage extends Component {
           </div>
 
           <div className="homepage-bottom-bar">
+            <a href="/TIP/NJ/keyword/*" className="homepage-bottom-bar-a">
+              View Full TIP Map
+            </a>
+
+            <span className="homepage-bottom-bar-vr">|</span>
+
             <a
               href="#tip-info"
+              className="homepage-bottom-bar-a"
               onClick={(e) => {
                 scrollToElement(this, e, "tipInfo");
               }}
             >
-              <span>More Information</span>
-              <img src={arrow} alt="down navigation arrow" />
+              More Information
+            </a>
+            <a
+              href="#tip-info"
+              className="homepage-bottom-bar-a"
+              onClick={(e) => {
+                scrollToElement(this, e, "tipInfo");
+              }}
+            >
+              <span className="homepage-bottom-bar-icon">&darr;</span>
             </a>
           </div>
         </div>
 
-        <main
-          id="tip-info"
-          ref={(el) => {
-            this.tipInfo = el;
-          }}
-        >
+        <main id="tip-info" ref={(el) => (this.tipInfo = el)}>
           <aside id="nav-links-box">
-            <p>
-              <a href="https://www.dvrpc.org/TIP/">
-                Transportation Improvement Program (TIP)
-              </a>
-            </p>
             <ul>
               <li>
-                <b>FY2020 TIP for NJ</b>
+                <a href="https://www.dvrpc.org/TIP/">TIP Homepage</a>
+              </li>
+              <li>
+                <a href="https://arcg.is/19nnb0">TIP Fundamentals</a>
               </li>
               <li>
                 <a href="https://www.dvrpc.org/Products/17065/">TIP Guide</a>
@@ -100,11 +100,21 @@ class Homepage extends Component {
                 <a href="https://www.dvrpc.org/TIP/PA/">FY2021 TIP for PA</a>
               </li>
               <li>
+                <b>FY2020 TIP for NJ</b>
+              </li>
+              <li>
                 <a href="https://www.dvrpc.org/ProjectImplementation/">
                   Project Implementation
                 </a>
               </li>
             </ul>
+
+            <hr id="nav-links-hr" />
+
+            <div id="homepage-to-top" onClick={this.toTop}>
+              <span>&uarr;</span>
+              <div>to top</div>
+            </div>
           </aside>
 
           <article id="tip-info-paragraphs">
@@ -134,15 +144,10 @@ class Homepage extends Component {
               <p>
                 <strong>
                   <a href="/TIP/NJ/pdf/tips.pdf">Click here</a>{" "}
-                  <span className="sm"> [0.3 MB pdf] </span>
-                  to view helpful tips that can make a public comment more
-                  effective
+                  <span className="sm"> [0.3 MB pdf] </span>to view helpful tips
+                  that can make a public comment more effective
                 </strong>
               </p>
-            </section>
-
-            <section>
-              <h2 className="info-section-header">Detailed Information</h2>
               <a href="https://arcg.is/19nnb0" rel="external">
                 <figure>
                   <img
@@ -152,6 +157,10 @@ class Homepage extends Component {
                   <figcaption>TIP Fundamentals: Learn the Basics</figcaption>
                 </figure>
               </a>
+            </section>
+
+            <section>
+              <h2 className="info-section-header">Detailed Information</h2>
               <ul className="list-group">
                 <li className="list-group-item">
                   <a href="/TIP/NJ/pdf/20001B.pdf">
@@ -364,11 +373,6 @@ class Homepage extends Component {
                 recommended changes were presented to the DVRPC Board for
                 adoption at the September 26, 2019 Board meeting.
               </p>
-              <p
-                ref={(el) => {
-                  this.generalComment = el;
-                }}
-              ></p>
             </section>
           </article>
         </main>
@@ -379,14 +383,4 @@ class Homepage extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  comments: state.getComments,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  getGeneralComments: () => dispatch(getGeneralComments()),
-});
-
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(Homepage)
-);
+export default withRouter(Homepage);

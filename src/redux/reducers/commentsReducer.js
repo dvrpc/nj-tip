@@ -4,14 +4,14 @@ const GET_SPECIFIC_COMMENTS = "GET_SPECIFIC_COMMENTS";
 const POSTED_COMMENT_RESPONSE = "POSTED_COMMENT_RESPONSE";
 
 /*** ACTION_CREATORS ***/
-const get_comments = comments => ({ type: GET_COMMENTS, comments });
-const get_specific_comments = comments => ({
+const get_comments = (comments) => ({ type: GET_COMMENTS, comments });
+const get_specific_comments = (comments) => ({
   type: GET_SPECIFIC_COMMENTS,
-  comments
+  comments,
 });
-const posted_comment_response = response => ({
+const posted_comment_response = (response) => ({
   type: POSTED_COMMENT_RESPONSE,
-  response
+  response,
 });
 
 /*** REDUCERS ***/
@@ -29,18 +29,18 @@ export default function commentsReducer(state = [], action) {
 }
 
 /*** DISPATCHERS ***/
-export const resetCommentBool = bool => dispatch =>
+export const resetCommentBool = (bool) => (dispatch) =>
   dispatch(posted_comment_response(false));
 
-export const submitComment = comment => dispatch => {
+export const submitComment = (comment) => (dispatch) => {
   fetch("https://www.dvrpc.org/data/tip/2020/comments", {
     method: "post",
     headers: {
-      "Content-Type": "text/plain"
+      "Content-Type": "text/plain",
     },
-    body: JSON.stringify(comment)
+    body: JSON.stringify(comment),
   })
-    .then(response => {
+    .then((response) => {
       if (response.ok) {
         dispatch(posted_comment_response(true));
         alert(
@@ -52,19 +52,19 @@ export const submitComment = comment => dispatch => {
         console.log("comment post failed with status: ", response.status);
       }
     })
-    .catch(err => console.log(err));
+    .catch((err) => console.error(err));
 };
 
-export const getGeneralComments = () => dispatch => {
+export const getGeneralComments = () => (dispatch) => {
   fetch("https://www.dvrpc.org/data/tip/2020/comments/null")
-    .then(response => response.json())
-    .then(response => dispatch(get_comments(response)))
-    .catch(err => console.log(err));
+    .then((response) => response.json())
+    .then((response) => dispatch(get_comments(response)))
+    .catch((err) => console.error(err));
 };
 
-export const getSpecificComment = id => dispatch => {
+export const getSpecificComment = (id) => (dispatch) => {
   fetch(`https://www.dvrpc.org/data/tip/2020/comments/${id}`)
-    .then(response => response.json())
-    .then(response => dispatch(get_specific_comments(response)))
-    .catch(err => console.log(err));
+    .then((response) => response.json())
+    .then((response) => dispatch(get_specific_comments(response)))
+    .catch((err) => console.error(err));
 };

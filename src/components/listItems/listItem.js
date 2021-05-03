@@ -2,36 +2,46 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import { clickTile } from "../../utils/clickTile.js";
-import { getMarkerInfo } from "../reducers/connectTilesToMap.js";
-import counties from "../../utils/counties.js";
-import { fetchSprite } from "../../utils/fetchSprite.js";
-
 import "./listItem.css";
+
+import { getMarkerInfo } from "../../redux/reducers/connectTilesToMap.js";
+import { setProjectScope } from "../../redux/reducers/getTIPInfo";
+
+import { clickTile } from "../../utils/clickTile.js";
+import counties from "./counties.js";
+import { fetchSprite } from "./fetchSprite.js";
 
 class ListItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      coords: ""
+      coords: "",
     };
   }
 
   componentDidMount() {
     let category =
-      this.props.data.TYPE_DESC === "null" ||
-      typeof this.props.data.TYPE_DESC === "undefined"
+      this.props.data.TYPE_DESC === "null"
         ? "Other"
         : this.props.data.TYPE_DESC;
-    fetchSprite.then(response => {
+    fetchSprite.then((response) => {
+      console.log(response, this.props);
       this.setState({
-        coords: `-${response[category].x}px -${response[category].y}px`
+        coords: `-${response[category].x}px -${response[category].y}px`,
       });
     });
   }
 
   render() {
     const project = this.props.data;
+    const clickProps = {
+      history: this.props.history,
+      data: {
+        LONGITUDE: project.LONGITUDE,
+        LATITUDE: project.LATITUDE,
+        DBNUM: project.DBNUM,
+      },
+    };
 
     // formatting
     const thumbnailAlign = this.props.length < 3 ? "baseline" : "center";
@@ -42,15 +52,15 @@ class ListItem extends Component {
       height: "62px",
       objectFit: "none",
       objectPosition: this.state.coords,
-      alignSelf: thumbnailAlign
+      alignSelf: thumbnailAlign,
     };
 
     return (
       <div
         className="list-item"
-        onClick={e => clickTile(this, e)}
-        onMouseEnter={e => this.props.getMarkerInfo(this.props.data, e)}
-        onMouseLeave={e => this.props.getMarkerInfo(null, e)}
+        onClick={(e) => clickTile(clickProps, this.props.setProjectScope)}
+        onMouseEnter={(e) => this.props.getMarkerInfo(this.props.data, e)}
+        onMouseLeave={(e) => this.props.getMarkerInfo(null, e)}
       >
         <img
           src="https://tiles.dvrpc.org/data/styles/dvrpc-pa-tip/sprite.png"
@@ -74,9 +84,10 @@ class ListItem extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    getMarkerInfo: tile => dispatch(getMarkerInfo(tile))
+    getMarkerInfo: (tile) => dispatch(getMarkerInfo(tile)),
+    setProjectScope: (projectScope) => dispatch(setProjectScope(projectScope)),
   };
 };
 

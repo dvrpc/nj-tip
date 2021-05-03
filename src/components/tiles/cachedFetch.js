@@ -13,12 +13,12 @@ const cachedFetch = (url, options) => {
   const cache = localStorage.getItem(url);
   return cache !== null
     ? Promise.resolve(new Response(new Blob([cache])))
-    : fetch(url, options).then(response => {
+    : fetch(url, options).then((response) => {
         if (response.status === 200) {
           response
             .clone()
             .blob()
-            .then(blob => {
+            .then((blob) => {
               const reader = new window.FileReader();
               reader.readAsDataURL(blob);
               reader.onloadend = () => {
