@@ -134,9 +134,7 @@ class MapComponent extends Component {
   buildKeywordFilter = (projects) => ["in", "DBNUM"].concat(projects);
 
   resetControl = () =>
-    this.map
-      ? this.map.flyTo({ center: [-75.4, 40.15], zoom: this.state.zoom })
-      : false;
+    this.map ? this.map.flyTo([-74.90938452328001, 39.969515433347254]) : false;
 
   componentDidMount() {
     let popup;
@@ -177,7 +175,7 @@ class MapComponent extends Component {
     this.map = new mapboxgl.Map({
       container: this.tipMap,
       style: mapStyle,
-      center: [-75.4, 40.15],
+      center: [-74.909, 39.969],
       zoom: this.state.zoom,
       dragRotate: false,
     });
@@ -308,7 +306,7 @@ class MapComponent extends Component {
           // get mpms array to filter & then fly to default extent
           this.props.getTIPByKeywords(value);
           this.map.flyTo({
-            center: [-75.4, 40.15],
+            center: [-74.909, 39.969],
             zoom: this.state.zoom,
           });
           break;
