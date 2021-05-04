@@ -25,7 +25,6 @@ class ListItem extends Component {
         ? "Other"
         : this.props.data.TYPE_DESC;
     fetchSprite.then((response) => {
-      console.log(response, this.props);
       this.setState({
         coords: `-${response[category].x}px -${response[category].y}px`,
       });

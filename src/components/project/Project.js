@@ -50,7 +50,6 @@ class Project extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props);
     // get project info
     const id = this.props.id;
     this.props.hydrateGeometry(id);

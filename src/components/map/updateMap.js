@@ -20,7 +20,6 @@ export const updateBounds = (mapReference) => {
   rendered.forEach((item) => {
     if (renderedProjects.allMPMS.indexOf(item.properties.DBNUM) === -1) {
       const props = item.properties;
-      console.log(props);
       // extract features from rendered projects
       renderedProjects.allMPMS.push(props.DBNUM);
       renderedProjects.features.push({
