@@ -29,6 +29,7 @@ class MapComponent extends Component {
         "Connections 2045 Centers": false,
         "Freight Centers": false,
         "DVRPC Land Use (2015)": false,
+        "Urbanized Areas": false,
       },
       toggleLayerList: false,
       toggleLegendList: false,
@@ -54,6 +55,7 @@ class MapComponent extends Component {
       "Connections 2045 Centers": "Connections",
       "Freight Centers": "Freight",
       "DVRPC Land Use (2019)": "LandUse",
+      "Urbanized Areas": "UrbanizedAreas",
     };
 
     const selectedSrc = srcLookup[selectedLayer];
@@ -61,22 +63,10 @@ class MapComponent extends Component {
 
     // if the layer doesn't exist yet, add it
     if (!hasSrc) {
-      const srcInfo = layers[selectedSrc];
+      const { id, ...srcInfo } = layers[selectedSrc].source;
+      this.map.addSource(id, srcInfo);
 
-      // handle different addSource() format for vector tiles and geojsons
-      if (srcInfo.layerType === "geojson") {
-        this.map.addSource(selectedSrc, {
-          type: srcInfo.layerType,
-          data: srcInfo.data,
-        });
-      } else {
-        this.map.addSource(selectedSrc, {
-          type: srcInfo.layerType,
-          url: srcInfo.url,
-        });
-      }
-
-      this.map.addLayer(layers[selectedSrc], "water shadow");
+      this.map.addLayer(layers[selectedSrc].layout, "water shadow");
     }
 
     //toggle selected layer state
