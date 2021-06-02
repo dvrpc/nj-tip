@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import mapboxgl from "mapbox-gl";
+import mapboxgl from "!mapbox-gl";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
