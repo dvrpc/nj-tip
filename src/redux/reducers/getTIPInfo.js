@@ -58,7 +58,7 @@ export default function tipReducer(state = [], action) {
 
 // take search input and find TIP Projects that satisfy the criteria
 const getTIPProjects = (input) =>
-  fetch(`https://www.dvrpc.org/data/tip/2020/list/${input}`)
+  fetch(`https://www.dvrpc.org/data/tip/2022/list/${input}`)
     .then((response) => response.json())
     .then((features) => {
       // return empty array for no results
@@ -79,7 +79,7 @@ const getTIPProjects = (input) =>
 export const getTIPByKeywords = (keyword) => (dispatch) => {
   // encode in case of multiple word keywords
   keyword = encodeURI(keyword);
-  fetch(`https://www.dvrpc.org/data/tip/2020/list/${keyword}`).then(
+  fetch(`https://www.dvrpc.org/data/tip/2022/list/${keyword}`).then(
     (response) => {
       if (response.ok) {
         response.json().then((projects) => {
@@ -107,7 +107,7 @@ export const searchTIPByKeywords = (keyword) => (dispatch) => {
 };
 
 export const clearKeywords = () => (dispatch) =>
-  dispatch(get_tip_keywords(["!=", "DBNUM", ""]));
+  dispatch(get_tip_keywords(["!=", "dbnum", ""]));
 
 export const setFilter = (category) => (dispatch) => {
   dispatch(set_filter(category));
@@ -127,7 +127,7 @@ export const hydrateGeometry = (id) => (dispatch) => {
   if (id === null) return dispatch(hydrate_geometry(null));
 
   fetch(
-    `https://arcgis.dvrpc.org/portal/rest/services/Transportation/NJTIP_FY2020_2023_Point/FeatureServer/0/query?where=DBNUM='${id}'&geometryType=esriGeometryPoint&returnGeometry=true&geometryPrecision=&outSR=4326&f=geojson`
+    `https://arcgis.dvrpc.org/portal/rest/services/Transportation/NJTIP_FY2022_2025_Point/FeatureServer/0/query?where=dbnum='${id}'&geometryType=esriGeometryPoint&returnGeometry=true&geometryPrecision=&outSR=4326&f=geojson`
   )
     .then((response) => {
       if (response.ok)
@@ -143,7 +143,7 @@ export const getFullTIP = (id) => (dispatch) => {
   // handle resetting of the Project.js props to solve old components rendering while a new one loads
   if (id === null) return dispatch(get_full_tip(null));
 
-  fetch(`https://www.dvrpc.org/data/tip/2020/id/${id}`)
+  fetch(`https://www.dvrpc.org/data/tip/2022/id/${id}`)
     .then((response) => {
       if (response.ok) {
         response
@@ -173,7 +173,7 @@ export const setProjectScope = (projectScope) => (dispatch) => {
     // @API: ask Kris or Jesse to create an endpoint that accepts an MPMS ID and *just* returns the lat/lng
     // this endpoint is problematic b/c when it fails, it doesn't return an error. It just returns an empty geoJSON...
     fetch(
-      `https://arcgis.dvrpc.org/portal/rest/services/Transportation/NJTIP_FY2020_2023_Point/FeatureServer/0/query?where=DBNUM='${id}'&geometryType=esriGeometryPoint&returnGeometry=true&geometryPrecision=&outSR=4326&f=geojson`
+      `https://arcgis.dvrpc.org/portal/rest/services/Transportation/NJTIP_FY2022_2025_Point/FeatureServer/0/query?where=dbnum='${id}'&geometryType=esriGeometryPoint&returnGeometry=true&geometryPrecision=&outSR=4326&f=geojson`
     ).then((response) => {
       if (response.ok) {
         response.json().then((project) => {

@@ -5,9 +5,9 @@ export const clickTile = (project, setProjectScope) => {
   }
 
   const data = project.data;
-  const lng = data.LONGITUDE;
-  const lat = data.LATITUDE;
-  const id = data.DBNUM;
+  const lng = data.long_;
+  const lat = data.lat;
+  const id = data.dbnum;
 
   const projectScope = {
     coords: [lng, lat],

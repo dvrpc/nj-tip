@@ -78,11 +78,10 @@ class Results extends Component {
 
   render() {
     let projects = this.props.projects ? this.props.projects.features : null;
-    console.log(projects);
     // determine whether to display all projects, or filtered projects
     if (this.state.filtered && projects) {
       projects = projects.filter(
-        (project) => project.TYPE_DESC === this.state.categoryToFilter
+        (project) => project.type_desc === this.state.categoryToFilter
       );
     }
 
@@ -181,7 +180,7 @@ class Results extends Component {
           <p id="no-results">
             Sorry! No projects matched your search criteria. Please try again or
             contact Rick Murphy at rmurphy@dvrpc.org. <br />
-            <br /> Thank you for using the DVRPC FY2020 TIP for NJ.
+            <br /> Thank you for using the DVRPC FY2022 TIP for NJ.
           </p>
         )}
       </div>

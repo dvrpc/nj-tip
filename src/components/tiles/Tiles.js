@@ -35,9 +35,9 @@ class Tile extends Component {
     const clickProps = {
       history: this.props.history,
       data: {
-        LONGITUDE: project.LONGITUDE,
-        LATITUDE: project.LATITUDE,
-        DBNUM: project.DBNUM,
+        long_: project.long_,
+        lat: project.lat,
+        dbnum: project.dbnum,
       },
     };
     return (
@@ -56,7 +56,7 @@ class Tile extends Component {
           <h2 className="tile-caption-text">
             {calculatedProjectInfo.projectName}
           </h2>
-          <p className="tile-caption-text">{project.DBNUM}</p>
+          <p className="tile-caption-text">{project.dbnum}</p>
         </div>
       </div>
     );

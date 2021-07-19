@@ -63,7 +63,7 @@ class PrintPage extends Component {
                     colSpan="4"
                     style={{ fontWeight: "700", textAlign: "center" }}
                   >
-                    NJ FY2020 TIP Program Years (in Millions)
+                    NJ FY2022 TIP Program Years (in Millions)
                   </td>
                   <td colSpan="2" />
                 </tr>
@@ -73,11 +73,11 @@ class PrintPage extends Component {
                 <tr style={{ color: "#f7f7f7" }}>
                   <td>Phase</td>
                   <td>Fund</td>
-                  <td style={{ fontWeight: "700" }}>FY20</td>
-                  <td style={{ fontWeight: "700" }}>FY21</td>
                   <td style={{ fontWeight: "700" }}>FY22</td>
                   <td style={{ fontWeight: "700" }}>FY23</td>
-                  <td colSpan={2}>2024-2029</td>
+                  <td style={{ fontWeight: "700" }}>FY24</td>
+                  <td style={{ fontWeight: "700" }}>FY25</td>
+                  <td colSpan={2}>2026-2031</td>
                 </tr>
 
                 {details.funding.data.map((row) => (
@@ -105,11 +105,11 @@ class PrintPage extends Component {
               </tbody>
             </table>
             <p style={{ marginLeft: "2%" }}>
-              Total FY20 - FY23 Cost (in Millions): <strong>{totals[4]}</strong>
+              Total FY22 - FY25 Cost (in Millions): <strong>{totals[4]}</strong>
             </p>
 
             <p style={{ marginLeft: "2%" }}>
-              Total FY20 - FY29 Cost (in Millions): <strong>{totals[5]}</strong>
+              Total FY22 - FY31 Cost (in Millions): <strong>{totals[5]}</strong>
             </p>
           </div>
         ) : (

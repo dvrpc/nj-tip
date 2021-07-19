@@ -11,7 +11,6 @@ import {
 
 import { updateBounds, showPopup } from "./updateMap";
 import { clickTile } from "../../utils/clickTile.js";
-//import { groupProjects } from "../../utils/groupProjectsMPMS.js";
 
 import "./Map.css";
 import layers from "./layers.js";
@@ -30,11 +29,13 @@ class MapComponent extends Component {
         "Freight Centers": false,
         "DVRPC Land Use (2015)": false,
         "Urbanized Areas": false,
+        "Racial Minority": false,
+        "Low Income": false,
       },
       toggleLayerList: false,
       toggleLegendList: false,
-      keyFilter: ["!=", "DBNUM", ""],
-      catFilter: ["!=", "TYPE_DESC", ""],
+      keyFilter: ["!=", "dbnum", ""],
+      catFilter: ["!=", "type_desc", ""],
       tilePopup: {},
       zoom: window.innerWidth <= 950 ? 7.3 : 8.5,
     };
@@ -56,6 +57,8 @@ class MapComponent extends Component {
       "Freight Centers": "Freight",
       "DVRPC Land Use (2019)": "LandUse",
       "Urbanized Areas": "UrbanizedAreas",
+      "Racial Minority": "RacialMinority",
+      "Low Income": "LowIncome",
     };
 
     const selectedSrc = srcLookup[selectedLayer];
@@ -89,10 +92,7 @@ class MapComponent extends Component {
 
         // turn currently active layer on or off depending on its current state
       } else {
-        dropdownLayers[layer]
-          ? (dropdownLayers[layer] = false)
-          : (dropdownLayers[layer] = true);
-
+        dropdownLayers[layer] = !dropdownLayers[layer];
         this.map.setLayoutProperty(
           layer,
           "visibility",
@@ -114,17 +114,22 @@ class MapComponent extends Component {
   buildCategoryFilter = (cat) => {
     switch (cat) {
       case "All Categories":
-        this.setState({ catFilter: ["!=", "TYPE_DESC", ""] });
+        this.setState({ catFilter: ["!=", "type_desc", ""] });
         break;
       default:
-        this.setState({ catFilter: ["==", "TYPE_DESC", cat || ""] });
+        this.setState({ catFilter: ["==", "type_desc", cat || ""] });
     }
   };
 
-  buildKeywordFilter = (projects) => ["in", "DBNUM"].concat(projects);
+  buildKeywordFilter = (projects) => ["in", "dbnum"].concat(projects);
 
   resetControl = () =>
-    this.map ? this.map.flyTo([-74.90938452328001, 39.969515433347254]) : false;
+    this.map
+      ? this.map.flyTo({
+          center: [-74.909, 39.969],
+          zoom: 8,
+        })
+      : false;
 
   componentDidMount() {
     let popup;
@@ -175,7 +180,7 @@ class MapComponent extends Component {
       this.map.addControl(zoom, "top-right");
     });
 
-    this.map.on("click", "nj-tip-points", (e) => {
+    const clickHandler = (e) => {
       if (!e) return;
 
       // get a handle on history
@@ -183,12 +188,12 @@ class MapComponent extends Component {
 
       // extract and format values to match those from listItem/tiles
       const geom = e.lngLat;
-      const DBNUM = e.features[0].properties.DBNUM;
+      const dbnum = e.features[0].properties.dbnum;
 
       const data = {
-        LONGITUDE: geom.lng,
-        LATITUDE: geom.lat,
-        DBNUM,
+        long_: geom.lng,
+        lat: geom.lat,
+        dbnum,
       };
       const project = {
         history,
@@ -196,25 +201,33 @@ class MapComponent extends Component {
       };
 
       clickTile(project, this.props.setProjectScope);
-    });
+    };
 
-    // show popup when a user hovers over a marker.
-    this.map.on("mouseenter", "nj-tip-points", (e) => {
+    this.map.on("click", "nj-tip-points", clickHandler);
+    this.map.on("click", "nj-tip-lines", clickHandler);
+
+    const enterHandler = (e) => {
       this.map.getCanvas().style.cursor = "pointer";
 
       const coordinates = e.features[0].geometry.coordinates.slice();
-      const LONGITUDE = coordinates[0];
-      const LATITUDE = coordinates[1];
+      const long_ = coordinates[0];
+      const lat = coordinates[1];
 
-      const marker = { ...e.features[0].properties, LONGITUDE, LATITUDE };
-      popup = showPopup(marker, this.map);
-    });
+      const marker = { ...e.features[0].properties, long_, lat };
+      popup = showPopup(marker, e, this.map);
+    };
 
-    // remove popup when the user leaves
-    this.map.on("mouseleave", "nj-tip-points", () => {
+    // show popup when a user hovers over a marker.
+    this.map.on("mouseenter", "nj-tip-points", enterHandler);
+    this.map.on("mouseenter", "nj-tip-lines", enterHandler);
+
+    const leaveHandler = () => {
       this.map.getCanvas().style.cursor = "";
       popup.remove();
-    });
+    };
+    // remove popup when the user leaves
+    this.map.on("mouseleave", "nj-tip-points", leaveHandler);
+    this.map.on("mouseleave", "nj-tip-lines", leaveHandler);
 
     // handle user events to update map results
     this.map.on("zoomend", () => updateBounds(this));
@@ -245,13 +258,13 @@ class MapComponent extends Component {
     if (newTileHover) {
       // check if old = current
       const oldTileHover = prevProps.markerFromTiles;
-      if (oldTileHover && oldTileHover.DBNUM === newTileHover.DBNUM) return;
+      if (oldTileHover && oldTileHover.dbnum === newTileHover.dbnum) return;
 
       // remove the old popup
       if (hasPopup) this.state.tilePopup.remove();
 
       const marker = this.props.markerFromTiles;
-      const tilePopup = showPopup(marker, this.map);
+      const tilePopup = showPopup(marker, null, this.map);
 
       // set the new popup
       this.setState({ tilePopup });

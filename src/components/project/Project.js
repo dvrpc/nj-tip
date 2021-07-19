@@ -167,7 +167,7 @@ class Project extends Component {
                   </p>
                   {details.id && (
                     <p>
-                      <strong>DBNUM: </strong> {details.id}
+                      <strong>dbnum: </strong> {details.id}
                     </p>
                   )}
                   {details.limits && (
@@ -221,7 +221,7 @@ class Project extends Component {
                       <tr>
                         <th colSpan={2} />
                         <th colSpan={4}>
-                          <h3>FY2020 TIP for NJ Program Years (in Millions)</h3>
+                          <h3>FY2022 TIP for NJ Program Years (in Millions)</h3>
                         </th>
                         <th colSpan={1} />
                       </tr>
@@ -294,9 +294,9 @@ class Project extends Component {
                         <td />
                       </tr>
                       <tr id="funding-totals" style={{ fontWeight: "700" }}>
-                        <td colSpan={2}>Total FY20-FY23 Cost (in Millions):</td>
+                        <td colSpan={2}>Total FY22-FY25 Cost (in Millions):</td>
                         <td>{funding[4]}</td>
-                        <td colSpan={2}>Total FY20-FY29 Cost (in Millions):</td>
+                        <td colSpan={2}>Total FY22-FY31 Cost (in Millions):</td>
                         <td>{funding[5]}</td>
                       </tr>
                     </tbody>

@@ -27,7 +27,7 @@ export const tileDetails = async (propsProject, width, height) => {
       .then((b) => URL.createObjectURL(b));
 
     // based on the project type, assign the gradient value for the caption text
-    projectType = propsProject.TYPE_DESC;
+    projectType = propsProject.type_desc;
 
     borderBottom = {
       borderBottom: `10px solid ${colors[projectType].darkest}`,
