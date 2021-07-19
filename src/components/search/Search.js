@@ -4,72 +4,62 @@ import Select from "react-select";
 
 import { connect } from "react-redux";
 import {
-  fetchTIPByKeywords,
-  getFullTIP,
-  hydrateGeometry
-} from "../reducers/getTIPInfo";
+  searchTIPByKeywords,
+  clearKeywords
+} from "../../redux/reducers/getTIPInfo";
 
 const formatGroupLabel = section => <strong>{section.label}</strong>;
 
-const transformLocationSuggestions = data => ({
-  label: "Location",
-  options: data.map(location => ({
-    label: location.description,
-    value: location.place_id,
-    type: "location"
-  }))
-});
+const transformLocationSuggestions = data => {
+  let options;
 
-const transformKeywordSuggestions = data => ({
-  label: "TIP Projects",
-  options: data.features.slice(0, 5).map(project => ({
-    label: `${project.properties.DBNUM}: ${project.properties.PROJECTNAM}`,
-    value: `${project.properties.DBNUM}`,
-    type: "expanded"
-  }))
-});
-
-const ContainerStyles = base => ({
-  ...base,
-  position: "relative"
-});
-
-const IndicatorsContainerStyles = base => ({
-  display: "none"
-});
-
-const ControlStyles = base => ({
-  ...base,
-  border: "none",
-  background:
-    "url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAUCAYAAABvVQZ0AAAACXBIWXMAAAsSAAALEgHS3X78AAABOUlEQVQ4jZ3SsVHkQBCF4Q95Z7EZgH/GbQgiArWPQwhrEMDWRbAXwFUtGfRFgCACyIAMkIG/Z+zoShyrKcGzpkY9f7+n7rPD4WBURKzQYl2uXtBn5osFOhthEbHBFkOBDAV6gV+ZuVkEi4gdbrDNzN20ICJaZHEYVVjXdS3ucZWZ/amiiFijxy4zt3OwBhvczYEgM59KXTVqgw77WtHIxHlxOQtTczVxN5TjqgqrdfuMGjyjOqXSMKinaLDDpixsTVvcVZ1l5h5P6CPi8oSjVUTc4zt+12Dj0q4cJ9qV7n35vnZc5ldc4g2PuJ4M5D1s4qItj0eHAzIz9xFxi5/45vif2/+B72A1Ffc9fpSrD8BmEcm/PWsLRIH208Ethi0BLo451VzkL8FmgFefijnVJPIfPGD4srNT+gtF2pJbvxg/cAAAAABJRU5ErkJggg==) no-repeat scroll 3% 50%",
-  fontSize: "1.1rem",
-  width: "100%",
-  padding: "12px 10px 12px 40px",
-  "&:focus": {
-    outline: "none",
-    border: "10px solid red"
+  if (data) {
+    options = data.map(location => ({
+      label: location.description,
+      value: location.place_id,
+      type: "location"
+    }));
+  } else {
+    options = [];
   }
-});
 
-const PlaceholderStyles = base => ({
-  ...base,
-  color: "black"
-});
+  return {
+    label: "Location",
+    options
+  };
+};
+
+const transformKeywordSuggestions = data => {
+  let options;
+
+  if (data) {
+    options = data.map(project => ({
+      label: `${project.id}: ${project.name}`,
+      value: `${project.id}`,
+      type: "Project"
+    }));
+  } else {
+    options = [];
+  }
+
+  return {
+    label: "TIP Projects",
+    options
+  };
+};
 
 class Search extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      value: "",
-      keywordProjects: { features: [] },
-      locations: [],
-      menuIsOpen: false
+      value: ""
     };
-    this.Autocomplete = new window.google.maps.places.AutocompleteService();
+
+    this.Autocomplete = {};
   }
 
+  // @TODO: replace with mapboxgl geocoder
   loadLocationSuggestions = input =>
     new Promise(resolve => {
       this.Autocomplete.getQueryPredictions(
@@ -85,53 +75,44 @@ class Search extends Component {
     });
 
   loadKeywordSuggestions = input => {
-    this.props.fetchTIPByKeywords(input);
+    this.props.searchTIPByKeywords(input);
   };
 
   onChange = newValue => {
-    if (!newValue.length) {
-      this.setState({ menuIsOpen: false });
-    } else {
-      this.setState({ value: newValue, menuIsOpen: true });
-      this.loadKeywordSuggestions(newValue);
-      this.loadLocationSuggestions(newValue).then(locations => {
-        if (locations !== null) {
-          this.setState({ locations });
-        }
-      });
-    }
+    if (!newValue) return;
+
+    this.setState({ value: newValue });
+    this.loadKeywordSuggestions(newValue);
+    this.loadLocationSuggestions(newValue).then(locations => {
+      if (locations !== null) {
+        this.setState({ locations });
+      }
+    });
   };
 
   onSelect = suggestion => {
-    let oldPath = this.props.history.location.pathname.split("/")[1];
-    let newPath = suggestion.type;
+    const newType = suggestion.type;
+    const newValue = suggestion.value.replace(/\s/g, "_");
 
-    this.props.history.push(
-      `/${suggestion.type}/${suggestion.value.replace(/\s/g, "_")}`
-    );
+    // clear keyword projects from store
+    this.props.clearKeywords();
 
-    if (oldPath === "expanded" && newPath === "expanded") {
-      let id = this.props.history.location.pathname.split("/")[2];
-      this.props.getFullTIP(id);
-      this.props.hydrateGeometry(id);
-    }
+    // let routing handle data
+    // @TODO routing is not handling the data. Keywords are never making a call (but the rest fires so it loops over empty response and shows nothing)
+    this.props.history.push(`/${newType}/${newValue}`);
   };
 
-  static getDerivedStateFromProps({ keywordProjects }, state) {
-    if (
-      keywordProjects &&
-      keywordProjects.hasOwnProperty("features") &&
-      keywordProjects.features.length !== state.keywordProjects.features.length
-    ) {
-      return { keywordProjects };
-    }
-    return null;
+  componentDidMount() {
+    this.Autocomplete = new window.google.maps.places.AutocompleteService(
+      this.search
+    );
   }
 
   render() {
     const suggestions = [];
     const locations = transformLocationSuggestions(this.state.locations);
-    const keywords = transformKeywordSuggestions(this.state.keywordProjects);
+    const projects = transformKeywordSuggestions(this.props.keywordProjects);
+
     const search = {
       label: "Keyword",
       options: [
@@ -142,34 +123,39 @@ class Search extends Component {
         }
       ]
     };
+
+    const fund = {
+      label: "Fund",
+      options: [
+        {
+          label: this.state.value,
+          value: this.state.value,
+          type: "keyword"
+        }
+      ]
+    };
+
     suggestions.push(search);
+    suggestions.push(projects);
+    suggestions.push(fund);
 
-    if (keywords.options.length) {
-      suggestions.push(keywords);
-    }
-
-    if (locations.options.length) {
-      // because google wont let you limit results to > 5
-      locations.options = locations.options.slice(0, 2);
-      suggestions.push(locations);
-    }
+    // because google wont let you limit results to > 5
+    locations.options = locations.options.slice(0, 2);
+    suggestions.push(locations);
 
     return (
       <Select
+        placeholder={
+          <span>Search TIP by Project, Keywords, Fund or Address</span>
+        }
         options={suggestions}
+        defaultValue={"bruh"}
         formatGroupLabel={formatGroupLabel}
         onInputChange={this.onChange}
-        placeholder={"Click to Search for TIP Projects"}
-        menuIsOpen={this.state.menuIsOpen}
-        styles={{
-          container: ContainerStyles,
-          control: ControlStyles,
-          indicatorsContainer: IndicatorsContainerStyles,
-          placeholder: PlaceholderStyles
-        }}
         onChange={(value, { action }) => {
           action === "select-option" && this.onSelect(value);
         }}
+        ref={el => (this.search = el)}
       />
     );
   }
@@ -180,9 +166,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchTIPByKeywords: keywords => dispatch(fetchTIPByKeywords(keywords)),
-  getFullTIP: id => dispatch(getFullTIP(id)),
-  hydrateGeometry: id => dispatch(hydrateGeometry(id))
+  searchTIPByKeywords: keywords => dispatch(searchTIPByKeywords(keywords)),
+  clearKeywords: () => dispatch(clearKeywords())
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Search));

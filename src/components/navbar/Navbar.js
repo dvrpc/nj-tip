@@ -1,14 +1,8 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 import Search from "../search/Search";
 
-import {
-  getTIPByKeywords,
-  setMapCenter,
-  setMapState
-} from "../reducers/getTIPInfo";
 import "./Navbar.css";
 import logo from "./logo.png";
 import TIP_logo from "./TIP_logo.png";
@@ -25,7 +19,7 @@ class Navbar extends Component {
 
   render() {
     return (
-      <nav className="navBar">
+      <nav className="navBar no-print">
         <div className="navbar-links">
           <a href="https://www.dvrpc.org/" rel="external">
             <img src={logo} alt="DVRPC logo" id="dvrpc-logo" />
@@ -33,11 +27,15 @@ class Navbar extends Component {
 
           <span className="nav-vr"></span>
 
-          <a href="/TIP/NJ/">
-            <img id="TIPlogo" src={TIP_logo} alt="TIP logo" />
-          </a>
+          <div id="tip-logo-wrapper">
+            <a href="/TIP/NJ/">
+              <img id="TIPlogo" src={TIP_logo} alt="TIP logo" />
+            </a>
 
-          <h2 id="NJ-text">FY2020 TIP for NJ</h2>
+            <div>
+              <h2 className="nj-text">FY2020 TIP for NJ (FY20-FY23)</h2>
+            </div>
+          </div>
         </div>
 
         <div id="nav-search-form">
@@ -48,12 +46,4 @@ class Navbar extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getTIPByKeywords: address => dispatch(getTIPByKeywords(address)),
-    setMapCenter: latlng => dispatch(setMapCenter(latlng)),
-    setMapState: position => dispatch(setMapState(position))
-  };
-};
-
-export default withRouter(connect(null, mapDispatchToProps)(Navbar));
+export default withRouter(Navbar);

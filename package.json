@@ -1,42 +1,40 @@
 {
   "name": "nj-tip",
-  "version": "0.3.6",
+  "version": "2.0.2",
   "private": true,
-  "homepage": "https://www.dvrpc.org/TIP/NJ/",
+  "homepage": "/TIP/NJ/",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && npm run minify && npm version patch",
-    "minify": "npx html-minifier --collapse-boolean-attributes --collapse-whitespace --decode-entities --remove-attribute-quotes --remove-comments --remove-redundant-attributes --remove-script-type-attributes --sort-attributes --use-short-doctype --input-dir build --output-dir build --file-ext html",
+    "build": "react-scripts build && npm version patch",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "src/**/*.{html,css,svg,js,jsx,json}": [
+    "src/**/*.{js,jsx,json}": [
       "prettier --write",
       "git add"
     ]
   },
   "dependencies": {
     "@mapbox/polyline": "^1.1.1",
-    "@math.gl/web-mercator": "^3.2.2",
-    "geolocation-utils": "^1.2.3",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-map-gl": "^5.2.8",
+    "mapbox-gl": "^2.2.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-print": "^1.3.1",
-    "react-redux": "^7.2.1",
+    "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
-    "react-select": "^3.1.0",
-    "redux": "^4.0.5",
+    "react-select": "^4.3.0",
+    "redux": "^4.1.0",
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
-    "husky": "^4.3.0",
-    "lint-staged": "^10.3.0",
-    "prettier": "^2.1.1",
-    "react-devtools": "^4.8.2",
-    "react-scripts": "^3.4.3"
+    "eslint": "^7.25.0",
+    "husky": "^6.0.0",
+    "lint-staged": "^10.5.4",
+    "prettier": "^2.2.1",
+    "react-devtools": "^4.12.4",
+    "react-scripts": "^4.0.3"
   },
   "browserslist": {
     "production": [

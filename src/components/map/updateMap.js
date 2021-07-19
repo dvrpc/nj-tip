@@ -1,26 +1,32 @@
 import mapboxgl from "mapbox-gl";
-import { colors } from "./tileGeometryColorType.js";
+import { colors } from "../../utils/tileGeometryColorType.js";
 
 export const updateBounds = mapReference => {
+  let rendered = mapReference.map.queryRenderedFeatures({
+    layers: ["nj-tip-points", "nj-tip-lines"]
+  });
+
+  // exit & clear store when no projects are rendered
+  if (!rendered.length) {
+    mapReference.props.getTIPByMapBounds(null);
+    return;
+  }
+
   let renderedProjects = {
     allMPMS: [],
     features: []
   };
 
-  let rendered = mapReference.map.queryRenderedFeatures({
-    layers: ["nj-tip-points", "nj-tip-lines"]
-  });
-
   rendered.forEach(item => {
     if (renderedProjects.allMPMS.indexOf(item.properties.DBNUM) === -1) {
-      renderedProjects.allMPMS.push(item.properties.DBNUM);
-
-      // add descriptive info for tiles + lat/lng for the tile hover + map popup link
+      const props = item.properties;
+      // extract features from rendered projects
+      renderedProjects.allMPMS.push(props.DBNUM);
       renderedProjects.features.push({
-        // CTY: item.properties.CTY,
-        DBNUM: item.properties.DBNUM,
-        TYPE_DESC: item.properties.TYPE_DESC,
-        PROJECTNAM: item.properties.PROJECTNAM,
+        DBNUM: props.DBNUM,
+        TYPE_DESC: props.TYPE_DESC,
+        PROJECTNAM: props.PROJECTNAM,
+        CTY: props.CTY,
         LATITUDE:
           item.layer.id === "nj-tip-points"
             ? item.geometry.coordinates[1]
@@ -29,41 +35,11 @@ export const updateBounds = mapReference => {
           item.layer.id === "nj-tip-points"
             ? item.geometry.coordinates[0]
             : item.geometry.coordinates[1][0],
-        mapbox_id: `${item.properties.DBNUM}_${item._vectorTileFeature._geometry}`
+        mapbox_id: `${props.DBNUM}_${item._vectorTileFeature._geometry}`
       });
     }
   });
   mapReference.props.getTIPByMapBounds(renderedProjects);
-};
-
-export const keywordBounds = (mapReference, data) => {
-  const projects = data || mapReference.props.keywordProjects;
-  var bounds = {};
-  let latitude = "";
-  let longitude = "";
-
-  if (projects.features && projects.features.length) {
-    let ids = projects.features.map(feature => feature.properties.DBNUM);
-    for (var i = 0; i < projects.features.length; i++) {
-      longitude = projects.features[i].properties.LONGITUDE;
-      latitude = projects.features[i].properties.LATITUDE;
-      bounds.xMin = bounds.xMin < longitude ? bounds.xMin : longitude;
-      bounds.xMax = bounds.xMax > longitude ? bounds.xMax : longitude;
-      bounds.yMin = bounds.yMin < latitude ? bounds.yMin : latitude;
-      bounds.yMax = bounds.yMax > latitude ? bounds.yMax : latitude;
-    }
-
-    mapReference.map.fitBounds(
-      [
-        [bounds.xMin, bounds.yMin],
-        [bounds.xMax, bounds.yMax]
-      ],
-      { padding: 20 }
-    );
-
-    return ["in", "DBNUM"].concat(ids);
-  }
-  return ["!=", "DBNUM", ""];
 };
 
 export const showPopup = (marker, map) => {

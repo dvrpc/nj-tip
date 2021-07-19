@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import { clickTile } from "../../utils/clickTile.js";
-import { getMarkerInfo } from "../reducers/connectTilesToMap.js";
-import counties from "../../utils/counties.js";
-import { fetchSprite } from "../../utils/fetchSprite.js";
-
 import "./listItem.css";
+
+import { getMarkerInfo } from "../../redux/reducers/connectTilesToMap.js";
+import { setProjectScope } from "../../redux/reducers/getTIPInfo";
+
+import { clickTile } from "../../utils/clickTile.js";
+import counties from "./counties.js";
+import { fetchSprite } from "./fetchSprite.js";
 
 class ListItem extends Component {
   constructor(props) {
@@ -19,8 +21,7 @@ class ListItem extends Component {
 
   componentDidMount() {
     let category =
-      this.props.data.TYPE_DESC === "null" ||
-      typeof this.props.data.TYPE_DESC === "undefined"
+      this.props.data.TYPE_DESC === "null"
         ? "Other"
         : this.props.data.TYPE_DESC;
     fetchSprite.then(response => {
@@ -32,6 +33,14 @@ class ListItem extends Component {
 
   render() {
     const project = this.props.data;
+    const clickProps = {
+      history: this.props.history,
+      data: {
+        LONGITUDE: project.LONGITUDE,
+        LATITUDE: project.LATITUDE,
+        DBNUM: project.DBNUM
+      }
+    };
 
     // formatting
     const thumbnailAlign = this.props.length < 3 ? "baseline" : "center";
@@ -48,7 +57,7 @@ class ListItem extends Component {
     return (
       <div
         className="list-item"
-        onClick={e => clickTile(this, e)}
+        onClick={e => clickTile(clickProps, this.props.setProjectScope)}
         onMouseEnter={e => this.props.getMarkerInfo(this.props.data, e)}
         onMouseLeave={e => this.props.getMarkerInfo(null, e)}
       >
@@ -76,7 +85,8 @@ class ListItem extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getMarkerInfo: tile => dispatch(getMarkerInfo(tile))
+    getMarkerInfo: tile => dispatch(getMarkerInfo(tile)),
+    setProjectScope: projectScope => dispatch(setProjectScope(projectScope))
   };
 };
 

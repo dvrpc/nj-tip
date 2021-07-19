@@ -3,9 +3,12 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 import "./Tiles.css";
-import { tileDetails } from "../../utils/tileDetails.js";
+
+import { getMarkerInfo } from "../../redux/reducers/connectTilesToMap.js";
+import { setProjectScope } from "../../redux/reducers/getTIPInfo";
+
+import { tileDetails } from "./tileDetails.js";
 import { clickTile } from "../../utils/clickTile.js";
-import { getMarkerInfo } from "../reducers/connectTilesToMap.js";
 
 class Tile extends Component {
   constructor(props) {
@@ -29,11 +32,18 @@ class Tile extends Component {
   render() {
     const calculatedProjectInfo = this.state.details;
     const project = this.props.data;
-
+    const clickProps = {
+      history: this.props.history,
+      data: {
+        LONGITUDE: project.LONGITUDE,
+        LATITUDE: project.LATITUDE,
+        DBNUM: project.DBNUM
+      }
+    };
     return (
       <div
         className="tile"
-        onClick={e => clickTile(this, e)}
+        onClick={e => clickTile(clickProps, this.props.setProjectScope)}
         onMouseEnter={e => this.props.getMarkerInfo(project, e)}
         onMouseLeave={e => this.props.getMarkerInfo(null, e)}
         style={{ background: `url(${calculatedProjectInfo.background})` }}
@@ -46,7 +56,7 @@ class Tile extends Component {
           <h2 className="tile-caption-text">
             {calculatedProjectInfo.projectName}
           </h2>
-          <p className="tile-caption-text">DB #{project.DBNUM}</p>
+          <p className="tile-caption-text">{project.DBNUM}</p>
         </div>
       </div>
     );
@@ -55,7 +65,8 @@ class Tile extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getMarkerInfo: tile => dispatch(getMarkerInfo(tile))
+    getMarkerInfo: tile => dispatch(getMarkerInfo(tile)),
+    setProjectScope: projectScope => dispatch(setProjectScope(projectScope))
   };
 };
 

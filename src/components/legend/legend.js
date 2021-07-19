@@ -36,25 +36,37 @@ class Legend extends Component {
     return (
       <div className={`legend-menu ${this.props.show}`}>
         <ul className="legend-links" onClick={this.updateLegendVisibility}>
-          <li className="legendLink active" id="legendLink-TIP">
+          <li
+            className="legendLink active"
+            id="legendLink-TIP"
+            key="legendLink-TIP"
+          >
             TIP
           </li>
-          <li className="legendLink" id="legendLink-IPD">
+          <li className="legendLink" id="legendLink-IPD" key="legendLink-IPD">
             IPD
           </li>
-          <li className="legendLink" id="legendLink-CMP">
+          <li className="legendLink" id="legendLink-CMP" key="legendLink-CMP">
             CMP
           </li>
-          <li className="legendLink" id="legendLink-LRP">
+          <li className="legendLink" id="legendLink-LRP" key="legendLink-LRP">
             LRP
           </li>
-          <li className="legendLink" id="legendLink-Freight">
+          <li
+            className="legendLink"
+            id="legendLink-Freight"
+            key="legendLink-Freight"
+          >
             Freight
           </li>
-          <li className="legendLink" id="legendLink-LU">
+          <li className="legendLink" id="legendLink-LU" key="legendLink-LU">
             Land Use
           </li>
-          <li className="legendLink" id="legendLink-Urban">
+          <li
+            className="legendLink"
+            id="legendLink-Urban"
+            key="legendLink-Urban"
+          >
             Urbanized Areas
           </li>
         </ul>
@@ -67,30 +79,58 @@ class Legend extends Component {
             <h2 className="legendItem-title">
               {layers[this.state.selected].full}
             </h2>
-            <h4 className="legendItem-subtitle">
-              {layers[this.state.selected].sub}
-            </h4>
+            <h4
+              className="legendItem-subtitle"
+              dangerouslySetInnerHTML={{
+                __html: layers[this.state.selected].sub
+              }}
+            />
             <table
-              className={"legendItem-content"}
+              className={`legendItem-content ${layers[this.state.selected]
+                .horizontal && "legendItem-content__horizontal"}`}
               id={`legendTable-${this.state.selected}`}
             >
-              <tbody>
-                {layers[this.state.selected].classifications.map(row => {
-                  return (
-                    <tr key={row[0]}>
-                      <td
-                        style={{
-                          height: "25px",
-                          width: "25px",
-                          backgroundColor: row[1],
-                          borderRadius: "3px"
-                        }}
-                      />
-                      <td>{row[0]}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
+              {layers[this.state.selected].horizontal ? (
+                <tbody>
+                  <tr>
+                    <td>Lower</td>
+                    {layers[this.state.selected].classifications.map(row => {
+                      return (
+                        <td
+                          key={row[0]}
+                          style={{
+                            height: "25px",
+                            width: "10px",
+                            backgroundColor: row[1],
+                            padding: 0,
+                            margin: 0
+                          }}
+                        />
+                      );
+                    })}
+                    <td>Higher</td>
+                  </tr>
+                </tbody>
+              ) : (
+                <tbody>
+                  {layers[this.state.selected].classifications.map(row => {
+                    return (
+                      <tr key={row[0]}>
+                        <td
+                          style={{
+                            height: "25px",
+                            width: "25px",
+                            backgroundColor: row[1],
+                            borderRadius: "3px",
+                            margin: "2px"
+                          }}
+                        />
+                        <td>{row[0]}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              )}
             </table>
           </div>
         ) : null}

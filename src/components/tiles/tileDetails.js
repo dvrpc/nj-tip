@@ -1,6 +1,9 @@
 // util function to populate tiles with information (background, title, etc)
 
-import { geometryColorType, colors } from "./tileGeometryColorType.js";
+import {
+  geometryColorType,
+  colors
+} from "../../utils/tileGeometryColorType.js";
 import cachedFetch from "./cachedFetch.js";
 
 export const tileDetails = async (propsProject, width, height) => {
@@ -11,7 +14,7 @@ export const tileDetails = async (propsProject, width, height) => {
 
   if (propsProject) {
     // limit project names to 80 characters
-    projectName = propsProject.PROJECTNAM;
+    projectName = propsProject.ROAD_NAME;
     if (projectName.length > 40) projectName = projectName.slice(0, 36) + "...";
 
     // Get a background image for the project according to its type (function needs coords & category)

@@ -1,5 +1,4 @@
 // util function to establish color schemes for projects based on their category
-
 export const colors = {
   "Bicycle/Pedestrian Improvement": {
     lightest: "rgba(242, 101, 34, 0.1)",
@@ -50,12 +49,6 @@ export const colors = {
     forMap: "ffc10e"
   },
   Other: {
-    lightest: "rgba(90, 191, 65, 0.1)",
-    middle: "rgba(90, 191, 65, 0.3)",
-    darkest: "rgba(90, 191, 65, 1)",
-    forMap: "5abf41"
-  },
-  null: {
     lightest: "rgba(90, 191, 65, 0.1)",
     middle: "rgba(90, 191, 65, 0.3)",
     darkest: "rgba(90, 191, 65, 1)",

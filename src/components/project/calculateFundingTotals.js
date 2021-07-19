@@ -18,10 +18,6 @@ export const getTotals = info => {
   programYearsFunding = y1Funding + y2Funding + y3Funding + y4Funding;
   totalFunding += programYearsFunding;
 
-  // handle js doing weird floating point math and outputing numbers with too many decimals
-  totalFunding = totalFunding.toFixed(3);
-  programYearsFunding = programYearsFunding.toFixed(3);
-
   const formattedFunds = [
     y1Funding,
     y2Funding,
@@ -31,6 +27,29 @@ export const getTotals = info => {
     totalFunding
   ];
 
-  // return funds as is w/o formatting for commas since we're expressing these in millions
-  return formattedFunds;
+  // return funds as is w/o formatting for commas since we're expressing these in thousands
+  return convertToCurrency(formattedFunds);
+};
+
+const convertToCurrency = jawns => {
+  const test = 0;
+
+  // check if browser supports the locales and options arguments of toLocaleString
+  try {
+    test.toLocaleString("en-US");
+  } catch (e) {
+    console.error("failed ", e);
+    return e.name === "RangeError";
+  }
+
+  // add commas
+  return jawns.map(fund =>
+    fund > 0
+      ? fund.toLocaleString("en-US", {
+          style: "currency",
+          currency: "USD",
+          minimumFractionDigits: 3
+        })
+      : "$0"
+  );
 };

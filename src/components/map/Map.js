@@ -1,290 +1,473 @@
-import React, { useState, useEffect, useRef } from "react";
-import ReactMapGL, {
-  Layer,
-  Popup,
-  Source,
-  NavigationControl
-} from "react-map-gl";
-import { getBoundingBox } from "geolocation-utils";
-import WebMercatorViewport from "@math.gl/web-mercator";
+import React, { Component } from "react";
+import mapboxgl from "!mapbox-gl";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { colors } from "../../utils/tileGeometryColorType";
-import { clickTile } from "../../utils/clickTile";
+
 import {
   getTIPByKeywords,
   getTIPByMapBounds,
-  setBounds,
-  setMapCenter,
-  setMapState
-} from "../reducers/getTIPInfo";
-import LayerControl from "../layer/layerControl";
-import LegendControl from "../legend/legendControl";
-import layers from "./layers";
-import "mapbox-gl/dist/mapbox-gl.css";
+  setProjectScope
+} from "../../redux/reducers/getTIPInfo";
+
+import { updateBounds, showPopup } from "./updateMap";
+import { clickTile } from "../../utils/clickTile.js";
+//import { groupProjects } from "../../utils/groupProjectsMPMS.js";
+
 import "./Map.css";
+import layers from "./layers.js";
 import mapStyle from "./style.json";
+import Legend from "../legend/legend.js";
 
-const buildCatFilter = cat => {
-  return cat === "All Categories"
-    ? ["!=", "TYPE_DESC", ""]
-    : ["==", "TYPE_DESC", cat];
-};
+class MapComponent extends Component {
+  constructor(props) {
+    super(props);
 
-const buildKeywordFilter = ({ features }) => {
-  if (features && features.length) {
-    return [
-      "in",
-      "DBNUM",
-      ...features.map(feature => feature.properties.DBNUM)
-    ];
-  }
-  return ["!=", "DBNUM", ""];
-};
+    this.state = {
+      dropdownLayers: {
+        "Indicators of Potential Disadvantage": false,
+        "CMP Corridors": false,
+        "Connections 2045 Centers": false,
+        "Freight Centers": false,
+        "DVRPC Land Use (2015)": false,
+        "Urbanized Areas": false
+      },
+      toggleLayerList: false,
+      toggleLegendList: false,
+      keyFilter: ["!=", "DBNUM", ""],
+      catFilter: ["!=", "TYPE_DESC", ""],
+      tilePopup: {},
+      zoom: window.innerWidth <= 950 ? 7.3 : 8.5
+    };
 
-function MapComponent({
-  history,
-  category,
-  keywordProjects,
-  match,
-  getTIPByKeywords,
-  getTIPByMapBounds,
-  markerFromTiles
-}) {
-  const [details, setDetails] = useState(null);
-  let keyFilter = buildKeywordFilter(keywordProjects || { features: [] });
-  let catFilter = buildCatFilter(category || "All Categories");
-  const [viewport, setViewport] = useState({
-    width: "60%",
-    height: "100%",
-    latitude: 40.018,
-    longitude: -75.148,
-    zoom: 9
-  });
-  const [layerList, toggleLayerList] = useState(false);
-  const [legendList, toggleLegendList] = useState(false);
-  const [dropdownLayers, setDropdownLayers] = useState({
-    "Indicators of Potential Disadvantage": false,
-    "CMP Corridors": false,
-    "Connections 2045 Centers": false,
-    "Freight Centers": false,
-    "DVRPC Land Use (2015)": false,
-    "Urbanized Areas": false
-  });
-  const mapRef = useRef(null);
-
-  const handleHover = ({ features }) => {
-    if (features && features.length) {
-      setDetails(features[0]);
-    }
-  };
-
-  const handleClick = ({ target, features }) => {
-    if (
-      features.length ||
-      target.className.indexOf("mapboxgl-popup-content") > -1
-    ) {
-      clickTile({
-        props: {
-          history,
-          data: { id: details.properties.DBNUM }
-        }
-      });
-    }
-  };
-
-  const handleLoad = () => {
-    const map = mapRef.current.getMap();
-    map.setFilter("nj-tip-points", ["all", catFilter, keyFilter]);
-    map.setFilter("nj-tip-lines", ["all", catFilter, keyFilter]);
-  };
-
-  useEffect(() => {
-    const Places = new window.google.maps.places.PlacesService(
+    this.Places = new window.google.maps.places.PlacesService(
       document.createElement("div")
     );
-    const { type, value } = match.params;
-    if (type === "location") {
-      getTIPByKeywords(null);
-      Places.getDetails(
-        { placeId: value, fields: ["geometry.location"] },
-        results => {
-          setViewport(prev => ({
-            ...prev,
-            longitude: results.geometry.location.lng(),
-            latitude: results.geometry.location.lat(),
-            zoom: 12
-          }));
-        }
-      );
-    } else {
-      getTIPByKeywords(value);
-    }
-  }, [match, getTIPByKeywords]);
 
-  useEffect(() => {
-    markerFromTiles &&
-      setDetails({
-        geometry: {
-          coordinates: [markerFromTiles.LONGITUDE, markerFromTiles.LATITUDE]
-        },
-        properties: {
-          DBNUM: markerFromTiles.DBNUM,
-          TYPE_DESC: markerFromTiles.TYPE_DESC,
-          PROJECTNAM: markerFromTiles.PROJECTNAM
-        }
-      });
-
-    return () => setDetails(null);
-  }, [markerFromTiles]);
-
-  if (
-    mapRef.current &&
-    !isNaN(+mapRef.current.props.width) &&
-    keywordProjects &&
-    keywordProjects.length
-  ) {
-    const vw = new WebMercatorViewport({
-      width: mapRef.current.props.width,
-      height: mapRef.current.props.height
-    });
-    const locations = keywordProjects.features.map(f => ({
-      lon: f.properties.LONGITUDE,
-      lat: f.properties.LATITUDE,
-      id: f.properties.DBNUM
-    }));
-    const bounds = getBoundingBox(locations);
-    const extent = vw.fitBounds(
-      [
-        [bounds.topLeft.lon, bounds.topLeft.lat],
-        [bounds.bottomRight.lon, bounds.bottomRight.lat]
-      ],
-      { padding: 50 }
-    );
-
-    keyFilter = ["in", "DBNUM", ...locations.map(f => f.id)];
-    setViewport(v => ({ ...v, ...extent }));
+    this.loaderTimeout = true;
   }
 
-  if (match.params.type === "location" && mapRef.current) {
-    const renderedProjects = {
-      allMPMS: [],
-      features: []
-    };
-    let rendered = mapRef.current.queryRenderedFeatures();
+  updateLayerVisibility = selectedLayer => {
+    let { dropdownLayers } = this.state;
 
-    rendered.forEach(item => {
-      if (renderedProjects.allMPMS.indexOf(item.properties.DBNUM) === -1) {
-        renderedProjects.allMPMS.push(item.properties.DBNUM);
-        // add descriptive info for tiles + lat/lng for the tile hover + map popup link
-        renderedProjects.features.push({
-          DBNUM: item.properties.DBNUM,
-          TYPE_DESC: item.properties.TYPE_DESC,
-          PROJECTNAM: item.properties.PROJECTNAM,
-          LATITUDE:
-            item.layer.id === "nj-tip-points"
-              ? item.geometry.coordinates[1]
-              : item.geometry.coordinates[0][1],
-          LONGITUDE:
-            item.layer.id === "nj-tip-points"
-              ? item.geometry.coordinates[0]
-              : item.geometry.coordinates[0][0],
-          mapbox_id: `${item.properties.DBNUM}_${item._vectorTileFeature._geometry}`
-        });
+    const srcLookup = {
+      "Indicators of Potential Disadvantage": "IPD",
+      "CMP Corridors": "CMP",
+      "Connections 2045 Centers": "Connections",
+      "Freight Centers": "Freight",
+      "DVRPC Land Use (2019)": "LandUse",
+      "Urbanized Areas": "UrbanizedAreas"
+    };
+
+    const selectedSrc = srcLookup[selectedLayer];
+    const hasSrc = this.map.getSource(selectedSrc);
+
+    // if the layer doesn't exist yet, add it
+    if (!hasSrc) {
+      const { id, ...srcInfo } = layers[selectedSrc].source;
+      this.map.addSource(id, srcInfo);
+
+      this.map.addLayer(layers[selectedSrc].layout, "water shadow");
+    }
+
+    //toggle selected layer state
+    Object.keys(dropdownLayers).forEach(layer => {
+      let layerCheck = this.map.getLayer(layer);
+
+      // move on to the next one if the layer hasn't been added yet
+      if (!layerCheck) return;
+
+      // set other layer states to false
+      if (layer !== selectedLayer) {
+        dropdownLayers[layer] = false;
+
+        // if a layer does exist, check it's visibility and set it to none if it was previously on
+        if (layerCheck) {
+          let isVisible = this.map.getLayoutProperty(layer, "visibility");
+          if (isVisible)
+            this.map.setLayoutProperty(layer, "visibility", "none");
+        }
+
+        // turn currently active layer on or off depending on its current state
+      } else {
+        dropdownLayers[layer]
+          ? (dropdownLayers[layer] = false)
+          : (dropdownLayers[layer] = true);
+
+        this.map.setLayoutProperty(
+          layer,
+          "visibility",
+          dropdownLayers[layer] ? "visible" : "none"
+        );
       }
     });
-    getTIPByMapBounds(renderedProjects);
+
+    this.setState({ dropdownLayers });
+  };
+
+  toggleDropdown = e => {
+    e.preventDefault();
+    e.target.id === "layerMenuButton"
+      ? this.setState({ toggleLayerList: !this.state.toggleLayerList })
+      : this.setState({ toggleLegendList: !this.state.toggleLegendList });
+  };
+
+  buildCategoryFilter = cat => {
+    switch (cat) {
+      case "All Categories":
+        this.setState({ catFilter: ["!=", "TYPE_DESC", ""] });
+        break;
+      default:
+        this.setState({ catFilter: ["==", "TYPE_DESC", cat || ""] });
+    }
+  };
+
+  buildKeywordFilter = projects => ["in", "DBNUM"].concat(projects);
+
+  resetControl = () =>
+    this.map ? this.map.flyTo([-74.90938452328001, 39.969515433347254]) : false;
+
+  componentDidMount() {
+    let popup;
+    const { type, value } = this.props.match.params;
+
+    // @ panMap function START
+    switch (type) {
+      case "location":
+        this.Places.getDetails(
+          { placeId: value, fields: ["geometry.location"] },
+          results => {
+            const lng = results.geometry.location.lng();
+            const lat = results.geometry.location.lat();
+            this.map.flyTo({
+              center: [lng, lat],
+              zoom: 12
+            });
+          }
+        );
+        break;
+      case "keyword":
+        this.props.getTIPByKeywords(value);
+        break;
+      default:
+        const projectScope = {
+          coords: null,
+          id: value,
+          zoom: 18
+        };
+
+        this.props.setProjectScope(projectScope);
+    }
+    // @panMap function END
+
+    mapboxgl.accessToken =
+      "pk.eyJ1IjoibW1vbHRhIiwiYSI6ImNqZDBkMDZhYjJ6YzczNHJ4cno5eTcydnMifQ.RJNJ7s7hBfrJITOBZBdcOA";
+
+    this.map = new mapboxgl.Map({
+      container: this.tipMap,
+      style: mapStyle,
+      center: [-74.909, 39.969],
+      zoom: this.state.zoom,
+      dragRotate: false
+    });
+
+    this.map.on("load", () => {
+      let zoom = new mapboxgl.NavigationControl();
+      this.map.addControl(zoom, "top-right");
+    });
+
+    this.map.on("click", "nj-tip-points", e => {
+      if (!e) return;
+
+      // get a handle on history
+      const { history } = this.props;
+
+      // extract and format values to match those from listItem/tiles
+      const geom = e.lngLat;
+      const DBNUM = e.features[0].properties.DBNUM;
+
+      const data = {
+        LONGITUDE: geom.lng,
+        LATITUDE: geom.lat,
+        DBNUM
+      };
+      const project = {
+        history,
+        data
+      };
+
+      clickTile(project, this.props.setProjectScope);
+    });
+
+    // show popup when a user hovers over a marker.
+    this.map.on("mouseenter", "nj-tip-points", e => {
+      this.map.getCanvas().style.cursor = "pointer";
+
+      const coordinates = e.features[0].geometry.coordinates.slice();
+      const LONGITUDE = coordinates[0];
+      const LATITUDE = coordinates[1];
+
+      const marker = { ...e.features[0].properties, LONGITUDE, LATITUDE };
+      popup = showPopup(marker, this.map);
+    });
+
+    // remove popup when the user leaves
+    this.map.on("mouseleave", "nj-tip-points", () => {
+      this.map.getCanvas().style.cursor = "";
+      popup.remove();
+    });
+
+    // handle user events to update map results
+    this.map.on("zoomend", () => updateBounds(this));
+    this.map.on("moveend", () => updateBounds(this));
+
+    // this handles the edge case of setting a filter without map movement, but only sometimes.
+    this.map.on("data", () => {
+      if (this.map.isStyleLoaded()) updateBounds(this);
+    });
+
+    // after map is done initializing, build a filter
+    if (this.props.category) this.buildCategoryFilter(this.props.category);
   }
 
-  if (mapRef.current && mapRef.current.getMap().loaded()) {
-    const map = mapRef.current.getMap();
-    map.setFilter("nj-tip-points", ["all", catFilter, keyFilter]);
-    map.setFilter("nj-tip-lines", ["all", catFilter, keyFilter]);
+  componentDidUpdate(prevProps) {
+    const { type, value } = this.props.match.params;
+    let oldType = prevProps.match.params.type || null;
+    let oldValue = prevProps.match.params.value || null;
+    let oldScope = prevProps.projectScope ? prevProps.projectScope.id : null;
+    const oldKeywords = prevProps.keywordProjects
+      ? prevProps.keywordProjects.length
+      : null;
 
-    Object.keys(dropdownLayers).forEach(layer =>
-      map.setLayoutProperty(
-        layer,
-        "visibility",
-        dropdownLayers[layer] ? "visible" : "none"
-      )
+    // popups
+    const newTileHover = this.props.markerFromTiles;
+    const hasPopup = Object.keys(this.state.tilePopup).length;
+
+    if (newTileHover) {
+      // check if old = current
+      const oldTileHover = prevProps.markerFromTiles;
+      if (oldTileHover && oldTileHover.DBNUM === newTileHover.DBNUM) return;
+
+      // remove the old popup
+      if (hasPopup) this.state.tilePopup.remove();
+
+      const marker = this.props.markerFromTiles;
+      const tilePopup = showPopup(marker, this.map);
+
+      // set the new popup
+      this.setState({ tilePopup });
+    } else if (hasPopup) this.state.tilePopup.remove();
+
+    // categories
+    if (this.props.category !== prevProps.category)
+      this.buildCategoryFilter(this.props.category);
+
+    // set keywords filter
+    if (
+      this.props.keywordProjects &&
+      this.props.keywordProjects.length !== oldKeywords
+    ) {
+      // set new keyFilter or default. this is gross but it works @UPDATE: improve
+      let keyFilter =
+        this.props.keywordProjects[0] === "!="
+          ? this.props.keywordProjects
+          : this.buildKeywordFilter(this.props.keywordProjects);
+      this.setState({ keyFilter });
+    }
+
+    // project view
+    if (type !== oldType || value !== oldValue) {
+      // @panMap function START
+      switch (type) {
+        case "location":
+          this.Places.getDetails(
+            { placeId: value, fields: ["geometry.location"] },
+            results => {
+              const lng = results.geometry.location.lng();
+              const lat = results.geometry.location.lat();
+              this.map.flyTo({
+                center: [lng, lat],
+                zoom: 12
+              });
+            }
+          );
+          break;
+        case "keyword":
+          // @panMap NOTE: on didUpdate, this can flyTo because this.map exists. on didMount, it can't. Handle this in the function with a bool
+          // get mpms array to filter & then fly to default extent
+          this.props.getTIPByKeywords(value);
+          this.map.flyTo({
+            center: [-74.909, 39.969],
+            zoom: this.state.zoom
+          });
+          break;
+        default:
+          const projectScope = {
+            coords: null,
+            id: value,
+            zoom: 18
+          };
+
+          this.props.setProjectScope(projectScope);
+      }
+      // @panMap function END
+    }
+
+    if (this.props.projectScope && this.props.projectScope.id !== oldScope) {
+      const scope = this.props.projectScope;
+      //const id = parseInt(scope.id);
+      //let groupProject = groupProjects.includes(id);
+
+      // zoom to project or full extent for group projects
+      // if (!groupProject) {
+      this.map.flyTo({
+        center: scope.coords,
+        zoom: 18
+      });
+      // } else {
+      // this.map.flyTo({
+      //   center: [-75.4, 40.15],
+      //   zoom: this.state.zoom,
+      // });
+      //}
+    }
+
+    // toggle active project style
+    if (this.props.activeProject !== prevProps.activeProject) {
+      const id = this.props.activeProject;
+      let intervalId;
+
+      const styleProject = id => {
+        if (id) {
+          this.map.setFeatureState(
+            {
+              source: "nj-tip",
+              sourceLayer: "njtip_point",
+              id
+            },
+            {
+              active: true
+            }
+          );
+        } else {
+          this.map.removeFeatureState({
+            source: "nj-tip",
+            sourceLayer: "njtip_point"
+          });
+        }
+      };
+
+      const checkStyle = () => {
+        if (this.map.isStyleLoaded()) {
+          styleProject(id);
+          clearInterval(intervalId);
+        }
+      };
+
+      if (this.map.isStyleLoaded()) {
+        styleProject(id);
+      } else {
+        intervalId = window.setInterval(checkStyle, 400);
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    this.map.remove();
+  }
+
+  render() {
+    // @UPDATE: move this to didUpdate so that it doesn't run for project views
+    // @NOTE: this trigers for every listItem/tile hover so this *really* needs to be fixed
+    if (this.map) {
+      let lines = this.map.getLayer("nj-tip-lines");
+      let points = this.map.getLayer("nj-tip-points");
+
+      if (points && lines) {
+        ["nj-tip-points", "nj-tip-lines"].forEach(layer => {
+          this.map.setFilter(layer, [
+            "all",
+            this.state.catFilter,
+            this.state.keyFilter
+          ]);
+        });
+      }
+    }
+
+    return (
+      <div className="map no-print" ref={e => (this.tipMap = e)}>
+        <nav className="dropdown-nav">
+          <div className="dropdown-layers">
+            <button
+              className="btn dropdown-toggle"
+              type="button"
+              id="layerMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded={this.state.toggleLayerList}
+              onClick={this.toggleDropdown}
+            >
+              Layers
+            </button>
+            <div
+              className={
+                "layer-menu " + (this.state.toggleLayerList ? "show" : "")
+              }
+            >
+              {Object.keys(this.state.dropdownLayers).map(layer => {
+                return (
+                  <p
+                    key={layer}
+                    className={
+                      "dropdown-item " +
+                      (this.state.dropdownLayers[layer].show ? "selected" : "")
+                    }
+                    onClick={() => this.updateLayerVisibility(layer)}
+                  >
+                    {layer}
+                  </p>
+                );
+              })}
+            </div>
+          </div>
+          <div className="dropdown-legend">
+            <button
+              className="btn dropdown-toggle"
+              type="button"
+              id="legendMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded={this.state.toggleLegendList}
+              onClick={this.toggleDropdown}
+            >
+              Legend
+            </button>
+            {this.state.toggleLegendList ? <Legend show={"show"} /> : null}
+          </div>
+        </nav>
+        <div
+          id="default-extent-btn"
+          className="shadow overlays"
+          aria-label="Default DVRPC Extent"
+          onClick={this.resetControl}
+        >
+          <img
+            id="default-extent-img"
+            src="https://www.dvrpc.org/img/banner/new/bug-favicon.png"
+            alt="DVRPC logo"
+          />
+        </div>
+      </div>
     );
   }
-
-  return (
-    <ReactMapGL
-      {...viewport}
-      ref={mapRef}
-      mapStyle={mapStyle}
-      mapboxApiAccessToken="pk.eyJ1IjoibW1vbHRhIiwiYSI6ImNqZDBkMDZhYjJ6YzczNHJ4cno5eTcydnMifQ.RJNJ7s7hBfrJITOBZBdcOA"
-      onLoad={handleLoad}
-      onHover={handleHover}
-      onClick={handleClick}
-      onViewportChange={viewState => setViewport(viewState)}
-      interactiveLayerIds={["nj-tip-points"]}
-    >
-      {Object.entries(layers).map(([key, value]) => {
-        const { source, layout } = value;
-        return (
-          <Source key={source.id} {...source}>
-            <Layer {...layout} />
-          </Source>
-        );
-      })}
-      {details && (
-        <Popup
-          longitude={details.geometry.coordinates[0]}
-          latitude={details.geometry.coordinates[1]}
-          onClose={() => setDetails(null)}
-          onClick={handleClick}
-          closeOnClick={false}
-          captureClick={false}
-        >
-          <h2 style={{ pointerEvents: "none" }}>{details.properties.DBNUM}</h2>
-          <p
-            style={{
-              borderBottom: `8px solid #${
-                colors[details.properties.TYPE_DESC].forMap
-              }`,
-              pointerEvents: "none"
-            }}
-          >
-            {details.properties.PROJECTNAM}
-          </p>
-        </Popup>
-      )}
-      <div
-        style={{
-          position: "absolute",
-          bottom: 30,
-          left: 0,
-          padding: 10
-        }}
-      >
-        <NavigationControl />
-      </div>
-      <nav className="dropdown-nav">
-        <LayerControl
-          layerList={layerList}
-          toggleLayerList={toggleLayerList}
-          dropdownLayers={dropdownLayers}
-          setDropdownLayers={setDropdownLayers}
-        />
-        <LegendControl
-          legendList={legendList}
-          toggleLegendList={toggleLegendList}
-        />
-      </nav>
-    </ReactMapGL>
-  );
 }
 
 const mapStateToProps = state => {
   return {
-    center: state.getTIP.center,
     keywordProjects: state.getTIP.keyword,
     category: state.getTIP.category,
-    position: state.getTIP.position,
-    markerFromTiles: state.connectTilesToMap.markerInfo
+    markerFromTiles: state.connectTilesToMap.markerInfo,
+    projectScope: state.getTIP.projectScope,
+    activeProject: state.getTIP.activeProject
   };
 };
 
@@ -292,9 +475,7 @@ const mapDispatchToProps = dispatch => {
   return {
     getTIPByKeywords: keywords => dispatch(getTIPByKeywords(keywords)),
     getTIPByMapBounds: features => dispatch(getTIPByMapBounds(features)),
-    setMapCenter: latlng => dispatch(setMapCenter(latlng)),
-    setMapState: position => dispatch(setMapState(position)),
-    setBounds: bounds => dispatch(setBounds(bounds))
+    setProjectScope: projectScope => dispatch(setProjectScope(projectScope))
   };
 };
 
