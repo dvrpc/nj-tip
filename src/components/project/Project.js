@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import "./Project.css";
 import PrintPage from "../printPage/PrintPage.js";
+import Comments from "../comments/Comments.js";
 
 import {
   getFullTIP,
@@ -28,6 +29,12 @@ class Project extends Component {
 
     this.timeoutID = null;
   }
+
+  scrollToComments = () => {
+    document
+      .getElementById("comments-anchor")
+      .scrollIntoView({ behavior: "smooth" });
+  };
 
   backToResults = () => {
     const hasHistory = this.props.history.length;
@@ -136,6 +143,9 @@ class Project extends Component {
                 <p onClick={this.backToResults}>
                   <em>back</em>
                 </p>
+                <p onClick={this.scrollToComments}>
+                  <em>comment</em>
+                </p>
                 <p onClick={window.print}>
                   <em>print</em>
                 </p>
@@ -221,7 +231,9 @@ class Project extends Component {
                       <tr>
                         <th colSpan={2} />
                         <th colSpan={4}>
-                          <h3>Draft FY2022 TIP for NJ Program Years (in Millions)</h3>
+                          <h3>
+                            Draft FY2022 TIP for NJ Program Years (in Millions)
+                          </h3>
                         </th>
                         <th colSpan={1} />
                       </tr>
@@ -342,6 +354,7 @@ class Project extends Component {
                 </div>
               </section>
             </div>
+            <Comments headerColor={"#fff"} mpms={details.id} />
           </div>
         ))
       : (toReturn = (
