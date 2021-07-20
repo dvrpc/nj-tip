@@ -4254,10 +4254,10 @@
       "type": "line",
       "source": "boundary",
       "source-layer": "county",
-      "filter": ["all", ["==", "state", "NJ"], ["==", "dvrpc", "Yes"]],
+      "filter": ["all", ["==", "state", "New Jersey"], ["==", "dvrpc", "Yes"]],
       "paint": {
         "line-color": "#000",
-        "line-width": 2
+        "line-width": 1.25
       },
       "minzoom": 6,
       "maxzoom": 18,

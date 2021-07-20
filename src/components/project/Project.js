@@ -163,11 +163,11 @@ class Project extends Component {
                   <p>
                     {details.description
                       ? details.description
-                      : "project Description"}
+                      : "Project Description"}
                   </p>
                   {details.id && (
                     <p>
-                      <strong>dbnum: </strong> {details.id}
+                      <strong>DB #</strong> {details.id}
                     </p>
                   )}
                   {details.limits && (
@@ -221,7 +221,7 @@ class Project extends Component {
                       <tr>
                         <th colSpan={2} />
                         <th colSpan={4}>
-                          <h3>FY2022 TIP for NJ Program Years (in Millions)</h3>
+                          <h3>Draft FY2022 TIP for NJ Program Years (in Millions)</h3>
                         </th>
                         <th colSpan={1} />
                       </tr>

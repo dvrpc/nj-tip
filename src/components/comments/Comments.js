@@ -61,7 +61,7 @@ class Comments extends Component {
             style={{
               background: this.props.colorScheme
                 ? this.props.colorScheme.darkest
-                : "#e5c942",
+                : "#f3ca40",
             }}
           />
         </form>

@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 
 import Search from "../search/Search.js";
 import Footer from "../footer/Footer.js";
+import Comments from "../comments/Comments";
 
 import "./Homepage.css";
 
@@ -140,7 +141,7 @@ class Homepage extends Component {
               <h2>NOW ACCEPTING PUBLIC COMMENTS!</h2>
               <p>
                 <strong>
-                  As of 5:00 PM (EST) on July 21st, the Draft DVRPC TIP and
+                  As of 5:00 PM (EST) on July 21st, the Draft DVRPC TIP and{" "}
                   <a href="https://www.state.nj.us/transportation/capital/stip2231/">
                     NJDOT and NJ TRANSIT’s Draft Statewide (STIP)
                   </a>{" "}
@@ -162,15 +163,6 @@ class Homepage extends Component {
                   that can make a public comment more effective
                 </strong>
               </p>
-              <a href="https://arcg.is/19nnb0" rel="external">
-                <figure>
-                  <img
-                    src="https://www.dvrpc.org/TIP/img/TIPStoryMapScreenshot.png"
-                    alt="TIP Fundamentals"
-                  />
-                  <figcaption>TIP Fundamentals: Learn the Basics</figcaption>
-                </figure>
-              </a>
               <h2>Public Meetings</h2>
               <p>
                 To abide by public health guidelines for public gatherings, you
@@ -179,7 +171,10 @@ class Homepage extends Component {
                 listen-only mode, as scheduled:
               </p>
               <h3>Wednesday, August 11, 2021, from 2:00 PM—3:00 PM</h3>
-              <a href="" className="button">
+              <a
+                href="https://dvrpc.zoom.us/meeting/register/tJcpf--qqjovGNdvpMIOsCNvARuy8kv7Zxo_"
+                className="button"
+              >
                 Click here to register
               </a>
               <p>
@@ -190,7 +185,10 @@ class Homepage extends Component {
                 Passcode: Ld6YeTd3
               </p>
               <h3>Wednesday, August 18, 2021, at 7:00 PM—8:00 PM</h3>
-              <a href="" className="button">
+              <a
+                href="https://dvrpc.zoom.us/meeting/register/tJwqf-Gupz0pH9Z7yOJrl7DUfQBGFnr9Nk6s"
+                className="button"
+              >
                 Click here to register
               </a>
               <p>
@@ -404,30 +402,7 @@ class Homepage extends Component {
             </section>
 
             <section>
-              <h2 className="info-section-header">
-                Read Submitted Public Comments:
-              </h2>
-              <p>
-                The public comment period for the Draft TIP and STIP documents
-                closed on August 9, 2019. Written comments received during the
-                public comment period and responses to those comments are
-                included in <a href="/TIP/Draft/pdf/G.pdf">Appendix G</a>{" "}
-                <span className="sm">[3.8 MB pdf]</span> of the{" "}
-                <a href="/TIP/Draft/pdf/20001A.pdf">
-                  final printed TIP document
-                </a>{" "}
-                <span className="sm">[7.6 MB pdf]</span>, as part of the public
-                record. Project-specific comments submitted are also shown on
-                the web map.{" "}
-                <a href="/TIP/Draft/pdf/general.pdf">
-                  View general comments and responses here
-                </a>
-                , <span className="sm">[0.5 MB pdf]</span> or use the webmap to
-                see project-specific comments and responses. After consideration
-                of the public comments received, the Draft TIP with any
-                recommended changes were presented to the DVRPC Board for
-                adoption at the September 26, 2019 Board meeting.
-              </p>
+              <Comments />
             </section>
           </article>
         </main>

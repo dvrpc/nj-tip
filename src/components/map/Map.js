@@ -24,13 +24,13 @@ class MapComponent extends Component {
     this.state = {
       dropdownLayers: {
         "Indicators of Potential Disadvantage": false,
+        "Racial Minority": false,
+        "Low Income": false,
         "CMP Corridors": false,
         "Connections 2045 Centers": false,
         "Freight Centers": false,
         "DVRPC Land Use (2015)": false,
         "Urbanized Areas": false,
-        "Racial Minority": false,
-        "Low Income": false,
       },
       toggleLayerList: false,
       toggleLegendList: false,
@@ -52,13 +52,13 @@ class MapComponent extends Component {
 
     const srcLookup = {
       "Indicators of Potential Disadvantage": "IPD",
+      "Racial Minority": "RacialMinority",
+      "Low Income": "LowIncome",
       "CMP Corridors": "CMP",
       "Connections 2045 Centers": "Connections",
       "Freight Centers": "Freight",
       "DVRPC Land Use (2019)": "LandUse",
       "Urbanized Areas": "UrbanizedAreas",
-      "Racial Minority": "RacialMinority",
-      "Low Income": "LowIncome",
     };
 
     const selectedSrc = srcLookup[selectedLayer];
@@ -353,8 +353,7 @@ class MapComponent extends Component {
         if (id) {
           this.map.setFeatureState(
             {
-              source: "nj-tip",
-              sourceLayer: "njtip_point",
+              source: "nj-tip_points",
               id,
             },
             {
@@ -363,8 +362,7 @@ class MapComponent extends Component {
           );
         } else {
           this.map.removeFeatureState({
-            source: "nj-tip",
-            sourceLayer: "njtip_point",
+            source: "nj-tip_points",
           });
         }
       };
