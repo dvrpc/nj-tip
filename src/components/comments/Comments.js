@@ -18,7 +18,7 @@ class Comments extends Component {
         }}
       >
         <h2 style={{ color: `${this.props.headerColor}` }}>
-          Submit a comment on the Draft DVRPC FY2022 TIP for New Jersey
+          Submit a comment for {mpms ? `DB #${mpms}`: "the Draft DVRPC FY2022 TIP for New Jersey"}
         </h2>
         <form
           className="comments-form"

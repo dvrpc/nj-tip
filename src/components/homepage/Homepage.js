@@ -156,12 +156,41 @@ class Homepage extends Component {
                 period or meeting for the Draft STIP and rely on DVRPC and other
                 MPOs to serve as the vehicle for this federal requirement.
               </p>
+              <h2>SUBMIT A COMMENT</h2>
+              <p>Choose one of several ways below to share your comment:</p>
+              <ol>
+                <li>
+                  On this website (scroll to the bottom of this page for the
+                  comment form)
+                </li>
+                <li>
+                  On the webmap for a particular project (click on the project
+                  first)
+                </li>
+                <li>
+                  Email to <a href="mailto:tip@dvrpc.org">tip@dvrpc.org</a>
+                </li>
+                <li>
+                  Mail with “Attention: TIP Comments, Office of Communications
+                  and Engagement, Delaware Valley Regional Planning Commission,
+                  190 N. Independence Mall West, 8th Floor, Philadelphia, PA
+                  19106-1520.” Comments received via mail must be postmarked by
+                  August 23, 2021.
+                </li>
+              </ol>
               <p>
                 <strong>
                   <a href="/TIP/Draft/pdf/tips.pdf">Click here</a>{" "}
                   <span className="sm"> [0.3 MB pdf] </span>to view helpful tips
-                  that can make a public comment more effective
-                </strong>
+                  that can make a public comment more effective.
+                </strong>{" "}
+                If you need assistance in providing a written comment, please
+                contact the DVRPC Office of Communications and Engagement at
+                215-238-2929 or{" "}
+                <a href="mailto:public_affairs@dvrpc.org">
+                  public_affairs@dvrpc.org
+                </a>
+                .
               </p>
               <h2>Public Meetings</h2>
               <p>
