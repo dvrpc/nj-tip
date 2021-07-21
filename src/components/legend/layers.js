@@ -28,6 +28,30 @@ export const layers = {
     full: "Indicators of Potential Disadvantage",
     sub: "Composite Score",
   },
+  RM: {
+    classifications: [
+      ["Well Above Average", "#253494"],
+      ["Above Average", "#2c7fb8"],
+      ["Average", "#41b6c4"],
+      ["Below Average", "#a1dab4"],
+      ["Well Below Average", "#ffffcc"],
+      ["No Data", "#ccc"],
+    ],
+    full: "Racial Minority",
+    sub: "Indicator of Potential Disadvantage",
+  },
+  LI: {
+    classifications: [
+      ["Well Above Average", "#253494"],
+      ["Above Average", "#2c7fb8"],
+      ["Average", "#41b6c4"],
+      ["Below Average", "#a1dab4"],
+      ["Well Below Average", "#ffffcc"],
+      ["No Data", "#ccc"],
+    ],
+    full: "Low Income",
+    sub: "Indicator of Potential Disadvantage",
+  },
   CMP: {
     classifications: [
       ["I-295 NJ Turnpike (N)", "#82d4f2"],
