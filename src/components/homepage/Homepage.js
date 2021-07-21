@@ -303,6 +303,11 @@ class Homepage extends Component {
                     Chapter 8: Project Listings by Program
                   </a>
                 </li>
+                <li className="list-group-item">
+                  <a href="/TIP/Draft/pdf/roadmap.pdf">
+                    Draft TIP Sample Project Listing Roadmap
+                  </a>
+                </li>
               </ul>
 
               <h3>Helpful Project Indices:</h3>
@@ -315,19 +320,6 @@ class Homepage extends Component {
                 <li className="list-group-item">
                   <a href="/TIP/Draft/pdf/NJ-CorresByDB.pdf">
                     Project Index by DB #
-                  </a>
-                </li>
-              </ul>
-
-              <ul className="list-group">
-                <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/8.pdf">
-                    Draft TIP Sample Project Listing Roadmap
-                  </a>
-                </li>
-                <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/8.pdf">
-                    All Projects in DVRPC NJ Region
                   </a>
                 </li>
               </ul>
