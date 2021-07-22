@@ -179,8 +179,8 @@ class Results extends Component {
         ) : (
           <p id="no-results">
             Sorry! No projects matched your search criteria. Please try again or
-            contact Rick Murphy at rmurphy@dvrpc.org. <br />
-            <br /> Thank you for using the DVRPC FY2022 TIP for NJ.
+            contact Kwan Hui at{" "}
+            <a href="mailto:khui@dvrpc.org">khui@dvrpc.org</a>.
           </p>
         )}
       </div>
