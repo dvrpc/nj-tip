@@ -3,7 +3,6 @@ import { withRouter } from "react-router-dom";
 
 import Search from "../search/Search.js";
 import Footer from "../footer/Footer.js";
-import Comments from "../comments/Comments";
 
 import "./Homepage.css";
 
@@ -141,7 +140,7 @@ class Homepage extends Component {
               <h2>The Public Comment Period is Closed.</h2>
               <p>
                 <strong>
-                  From 5:00 PM (EST) on July 21st to August 23rd at 5:00 PM (EST), the Draft DVRPC TIP and{" "}
+                  From 5:00 PM (EST) on July 21<sup>st</sup> to August 23<sup>rd</sup> at 5:00 PM (EST), the Draft DVRPC TIP and{" "}
                   <a href="https://www.state.nj.us/transportation/capital/stip2231/">
                     NJDOT and NJ TRANSIT’s Draft Statewide (STIP)
                   </a>{" "}
@@ -376,10 +375,6 @@ class Homepage extends Component {
                   </a>
                 </li>
               </ul>
-            </section>
-
-            <section>
-              <Comments />
             </section>
           </article>
         </main>
