@@ -155,8 +155,7 @@ class Homepage extends Component {
                 period or meeting for the Draft STIP and rely on DVRPC and other
                 MPOs to serve as the vehicle for this federal requirement.
               </p>
-              <h2>SUBMIT A COMMENT</h2>
-              <p>Choose one of several ways below to share your comment:</p>
+              <p>There were several ways to submit a comment during the public comment period:</p>
               <ol>
                 <li>
                   On this website (scroll to the bottom of this page for the
@@ -183,57 +182,15 @@ class Homepage extends Component {
                   <span className="sm"> [0.3 MB pdf] </span>to view helpful tips
                   that can make a public comment more effective.
                 </strong>{" "}
-                If you need assistance in providing a written comment, please
-                contact the DVRPC Office of Communications and Engagement at
-                215-238-2929 or{" "}
                 <a href="mailto:public_affairs@dvrpc.org">
                   public_affairs@dvrpc.org
                 </a>
-                .
               </p>
               <h2>Public Meetings</h2>
               <p>
-                To abide by public health guidelines for public gatherings, you
-                are invited to join one or both online public
+                To abide by public health guidelines for public gatherings, DVRPC held two online public
                 meetings/information sessions via webinar or by phone in
-                listen-only mode, as scheduled:
-              </p>
-              <h3>Wednesday, August 11, 2021, from 2:00 PM—3:00 PM</h3>
-              <a
-                href="https://dvrpc.zoom.us/meeting/register/tJcpf--qqjovGNdvpMIOsCNvARuy8kv7Zxo_"
-                className="button"
-              >
-                Click here to register
-              </a>
-              <p>
-                Call-in information: 646-558-8656
-                <br />
-                Meeting ID: 934 8624 1523
-                <br />
-                Passcode: Ld6YeTd3
-              </p>
-              <h3>Wednesday, August 18, 2021, at 7:00 PM—8:00 PM</h3>
-              <a
-                href="https://dvrpc.zoom.us/meeting/register/tJwqf-Gupz0pH9Z7yOJrl7DUfQBGFnr9Nk6s"
-                className="button"
-              >
-                Click here to register
-              </a>
-              <p>
-                Call-in information: 646-558-8656
-                <br />
-                Meeting ID: 987 8869 6352
-                <br />
-                Passcode: MU7XWu09
-              </p>
-              <p>
-                For any accommodations, including closed captioning and
-                interpretation, please contact the DVRPC Office of
-                Communications and Engagement at 215-592-1800 or{" "}
-                <a href="mailto:public_affairs@dvrpc.org">
-                  public_affairs@dvrpc.org
-                </a>
-                .
+                listen-only mode, on Wednessday, August 11, 2011, from 2:00 PM - 3:00 PM and Wednesday, August 18, 2021, at 7:00 PM - 8:00 PM.
               </p>
             </section>
 
