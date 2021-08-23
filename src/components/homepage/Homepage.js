@@ -133,20 +133,19 @@ class Homepage extends Component {
                 along with public comments received by the deadline, agency
                 responses, and after the public comment period, a list of
                 recommended changes to the Draft TIP, are expected to be
-                presented to the DVRPC Board for adoption in September 2021.
+                presented to the DVRPC Board for adoption on September 23, 2021.
                 When also approved by the FHWA and FTA, the DVRPC FY2022 TIP for
                 New Jersey will become effective, thereby replacing the FY2020
                 TIP. At that time, it will be posted on the DVRPC website.
               </p>
-              <h2>NOW ACCEPTING PUBLIC COMMENTS!</h2>
+              <h2>The Public Comment Period is Closed.</h2>
               <p>
                 <strong>
-                  As of 5:00 PM (EST) on July 21st, the Draft DVRPC TIP and{" "}
+                  From 5:00 PM (EST) on July 21st to August 23rd at 5:00 PM (EST), the Draft DVRPC TIP and{" "}
                   <a href="https://www.state.nj.us/transportation/capital/stip2231/">
                     NJDOT and NJ TRANSIT’s Draft Statewide (STIP)
                   </a>{" "}
-                  are currently open for public review and comment until August
-                  23, 2021, at 5:00 PM (EST) (see{" "}
+                  was opened for public review and comment (see{" "}
                   <a href="https://www.dvrpc.org/getinvolved/publicnotices">
                     Public Notice
                   </a>
