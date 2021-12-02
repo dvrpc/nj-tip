@@ -337,7 +337,7 @@ class Homepage extends Component {
                 <a href="/TIP/NJ/pdf/22001A.pdf">final printed TIP document</a>,
                 as part of the public record. Project-specific comments
                 submitted are shown on the web map.{" "}
-                <a href="/TIP/NJ/pdf/general.pdf">
+                <a href="/TIP/NJ/pdf/H.pdf">
                   View general comments and responses here
                 </a>
                 , or use the webmap to see project-specific comments and
