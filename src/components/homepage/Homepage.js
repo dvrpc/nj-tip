@@ -33,7 +33,7 @@ class Homepage extends Component {
                 alt="Transportation Improvement Program logo"
               />
               <h1>
-                Draft FY2022 Transportation Improvement
+                FY2022 Transportation Improvement
                 <br />
                 Program for New Jersey (FY22—FY25)
               </h1>
@@ -57,7 +57,7 @@ class Homepage extends Component {
           </div>
 
           <div className="homepage-bottom-bar">
-            <a href="/TIP/Draft/keyword/*" className="homepage-bottom-bar-a">
+            <a href="/TIP/NJ/keyword/*" className="homepage-bottom-bar-a">
               View Full TIP Map
             </a>
 
@@ -97,10 +97,10 @@ class Homepage extends Component {
                 <a href="https://www.dvrpc.org/Products/17065/">TIP Guide</a>
               </li>
               <li>
-                <a href="https://www.dvrpc.org/TIP/PA/">FY2021 TIP for PA</a>
+                <a href="https://www.dvrpc.org/TIP/NJ/">FY2022 TIP for NJ</a>
               </li>
               <li>
-                <a href="https://www.dvrpc.org/TIP/NJ/">FY2020 TIP for NJ</a>
+                <a href="https://www.dvrpc.org/TIP/PA/">FY2021 TIP for PA</a>
               </li>
               <li>
                 <a href="https://www.dvrpc.org/ProjectImplementation/">
@@ -120,99 +120,58 @@ class Homepage extends Component {
           <article id="tip-info-paragraphs">
             <section>
               <h2 className="info-section-header" id="main-section-header">
-                Draft FY2022 Transportation Improvement Program for New Jersey
+                FY2022 Transportation Improvement Program for New Jersey
                 (FY22—FY25)
               </h2>
               <p>
-                The Draft DVRPC FY2022 TIP (FY22—FY25) for the New Jersey
-                portion of the region was developed in cooperation with the New
-                Jersey Department of Transportation (NJDOT), New Jersey Transit
-                Corporation (NJ TRANSIT), the Delaware River Port Authority
-                (DRPA), and DVRPC member cities and counties. The Draft TIP,
-                along with public comments received by the deadline, agency
-                responses, and after the public comment period, a list of
-                recommended changes to the Draft TIP, are expected to be
-                presented to the DVRPC Board for adoption on September 23, 2021.
-                When also approved by the FHWA and FTA, the DVRPC FY2022 TIP for
-                New Jersey will become effective, thereby replacing the FY2020
-                TIP. At that time, it will be posted on the DVRPC website.
+                On September 23, 2021 after a 30+ day public comment period, the
+                DVRPC Board adopted the DVRPC FY2022 Transportation Improvement
+                Program (TIP) for federal FY22-25 as the priority program of
+                highway and transit projects for Burlington, Camden, Gloucester,
+                and Mercer counties, including the cities of Camden and Trenton.
+                It effectively became the official DVRPC TIP for New Jersey
+                after federal approval on November 22, 2021. This regional TIP
+                is included in the Statewide TIP (STIP), and was developed in
+                cooperation with NJDOT, NJ TRANSIT, DRPA/PATCO, and DVRPC's
+                member cities and counties in New Jersey. The TIP is a dynamic
+                document. Modifications or amendments made to the TIP per{" "}
+                <a href="/TIP/NJ/pdf/B.pdf">the MOU</a> are summarized in the{" "}
+                <a href="/TIP/NJ/pdf/Act22.pdf">
+                  TIP Amendments or Modifications report
+                </a>{" "}
+                that is regularly updated throughout the life of the TIP.
               </p>
-              <h2>The Public Comment Period is Closed.</h2>
+              <a href="https://arcg.is/19nnb0" rel="external">
+                <figure>
+                  <img
+                    src="https://www.dvrpc.org/TIP/img/TIPStoryMapScreenshot.png"
+                    alt="TIP Fundamentals"
+                  />
+                  <figcaption>TIP Fundamentals: Learn the Basics</figcaption>
+                </figure>
+              </a>
               <p>
                 <strong>
-                  From 5:00 PM (EST) on July 21<sup>st</sup> to August 23<sup>rd</sup> at 5:00 PM (EST), the Draft DVRPC TIP and{" "}
-                  <a href="https://www.state.nj.us/transportation/capital/stip2231/">
-                    NJDOT and NJ TRANSIT’s Draft Statewide (STIP)
-                  </a>{" "}
-                  was opened for public review and comment (see{" "}
-                  <a href="https://www.dvrpc.org/getinvolved/publicnotices">
-                    Public Notice
-                  </a>
-                  ).
-                </strong>{" "}
-                NJDOT and NJ TRANSIT do not hold a separate public comment
-                period or meeting for the Draft STIP and rely on DVRPC and other
-                MPOs to serve as the vehicle for this federal requirement.
-              </p>
-              <p>There were several ways to submit a comment during the public comment period:</p>
-              <ol>
-                <li>
-                  On this website (scroll to the bottom of this page for the
-                  comment form)
-                </li>
-                <li>
-                  On the webmap for a particular project (click on the project
-                  first)
-                </li>
-                <li>
-                  Email to <a href="mailto:tip@dvrpc.org">tip@dvrpc.org</a>
-                </li>
-                <li>
-                  Mail with “Attention: TIP Comments, Office of Communications
-                  and Engagement, Delaware Valley Regional Planning Commission,
-                  190 N. Independence Mall West, 8th Floor, Philadelphia, PA
-                  19106-1520.” Comments received via mail must be postmarked by
-                  August 23, 2021.
-                </li>
-              </ol>
-              <p>
-                <strong>
-                  <a href="/TIP/Draft/pdf/tips.pdf">Click here</a>{" "}
-                  <span className="sm"> [0.3 MB pdf] </span>to view helpful tips
-                  that can make a public comment more effective.
-                </strong>{" "}
-                <a href="mailto:public_affairs@dvrpc.org">
-                  public_affairs@dvrpc.org
-                </a>
-              </p>
-              <h2>Public Meetings</h2>
-              <p>
-                To abide by public health guidelines for public gatherings, DVRPC held two online public
-                meetings/information sessions via webinar or by phone in
-                listen-only mode, on Wednessday, August 11, 2011, from 2:00 PM - 3:00 PM and Wednesday, August 18, 2021, at 7:00 PM - 8:00 PM.
+                  <a href="/TIP/NJ/pdf/tips.pdf">Click here</a> to view helpful
+                  tips that can make a public comment more effective, such as
+                  when commenting on TIP Actions for DVRPC Board consideration.
+                </strong>
               </p>
             </section>
 
             <section>
-              <h2 className="info-section-header">Draft Documents</h2>
+              <h2 className="info-section-header">Detailed Information</h2>
               <ul className="list-group">
                 <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/22001B_draft.pdf">
-                    Highlights of the Draft DVRPC FY2022 TIP for New Jersey
+                  <a href="/TIP/NJ/pdf/22001B.pdf">
+                    Highlights of the DVRPC FY2022 TIP for New Jersey
                     (FY22-FY25)
                   </a>{" "}
-                  <span className="sm">[43.3 MB pdf]</span> (
-                  <a href="/TIP/Draft/pdf/22001Bes_draft.pdf">en Español</a>{" "}
-                  <span className="sm">[2.0 MB pdf]</span>)
+                  (<a href="/TIP/NJ/pdf/22001Bes.pdf">en Español</a>)
                 </li>
                 <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/22001A_draft.pdf">
-                    Draft DVRPC FY2022 TIP for New Jersey (Full Document)
-                  </a>
-                </li>
-                <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/stip_draft.pdf">
-                    Draft FY2022 STIP for NJDOT and NJ TRANSIT
+                  <a href="/TIP/NJ/pdf/22001A.pdf">
+                    DVRPC FY2022 TIP for New Jersey (Full Document)
                   </a>
                 </li>
               </ul>
@@ -220,47 +179,38 @@ class Homepage extends Component {
               <h3>Detailed Information</h3>
               <ul className="list-group">
                 <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/1.pdf">
+                  <a href="/TIP/NJ/pdf/1.pdf">
                     Chapter 1: General Overview of the TIP
                   </a>
                 </li>
                 <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/2.pdf">
-                    Chapter 2: Program Summaries
-                  </a>
+                  <a href="/TIP/NJ/pdf/2.pdf">Chapter 2: Program Summaries</a>
                 </li>
                 <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/3.pdf">
+                  <a href="/TIP/NJ/pdf/3.pdf">
                     Chapter 3: Responding to Environmental Justice (EJ) and
                     Title VI Concerns
                   </a>
                 </li>
                 <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/4.pdf">
+                  <a href="/TIP/NJ/pdf/4.pdf">
                     Chapter 4: Performance-Based Planning and Programming
                   </a>
                 </li>
                 <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/5.pdf">
-                    Chapter 5: Public Involvement
-                  </a>
+                  <a href="/TIP/NJ/pdf/5.pdf">Chapter 5: Public Involvement</a>
                 </li>
                 <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/6.pdf">
+                  <a href="/TIP/NJ/pdf/6.pdf">
                     Chapter 6: Mapping Application and Listings Overview
                   </a>
                 </li>
                 <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/7.pdf">Chapter 7: Programs</a>
+                  <a href="/TIP/NJ/pdf/7.pdf">Chapter 7: Programs</a>
                 </li>
                 <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/8.pdf">
+                  <a href="/TIP/NJ/pdf/8.pdf">
                     Chapter 8: Project Listings by Program
-                  </a>
-                </li>
-                <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/roadmap.pdf">
-                    Draft TIP Sample Project Listing Roadmap
                   </a>
                 </li>
               </ul>
@@ -268,12 +218,12 @@ class Homepage extends Component {
               <h3>Helpful Project Indices:</h3>
               <ul className="list-group">
                 <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/NJ-CorresByTitle.pdf">
+                  <a href="/TIP/NJ/pdf/NJ-CorresByTitle.pdf">
                     Project Index by Title
                   </a>
                 </li>
                 <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/NJ-CorresByDB.pdf">
+                  <a href="/TIP/NJ/pdf/NJ-CorresByDB.pdf">
                     Project Index by DB #
                   </a>
                 </li>
@@ -282,40 +232,40 @@ class Homepage extends Component {
               <h3>DVRPC Regional Highway Program by County</h3>
               <ul className="list-group">
                 <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/burlington.pdf">Burlington County</a>
+                  <a href="/TIP/NJ/pdf/burlington.pdf">Burlington County</a>
                 </li>
                 <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/camden.pdf">Camden County</a>
+                  <a href="/TIP/NJ/pdf/camden.pdf">Camden County</a>
                 </li>
                 <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/gloucester.pdf">Gloucester County</a>
+                  <a href="/TIP/NJ/pdf/gloucester.pdf">Gloucester County</a>
                 </li>
                 <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/mercer.pdf">Mercer County</a>
+                  <a href="/TIP/NJ/pdf/mercer.pdf">Mercer County</a>
                 </li>
                 <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/various.pdf">Various Counties</a>
+                  <a href="/TIP/NJ/pdf/various.pdf">Various Counties</a>
                 </li>
               </ul>
 
               <h3>DVRPC Regional Transit Program by Operator</h3>
               <ul className="list-group">
                 <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/njt.pdf">NJ TRANSIT Projects</a>
+                  <a href="/TIP/NJ/pdf/njt.pdf">NJ TRANSIT Projects</a>
                 </li>
                 <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/drpa.pdf">DRPA/PATCO Projects</a>
+                  <a href="/TIP/NJ/pdf/drpa.pdf">DRPA/PATCO Projects</a>
                 </li>
               </ul>
 
               <ul className="list-group">
                 <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/stwd.pdf">
+                  <a href="/TIP/NJ/pdf/stwd.pdf">
                     New Jersey Statewide Programs
                   </a>
                 </li>
                 <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/sd22.pdf">
+                  <a href="/TIP/NJ/pdf/sd22.pdf">
                     Study and Development Projects
                   </a>
                 </li>
@@ -323,7 +273,7 @@ class Homepage extends Component {
 
               <ul className="list-group">
                 <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/9.pdf">
+                  <a href="/TIP/NJ/pdf/9.pdf">
                     Chapter 9: Major Project Status Report
                   </a>
                 </li>
@@ -332,49 +282,70 @@ class Homepage extends Component {
               <h3>Appendices</h3>
               <ul className="list-group">
                 <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/A.pdf">
-                    A – Acknowledgement of Board Resolutions
+                  <a href="/TIP/NJ/pdf/A.pdf">A – Board Resolutions</a>
+                </li>
+                <li className="list-group-item">
+                  <a href="/TIP/NJ/pdf/B.pdf">
+                    B – Financial Tables Used in Developing the Program,
+                    Including the Statewide TIP (STIP) Introduction
                   </a>
                 </li>
                 <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/B.pdf">
-                    B – Financial Tables Used in Developing the Draft Program,
-                    Including the Draft Statewide TIP (STIP) Introduction
+                  <a href="/TIP/NJ/pdf/C.pdf">
+                    C – Executive Summary of the Documentation of the Conformity
+                    Finding
                   </a>
                 </li>
                 <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/C.pdf">
-                    C – Acknowledgment of the Executive Summary of the Draft
-                    Documentation of the Conformity Finding
-                  </a>
-                </li>
-                <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/D.pdf">
+                  <a href="/TIP/NJ/pdf/D.pdf">
                     D – Memorandum of Understanding on Procedures to Amend and
                     Modify the TIP
                   </a>
                 </li>
                 <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/E.pdf">E – DVRPC Local Program</a>
+                  <a href="/TIP/NJ/pdf/E.pdf">E – DVRPC Local Program</a>
                 </li>
                 <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/F.pdf">
+                  <a href="/TIP/NJ/pdf/F.pdf">
                     F – DVRPC TIP Project Benefit Criteria
                   </a>
                 </li>
                 <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/G.pdf">
-                    G –Environmental Justice Appendix
+                  <a href="/TIP/NJ/pdf/G.pdf">
+                    G – Environmental Justice Appendix
                   </a>
                 </li>
                 <li className="list-group-item">
-                  <a href="/TIP/Draft/pdf/H.pdf">
-                    H – Acknowledgment of Summary of the TIP Public Involvement
-                    Process, Public Comments, Original Public Comments, Agency
-                    Responses, and List of Recommended Changes
+                  <a href="/TIP/NJ/pdf/H.pdf">
+                    H – Summary of the TIP Public Involvement Process, Public
+                    Comments, Agency Responses, and List of Recommended Changes
                   </a>
                 </li>
               </ul>
+            </section>
+
+            <section>
+              <h2 className="info-section-header">
+                Read Submitted Public Comments:
+              </h2>
+              <p>
+                The public comment period for the Draft TIP and STIP documents
+                closed on August 23, 2021 at 5:00 PM (EST). Written comments
+                received during the public comment period and responses to those
+                comments are included in{" "}
+                <a href="/TIP/NJ/pdf/H.pdf">Appendix H (Addendum)</a> of the{" "}
+                <a href="/TIP/NJ/pdf/22001A.pdf">final printed TIP document</a>,
+                as part of the public record. Project-specific comments
+                submitted are shown on the web map.{" "}
+                <a href="/TIP/NJ/pdf/general.pdf">
+                  View general comments and responses here
+                </a>
+                , or use the webmap to see project-specific comments and
+                responses. After consideration of the public comments received,
+                the Draft TIP with any recommended changes were presented to the
+                DVRPC Board for adoption at the September 23, 2021 Board
+                meeting.
+              </p>
             </section>
           </article>
         </main>

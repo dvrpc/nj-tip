@@ -221,9 +221,7 @@ class Project extends Component {
                       <tr>
                         <th colSpan={2} />
                         <th colSpan={4}>
-                          <h3>
-                            Draft FY2022 TIP for NJ Program Years (in Millions)
-                          </h3>
+                          <h3>FY2022 TIP for NJ Program Years (in Millions)</h3>
                         </th>
                         <th colSpan={1} />
                       </tr>
@@ -241,7 +239,7 @@ class Project extends Component {
                               <td key={i}>
                                 <a
                                   className="table-links"
-                                  href="/TIP/Draft/pdf/CodesAbbr.pdf"
+                                  href="/TIP/NJ/pdf/CodesAbbr.pdf"
                                 >
                                   {title}
                                 </a>
@@ -254,7 +252,7 @@ class Project extends Component {
                               <td key={i}>
                                 <a
                                   className="table-links"
-                                  href="/TIP/Draft/pdf/CodesAbbr.pdf"
+                                  href="/TIP/NJ/pdf/CodesAbbr.pdf"
                                 >
                                   {title}
                                 </a>

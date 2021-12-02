@@ -2,7 +2,7 @@
   "name": "nj-tip",
   "version": "2.1.4",
   "private": true,
-  "homepage": "/TIP/Draft/",
+  "homepage": "/TIP/NJ/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && npm version patch",
