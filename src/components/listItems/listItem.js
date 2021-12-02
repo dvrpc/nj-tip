@@ -15,18 +15,15 @@ class ListItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      coords: ""
+      coords: "",
     };
   }
 
   componentDidMount() {
-    let category =
-      this.props.data.TYPE_DESC === "null"
-        ? "Other"
-        : this.props.data.TYPE_DESC;
-    fetchSprite.then(response => {
+    let category = this.props.data.type_desc ?? "Other";
+    fetchSprite.then((response) => {
       this.setState({
-        coords: `-${response[category].x}px -${response[category].y}px`
+        coords: `-${response[category].x}px -${response[category].y}px`,
       });
     });
   }
@@ -36,10 +33,10 @@ class ListItem extends Component {
     const clickProps = {
       history: this.props.history,
       data: {
-        LONGITUDE: project.LONGITUDE,
-        LATITUDE: project.LATITUDE,
-        DBNUM: project.DBNUM
-      }
+        long_: project.long_,
+        lat: project.lat,
+        dbnum: project.dbnum,
+      },
     };
 
     // formatting
@@ -51,42 +48,42 @@ class ListItem extends Component {
       height: "62px",
       objectFit: "none",
       objectPosition: this.state.coords,
-      alignSelf: thumbnailAlign
+      alignSelf: thumbnailAlign,
     };
 
     return (
       <div
         className="list-item"
-        onClick={e => clickTile(clickProps, this.props.setProjectScope)}
-        onMouseEnter={e => this.props.getMarkerInfo(this.props.data, e)}
-        onMouseLeave={e => this.props.getMarkerInfo(null, e)}
+        onClick={(e) => clickTile(clickProps, this.props.setProjectScope)}
+        onMouseEnter={(e) => this.props.getMarkerInfo(this.props.data, e)}
+        onMouseLeave={(e) => this.props.getMarkerInfo(null, e)}
       >
         <img
           src="https://tiles.dvrpc.org/data/styles/dvrpc-pa-tip/sprite.png"
           className="list-category-thumbnail"
           style={imgStyle}
-          alt={`icon for ${project.TYPE_DESC} projects`}
+          alt={`icon for ${project.type_desc} projects`}
         />
 
         <div className="list-text">
-          <h2 className="name">{project.PROJECTNAM}</h2>
+          <h2 className="name">{project.projectnam}</h2>
           <h2 className="county-and-funding">
             <em>
               {project.CTY}
               {counties.indexOf(project.CTY) > -1 ? " County" : ""}
             </em>
           </h2>
-          <h2 className="mpms">DB #{project.DBNUM}</h2>
+          <h2 className="mpms">DB #{project.dbnum}</h2>
         </div>
       </div>
     );
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    getMarkerInfo: tile => dispatch(getMarkerInfo(tile)),
-    setProjectScope: projectScope => dispatch(setProjectScope(projectScope))
+    getMarkerInfo: (tile) => dispatch(getMarkerInfo(tile)),
+    setProjectScope: (projectScope) => dispatch(setProjectScope(projectScope)),
   };
 };
 

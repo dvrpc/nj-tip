@@ -9,25 +9,25 @@ const SET_PROJECT_SCOPE = "SET_PROJECT_SCOPE";
 const SET_ACTIVE_PROJECT = "SET_ACTIVE_PROJECT";
 
 /*** ACTION_CREATORS ***/
-const fetch_tip_keywords = fetchedKeywords => ({
+const fetch_tip_keywords = (fetchedKeywords) => ({
   type: FETCH_TIP_KEYWORDS,
-  fetchedKeywords
+  fetchedKeywords,
 });
-const get_tip_keywords = keyword => ({ type: GET_TIP_KEYWORDS, keyword });
-const get_full_tip = id => ({ type: GET_FULL_TIP, id });
-const get_tip_by_map_bounds = features => ({
+const get_tip_keywords = (keyword) => ({ type: GET_TIP_KEYWORDS, keyword });
+const get_full_tip = (id) => ({ type: GET_FULL_TIP, id });
+const get_tip_by_map_bounds = (features) => ({
   type: GET_TIP_BY_MAP_BOUNDS,
-  features
+  features,
 });
-const set_filter = category => ({ type: SET_FILTER, category });
-const hydrate_geometry = geometry => ({ type: HYDRATE_GEOMETRY, geometry });
-const set_project_scope = projectScope => ({
+const set_filter = (category) => ({ type: SET_FILTER, category });
+const hydrate_geometry = (geometry) => ({ type: HYDRATE_GEOMETRY, geometry });
+const set_project_scope = (projectScope) => ({
   type: SET_PROJECT_SCOPE,
-  projectScope
+  projectScope,
 });
-const set_active_project = activeProject => ({
+const set_active_project = (activeProject) => ({
   type: SET_ACTIVE_PROJECT,
-  activeProject
+  activeProject,
 });
 
 /*** REDUCERS ***/
@@ -35,7 +35,7 @@ export default function tipReducer(state = [], action) {
   switch (action.type) {
     case FETCH_TIP_KEYWORDS:
       return Object.assign({}, state, {
-        fetchedKeywords: action.fetchedKeywords
+        fetchedKeywords: action.fetchedKeywords,
       });
     case GET_TIP_KEYWORDS:
       return Object.assign({}, state, { keyword: action.keyword });
@@ -57,15 +57,15 @@ export default function tipReducer(state = [], action) {
 }
 
 // take search input and find TIP Projects that satisfy the criteria
-const getTIPProjects = input =>
-  fetch(`https://www.dvrpc.org/data/tip/2020/list/${input}`)
-    .then(response => response.json())
-    .then(features => {
+const getTIPProjects = (input) =>
+  fetch(`https://www.dvrpc.org/data/tip/2022/list/${input}`)
+    .then((response) => response.json())
+    .then((features) => {
       // return empty array for no results
       if (!features[0]) return [];
 
       // get id, name and set cateogry type for projects
-      let mpmsAndNames = features.map(project => {
+      let mpmsAndNames = features.map((project) => {
         return { name: project.road_name, id: project.id, type: "Project" };
       });
 
@@ -76,16 +76,16 @@ const getTIPProjects = input =>
     });
 
 /*** DISPATCHERS ***/
-export const getTIPByKeywords = keyword => dispatch => {
+export const getTIPByKeywords = (keyword) => (dispatch) => {
   // encode in case of multiple word keywords
   keyword = encodeURI(keyword);
-  fetch(`https://www.dvrpc.org/data/tip/2020/list/${keyword}`).then(
-    response => {
+  fetch(`https://www.dvrpc.org/data/tip/2022/list/${keyword}`).then(
+    (response) => {
       if (response.ok) {
-        response.json().then(projects => {
+        response.json().then((projects) => {
           // handle keyword searches that do or do not yield a result
           projects = projects.length
-            ? projects.map(project => project.id)
+            ? projects.map((project) => project.id)
             : "empty";
           dispatch(get_tip_keywords(projects));
         });
@@ -100,65 +100,65 @@ export const getTIPByKeywords = keyword => dispatch => {
 };
 
 //get search results without updating the entire app
-export const searchTIPByKeywords = keyword => dispatch => {
-  getTIPProjects(keyword).then(projects => {
+export const searchTIPByKeywords = (keyword) => (dispatch) => {
+  getTIPProjects(keyword).then((projects) => {
     dispatch(fetch_tip_keywords(projects));
   });
 };
 
-export const clearKeywords = () => dispatch =>
-  dispatch(get_tip_keywords(["!=", "DBNUM", ""]));
+export const clearKeywords = () => (dispatch) =>
+  dispatch(get_tip_keywords(["!=", "dbnum", ""]));
 
-export const setFilter = category => dispatch => {
+export const setFilter = (category) => (dispatch) => {
   dispatch(set_filter(category));
 };
 
-export const setActiveProject = id => dispatch => {
+export const setActiveProject = (id) => (dispatch) => {
   dispatch(set_active_project(id));
 };
 
 // get all projects within the boundaires of the current mapbox view
-export const getTIPByMapBounds = features => dispatch => {
+export const getTIPByMapBounds = (features) => (dispatch) => {
   dispatch(get_tip_by_map_bounds(features));
 };
 
-export const hydrateGeometry = id => dispatch => {
+export const hydrateGeometry = (id) => (dispatch) => {
   // clear geom when Project unMounts
   if (id === null) return dispatch(hydrate_geometry(null));
 
   fetch(
-    `https://arcgis.dvrpc.org/portal/rest/services/Transportation/NJTIP_FY2020_2023_Point/FeatureServer/0/query?where=DBNUM='${id}'&geometryType=esriGeometryPoint&returnGeometry=true&geometryPrecision=&outSR=4326&f=geojson`
+    `https://arcgis.dvrpc.org/portal/rest/services/Transportation/NJTIP_FY2022_2025_Point/FeatureServer/0/query?where=dbnum='${id}'&geometryType=esriGeometryPoint&returnGeometry=true&geometryPrecision=&outSR=4326&f=geojson`
   )
-    .then(response => {
+    .then((response) => {
       if (response.ok)
-        response.json().then(geoPromise => {
+        response.json().then((geoPromise) => {
           dispatch(hydrate_geometry(geoPromise));
         });
     })
-    .catch(error => console.error(error));
+    .catch((error) => console.error(error));
 };
 
 // gets the full information for a project to display in the modal when a tile is clicked
-export const getFullTIP = id => dispatch => {
+export const getFullTIP = (id) => (dispatch) => {
   // handle resetting of the Project.js props to solve old components rendering while a new one loads
   if (id === null) return dispatch(get_full_tip(null));
 
-  fetch(`https://www.dvrpc.org/data/tip/2020/id/${id}`)
-    .then(response => {
+  fetch(`https://www.dvrpc.org/data/tip/2022/id/${id}`)
+    .then((response) => {
       if (response.ok) {
         response
           .json()
-          .then(projectDetails => dispatch(get_full_tip(projectDetails)));
+          .then((projectDetails) => dispatch(get_full_tip(projectDetails)));
       } else {
         const output = { error: true, reason: response.statusText };
         dispatch(get_full_tip(output));
       }
     })
-    .catch(error => console.error(error));
+    .catch((error) => console.error(error));
 };
 
 // sets project details for project view
-export const setProjectScope = projectScope => dispatch => {
+export const setProjectScope = (projectScope) => (dispatch) => {
   // handle Project unmount @TODO: this, but better
   if (!projectScope) return;
 
@@ -173,10 +173,10 @@ export const setProjectScope = projectScope => dispatch => {
     // @API: ask Kris or Jesse to create an endpoint that accepts an MPMS ID and *just* returns the lat/lng
     // this endpoint is problematic b/c when it fails, it doesn't return an error. It just returns an empty geoJSON...
     fetch(
-      `https://arcgis.dvrpc.org/portal/rest/services/Transportation/NJTIP_FY2020_2023_Point/FeatureServer/0/query?where=DBNUM='${id}'&geometryType=esriGeometryPoint&returnGeometry=true&geometryPrecision=&outSR=4326&f=geojson`
-    ).then(response => {
+      `https://arcgis.dvrpc.org/portal/rest/services/Transportation/NJTIP_FY2022_2025_Point/FeatureServer/0/query?where=dbnum='${id}'&geometryType=esriGeometryPoint&returnGeometry=true&geometryPrecision=&outSR=4326&f=geojson`
+    ).then((response) => {
       if (response.ok) {
-        response.json().then(project => {
+        response.json().then((project) => {
           // @API: the endpoint will have better error handling so this won't be necessary
           if (!project.features.length) {
             console.log("failed to fetch coords for project ID: ", id);

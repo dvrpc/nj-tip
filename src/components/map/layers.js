@@ -2,15 +2,14 @@ const IPD = {
   source: {
     id: "IPD",
     type: "geojson",
-    data:
-      "https://arcgis.dvrpc.org/portal/rest/services/Demographics/IPD_2018/FeatureServer/0/query?where=STATE_FIPS%3D%2734%27&returnGeometry=true&outFields=IPD_Score&geometryPrecision=4&outSR=4326&f=geojson"
+    data: "https://arcgis.dvrpc.org/portal/rest/services/Demographics/IPD_2019/FeatureServer/0/query?where=STATE_FIPS%3D%2734%27&returnGeometry=true&outFields=IPD_Score,rm_score,li_score&geometryPrecision=4&outSR=4326&f=geojson",
   },
   layout: {
     id: "Indicators of Potential Disadvantage",
     type: "fill",
     source: "IPD",
     layout: {
-      visibility: "none"
+      visibility: "none",
     },
     paint: {
       "fill-color": [
@@ -34,45 +33,43 @@ const IPD = {
         27,
         "#253494",
         30,
-        "#081d58"
+        "#081d58",
       ],
-      "fill-opacity": 0.5
-    }
-  }
+      "fill-opacity": 0.5,
+    },
+  },
 };
 const CMP = {
   source: {
     id: "CMP",
     type: "geojson",
-    data:
-      "https://arcgis.dvrpc.org/portal/rest/services/Transportation/CMP2019_CorridorSubCorridorAreas/FeatureServer/0/query?where=state%3D'NJ'&returnGeometry=true&outFields=WEB_COLOR&geometryPrecision=4&outSR=4326&f=geojson"
+    data: "https://arcgis.dvrpc.org/portal/rest/services/Transportation/CMP2019_CorridorSubCorridorAreas/FeatureServer/0/query?where=state%3D'NJ'&returnGeometry=true&outFields=WEB_COLOR&geometryPrecision=4&outSR=4326&f=geojson",
   },
   layout: {
     id: "CMP Corridors",
     type: "fill",
     source: "CMP",
     layout: {
-      visibility: "none"
+      visibility: "none",
     },
     paint: {
       "fill-color": ["get", "web_color"],
-      "fill-opacity": 0.8
-    }
-  }
+      "fill-opacity": 0.8,
+    },
+  },
 };
 const Connections = {
   source: {
     id: "Connections",
     type: "geojson",
-    data:
-      "https://arcgis.dvrpc.org/portal/rest/services/Planning/LRP_2045_PlanningCenters/FeatureServer/0/query?where=State='NJ'&outFields=lup_type&geometryPrecision=4&outSR=4326&f=geojson"
+    data: "https://arcgis.dvrpc.org/portal/rest/services/Planning/LRP_2045_PlanningCenters/FeatureServer/0/query?where=State='NJ'&outFields=lup_type&geometryPrecision=4&outSR=4326&f=geojson",
   },
   layout: {
     id: "Connections 2045 Centers",
     type: "fill",
     source: "Connections",
     layout: {
-      visibility: "none"
+      visibility: "none",
     },
     paint: {
       "fill-color": [
@@ -89,7 +86,7 @@ const Connections = {
         "#ed1c24",
         ["==", ["get", "lup_type"], "Planned Town Center"],
         "#9d1d20",
-        "#cccccc"
+        "#cccccc",
       ],
       "fill-opacity": [
         "interpolate",
@@ -102,24 +99,23 @@ const Connections = {
         9,
         0.5,
         11,
-        0.25
-      ]
-    }
-  }
+        0.25,
+      ],
+    },
+  },
 };
 const Freight = {
   source: {
     id: "Freight",
     type: "geojson",
-    data:
-      "https://arcgis.dvrpc.org/portal/rest/services/Planning/LRP_2045_Freight_Centers/FeatureServer/0/query?where=1%3D1&outFields=types&outSR=4326&f=geojson"
+    data: "https://arcgis.dvrpc.org/portal/rest/services/Planning/LRP_2045_Freight_Centers/FeatureServer/0/query?where=1%3D1&outFields=types&outSR=4326&f=geojson",
   },
   layout: {
     id: "Freight Centers",
     type: "fill",
     source: "Freight",
     layout: {
-      visibility: "none"
+      visibility: "none",
     },
     paint: {
       "fill-color": [
@@ -134,7 +130,7 @@ const Freight = {
         "#883272",
         ["==", ["get", "types"], "Local Manufacturing and Distribution"],
         "#312867",
-        "#cccccc"
+        "#cccccc",
       ],
       "fill-opacity": [
         "interpolate",
@@ -147,23 +143,23 @@ const Freight = {
         9,
         0.5,
         11,
-        0.25
-      ]
-    }
-  }
+        0.25,
+      ],
+    },
+  },
 };
 const LandUse = {
   source: {
     id: "LandUse",
     type: "vector",
-    url: "https://tiles.dvrpc.org/data/dvrpc-landuse-2015.json"
+    url: "https://tiles.dvrpc.org/data/dvrpc-landuse-2015.json",
   },
   layout: {
     id: "DVRPC Land Use (2015)",
     type: "fill",
     source: "LandUse",
     layout: {
-      visibility: "none"
+      visibility: "none",
     },
     "source-layer": "lu2015",
     paint: {
@@ -194,7 +190,7 @@ const LandUse = {
         13000,
         "rgb(0,197,255)",
         14000,
-        "rgb(165,245,122)"
+        "rgb(165,245,122)",
       ],
       "fill-opacity": [
         "interpolate",
@@ -207,24 +203,23 @@ const LandUse = {
         9,
         0.5,
         11,
-        0.25
-      ]
-    }
-  }
+        0.25,
+      ],
+    },
+  },
 };
 const UrbanizedAreas = {
   source: {
     id: "UrbanizedAreas",
     type: "geojson",
-    data:
-      "https://arcgis.dvrpc.org/portal/rest/services/Boundaries/UrbanAreas_NJ/FeatureServer/0/query?where=LSAD_TYPE%3D'Urbanized+Area'&sqlFormat=standard&geometryPrecision=4&outSR=4326&outFields=census_ua_&f=geojson"
+    data: "https://arcgis.dvrpc.org/portal/rest/services/Boundaries/UrbanAreas_NJ/FeatureServer/0/query?where=LSAD_TYPE%3D'Urbanized+Area'&sqlFormat=standard&geometryPrecision=4&outSR=4326&outFields=census_ua_&f=geojson",
   },
   layout: {
     id: "Urbanized Areas",
     type: "fill",
     source: "UrbanizedAreas",
     layout: {
-      visibility: "none"
+      visibility: "none",
     },
     paint: {
       "fill-color": [
@@ -249,11 +244,77 @@ const UrbanizedAreas = {
         "#737300",
         ["==", ["get", "census_ua_"], "69076"],
         "#E67553",
-        "#b4b4b4"
+        "#b4b4b4",
       ],
-      "fill-opacity": 0.25
-    }
-  }
+      "fill-opacity": 0.25,
+    },
+  },
+};
+const RacialMinority = {
+  source: {
+    id: "RacialMinority",
+    type: "geojson",
+    data: "https://arcgis.dvrpc.org/portal/rest/services/Demographics/IPD_2019/FeatureServer/0/query?where=STATE_FIPS%3D%2734%27&returnGeometry=true&outFields=IPD_Score,rm_score,li_score&geometryPrecision=4&outSR=4326&f=geojson",
+  },
+  layout: {
+    id: "Racial Minority",
+    type: "fill",
+    source: "RacialMinority",
+    layout: {
+      visibility: "none",
+    },
+    paint: {
+      "fill-color": [
+        "interpolate",
+        ["linear"],
+        ["get", "rm_score"],
+        0,
+        "#a1dab4",
+        1,
+        "#41b6c4",
+        2,
+        "#2c7fb8",
+        3,
+        "#253494",
+        4,
+        "#000000",
+      ],
+      "fill-opacity": 0.5,
+    },
+  },
+};
+const LowIncome = {
+  source: {
+    id: "LowIncome",
+    type: "geojson",
+    data: "https://arcgis.dvrpc.org/portal/rest/services/Demographics/IPD_2019/FeatureServer/0/query?where=STATE_FIPS%3D%2734%27&returnGeometry=true&outFields=IPD_Score,rm_score,li_score&geometryPrecision=4&outSR=4326&f=geojson",
+  },
+  layout: {
+    id: "Low Income",
+    type: "fill",
+    source: "LowIncome",
+    layout: {
+      visibility: "none",
+    },
+    paint: {
+      "fill-color": [
+        "interpolate",
+        ["linear"],
+        ["get", "li_score"],
+        0,
+        "#a1dab4",
+        1,
+        "#41b6c4",
+        2,
+        "#2c7fb8",
+        3,
+        "#253494",
+        4,
+        "#000000",
+      ],
+      "fill-opacity": 0.5,
+    },
+  },
 };
 
-export default { IPD, CMP, Connections, Freight, LandUse, UrbanizedAreas };
+export default { IPD, CMP, Connections, Freight, LandUse, UrbanizedAreas, RacialMinority, LowIncome };

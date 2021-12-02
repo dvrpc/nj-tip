@@ -1,10 +1,10 @@
-# NJ TIP 2020
+# NJ TIP 2022
 
-The DVRPC Draft TIP for NJ represents the region's federally funded transportation improvement priorities and is required by federal law in order for the region to receive and spend federal transportation funds. It has been developed in cooperation with NJDOT, NJ TRANSIT, DRPA/PATCO and DVRPC's member counties and cities. After consideration of public comments, the Draft TIP with any recommended changes will be presented to the DVRPC Board for adoption at the regularly scheduled Board meeting on September 26, 2019.
+The DVRPC TIP for NJ represents the region's federally funded transportation improvement priorities and is required by federal law in order for the region to receive and spend federal transportation funds. It has been developed in cooperation with NJDOT, NJ TRANSIT, DRPA/PATCO and DVRPC's member counties and cities.
 
 ## What is the NJ TIP web viewer?
 
-The NJ TIP web app hosts information about the Draft NJ TIP as well as an interactive map containing every NJ TIP project. Users can search by keyword, project name or location to find the projects they are interested in. From the map view, users can pan and zoom to reveal more projects and can filter projects by type. Projects are displayed as icons on the map as well as either list items or tiles with satellite imagery on the sidebar. Clicking on a project either in the map or on the sidebar will bring users to a detailed view that has all of the project information including funding and milestones tables. Users can print all of the detailed information by clicking the 'print' button.
+The NJ TIP web app hosts information about the NJ TIP as well as an interactive map containing every NJ TIP project. Users can search by keyword, project name or location to find the projects they are interested in. From the map view, users can pan and zoom to reveal more projects and can filter projects by type. Projects are displayed as icons on the map as well as either list items or tiles with satellite imagery on the sidebar. Clicking on a project either in the map or on the sidebar will bring users to a detailed view that has all of the project information including funding and milestones tables. Users can print all of the detailed information by clicking the 'print' button.
 
 ## How was it made?
 

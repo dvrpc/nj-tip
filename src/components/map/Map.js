@@ -6,12 +6,11 @@ import { withRouter } from "react-router-dom";
 import {
   getTIPByKeywords,
   getTIPByMapBounds,
-  setProjectScope
+  setProjectScope,
 } from "../../redux/reducers/getTIPInfo";
 
 import { updateBounds, showPopup } from "./updateMap";
 import { clickTile } from "../../utils/clickTile.js";
-//import { groupProjects } from "../../utils/groupProjectsMPMS.js";
 
 import "./Map.css";
 import layers from "./layers.js";
@@ -25,18 +24,20 @@ class MapComponent extends Component {
     this.state = {
       dropdownLayers: {
         "Indicators of Potential Disadvantage": false,
+        "Racial Minority": false,
+        "Low Income": false,
         "CMP Corridors": false,
         "Connections 2045 Centers": false,
         "Freight Centers": false,
         "DVRPC Land Use (2015)": false,
-        "Urbanized Areas": false
+        "Urbanized Areas": false,
       },
       toggleLayerList: false,
       toggleLegendList: false,
-      keyFilter: ["!=", "DBNUM", ""],
-      catFilter: ["!=", "TYPE_DESC", ""],
+      keyFilter: ["!=", "dbnum", ""],
+      catFilter: ["!=", "type_desc", ""],
       tilePopup: {},
-      zoom: window.innerWidth <= 950 ? 7.3 : 8.5
+      zoom: window.innerWidth <= 950 ? 7.3 : 8.5,
     };
 
     this.Places = new window.google.maps.places.PlacesService(
@@ -46,16 +47,18 @@ class MapComponent extends Component {
     this.loaderTimeout = true;
   }
 
-  updateLayerVisibility = selectedLayer => {
+  updateLayerVisibility = (selectedLayer) => {
     let { dropdownLayers } = this.state;
 
     const srcLookup = {
       "Indicators of Potential Disadvantage": "IPD",
+      "Racial Minority": "RacialMinority",
+      "Low Income": "LowIncome",
       "CMP Corridors": "CMP",
       "Connections 2045 Centers": "Connections",
       "Freight Centers": "Freight",
-      "DVRPC Land Use (2019)": "LandUse",
-      "Urbanized Areas": "UrbanizedAreas"
+      "DVRPC Land Use (2015)": "LandUse",
+      "Urbanized Areas": "UrbanizedAreas",
     };
 
     const selectedSrc = srcLookup[selectedLayer];
@@ -70,7 +73,7 @@ class MapComponent extends Component {
     }
 
     //toggle selected layer state
-    Object.keys(dropdownLayers).forEach(layer => {
+    Object.keys(dropdownLayers).forEach((layer) => {
       let layerCheck = this.map.getLayer(layer);
 
       // move on to the next one if the layer hasn't been added yet
@@ -89,10 +92,7 @@ class MapComponent extends Component {
 
         // turn currently active layer on or off depending on its current state
       } else {
-        dropdownLayers[layer]
-          ? (dropdownLayers[layer] = false)
-          : (dropdownLayers[layer] = true);
-
+        dropdownLayers[layer] = !dropdownLayers[layer];
         this.map.setLayoutProperty(
           layer,
           "visibility",
@@ -104,27 +104,32 @@ class MapComponent extends Component {
     this.setState({ dropdownLayers });
   };
 
-  toggleDropdown = e => {
+  toggleDropdown = (e) => {
     e.preventDefault();
     e.target.id === "layerMenuButton"
       ? this.setState({ toggleLayerList: !this.state.toggleLayerList })
       : this.setState({ toggleLegendList: !this.state.toggleLegendList });
   };
 
-  buildCategoryFilter = cat => {
+  buildCategoryFilter = (cat) => {
     switch (cat) {
       case "All Categories":
-        this.setState({ catFilter: ["!=", "TYPE_DESC", ""] });
+        this.setState({ catFilter: ["!=", "type_desc", ""] });
         break;
       default:
-        this.setState({ catFilter: ["==", "TYPE_DESC", cat || ""] });
+        this.setState({ catFilter: ["==", "type_desc", cat || ""] });
     }
   };
 
-  buildKeywordFilter = projects => ["in", "DBNUM"].concat(projects);
+  buildKeywordFilter = (projects) => ["in", "dbnum"].concat(projects);
 
   resetControl = () =>
-    this.map ? this.map.flyTo([-74.90938452328001, 39.969515433347254]) : false;
+    this.map
+      ? this.map.flyTo({
+          center: [-74.909, 39.969],
+          zoom: 8,
+        })
+      : false;
 
   componentDidMount() {
     let popup;
@@ -135,12 +140,12 @@ class MapComponent extends Component {
       case "location":
         this.Places.getDetails(
           { placeId: value, fields: ["geometry.location"] },
-          results => {
+          (results) => {
             const lng = results.geometry.location.lng();
             const lat = results.geometry.location.lat();
             this.map.flyTo({
               center: [lng, lat],
-              zoom: 12
+              zoom: 12,
             });
           }
         );
@@ -152,7 +157,7 @@ class MapComponent extends Component {
         const projectScope = {
           coords: null,
           id: value,
-          zoom: 18
+          zoom: 18,
         };
 
         this.props.setProjectScope(projectScope);
@@ -167,7 +172,7 @@ class MapComponent extends Component {
       style: mapStyle,
       center: [-74.909, 39.969],
       zoom: this.state.zoom,
-      dragRotate: false
+      dragRotate: false,
     });
 
     this.map.on("load", () => {
@@ -175,7 +180,7 @@ class MapComponent extends Component {
       this.map.addControl(zoom, "top-right");
     });
 
-    this.map.on("click", "nj-tip-points", e => {
+    const clickHandler = (e) => {
       if (!e) return;
 
       // get a handle on history
@@ -183,38 +188,46 @@ class MapComponent extends Component {
 
       // extract and format values to match those from listItem/tiles
       const geom = e.lngLat;
-      const DBNUM = e.features[0].properties.DBNUM;
+      const dbnum = e.features[0].properties.dbnum;
 
       const data = {
-        LONGITUDE: geom.lng,
-        LATITUDE: geom.lat,
-        DBNUM
+        long_: geom.lng,
+        lat: geom.lat,
+        dbnum,
       };
       const project = {
         history,
-        data
+        data,
       };
 
       clickTile(project, this.props.setProjectScope);
-    });
+    };
 
-    // show popup when a user hovers over a marker.
-    this.map.on("mouseenter", "nj-tip-points", e => {
+    this.map.on("click", "nj-tip-points", clickHandler);
+    this.map.on("click", "nj-tip-lines", clickHandler);
+
+    const enterHandler = (e) => {
       this.map.getCanvas().style.cursor = "pointer";
 
       const coordinates = e.features[0].geometry.coordinates.slice();
-      const LONGITUDE = coordinates[0];
-      const LATITUDE = coordinates[1];
+      const long_ = coordinates[0];
+      const lat = coordinates[1];
 
-      const marker = { ...e.features[0].properties, LONGITUDE, LATITUDE };
-      popup = showPopup(marker, this.map);
-    });
+      const marker = { ...e.features[0].properties, long_, lat };
+      popup = showPopup(marker, e, this.map);
+    };
 
-    // remove popup when the user leaves
-    this.map.on("mouseleave", "nj-tip-points", () => {
+    // show popup when a user hovers over a marker.
+    this.map.on("mouseenter", "nj-tip-points", enterHandler);
+    this.map.on("mouseenter", "nj-tip-lines", enterHandler);
+
+    const leaveHandler = () => {
       this.map.getCanvas().style.cursor = "";
       popup.remove();
-    });
+    };
+    // remove popup when the user leaves
+    this.map.on("mouseleave", "nj-tip-points", leaveHandler);
+    this.map.on("mouseleave", "nj-tip-lines", leaveHandler);
 
     // handle user events to update map results
     this.map.on("zoomend", () => updateBounds(this));
@@ -245,13 +258,13 @@ class MapComponent extends Component {
     if (newTileHover) {
       // check if old = current
       const oldTileHover = prevProps.markerFromTiles;
-      if (oldTileHover && oldTileHover.DBNUM === newTileHover.DBNUM) return;
+      if (oldTileHover && oldTileHover.dbnum === newTileHover.dbnum) return;
 
       // remove the old popup
       if (hasPopup) this.state.tilePopup.remove();
 
       const marker = this.props.markerFromTiles;
-      const tilePopup = showPopup(marker, this.map);
+      const tilePopup = showPopup(marker, null, this.map);
 
       // set the new popup
       this.setState({ tilePopup });
@@ -281,12 +294,12 @@ class MapComponent extends Component {
         case "location":
           this.Places.getDetails(
             { placeId: value, fields: ["geometry.location"] },
-            results => {
+            (results) => {
               const lng = results.geometry.location.lng();
               const lat = results.geometry.location.lat();
               this.map.flyTo({
                 center: [lng, lat],
-                zoom: 12
+                zoom: 12,
               });
             }
           );
@@ -297,14 +310,14 @@ class MapComponent extends Component {
           this.props.getTIPByKeywords(value);
           this.map.flyTo({
             center: [-74.909, 39.969],
-            zoom: this.state.zoom
+            zoom: this.state.zoom,
           });
           break;
         default:
           const projectScope = {
             coords: null,
             id: value,
-            zoom: 18
+            zoom: 18,
           };
 
           this.props.setProjectScope(projectScope);
@@ -321,7 +334,7 @@ class MapComponent extends Component {
       // if (!groupProject) {
       this.map.flyTo({
         center: scope.coords,
-        zoom: 18
+        zoom: 18,
       });
       // } else {
       // this.map.flyTo({
@@ -336,22 +349,20 @@ class MapComponent extends Component {
       const id = this.props.activeProject;
       let intervalId;
 
-      const styleProject = id => {
+      const styleProject = (id) => {
         if (id) {
           this.map.setFeatureState(
             {
-              source: "nj-tip",
-              sourceLayer: "njtip_point",
-              id
+              source: "nj-tip_points",
+              id,
             },
             {
-              active: true
+              active: true,
             }
           );
         } else {
           this.map.removeFeatureState({
-            source: "nj-tip",
-            sourceLayer: "njtip_point"
+            source: "nj-tip_points",
           });
         }
       };
@@ -383,18 +394,18 @@ class MapComponent extends Component {
       let points = this.map.getLayer("nj-tip-points");
 
       if (points && lines) {
-        ["nj-tip-points", "nj-tip-lines"].forEach(layer => {
+        ["nj-tip-points", "nj-tip-lines"].forEach((layer) => {
           this.map.setFilter(layer, [
             "all",
             this.state.catFilter,
-            this.state.keyFilter
+            this.state.keyFilter,
           ]);
         });
       }
     }
 
     return (
-      <div className="map no-print" ref={e => (this.tipMap = e)}>
+      <div className="map no-print" ref={(e) => (this.tipMap = e)}>
         <nav className="dropdown-nav">
           <div className="dropdown-layers">
             <button
@@ -413,7 +424,7 @@ class MapComponent extends Component {
                 "layer-menu " + (this.state.toggleLayerList ? "show" : "")
               }
             >
-              {Object.keys(this.state.dropdownLayers).map(layer => {
+              {Object.keys(this.state.dropdownLayers).map((layer) => {
                 return (
                   <p
                     key={layer}
@@ -461,21 +472,21 @@ class MapComponent extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     keywordProjects: state.getTIP.keyword,
     category: state.getTIP.category,
     markerFromTiles: state.connectTilesToMap.markerInfo,
     projectScope: state.getTIP.projectScope,
-    activeProject: state.getTIP.activeProject
+    activeProject: state.getTIP.activeProject,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    getTIPByKeywords: keywords => dispatch(getTIPByKeywords(keywords)),
-    getTIPByMapBounds: features => dispatch(getTIPByMapBounds(features)),
-    setProjectScope: projectScope => dispatch(setProjectScope(projectScope))
+    getTIPByKeywords: (keywords) => dispatch(getTIPByKeywords(keywords)),
+    getTIPByMapBounds: (features) => dispatch(getTIPByMapBounds(features)),
+    setProjectScope: (projectScope) => dispatch(setProjectScope(projectScope)),
   };
 };
 

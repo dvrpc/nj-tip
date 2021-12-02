@@ -8,10 +8,10 @@ export const layers = {
       ["Roadway Rehabilitation", "#511851"],
       ["Roadway New Capacity", "#9d1d20"],
       ["Intersection/Interchange Improvements", "#ffc10e"],
-      ["Other", "#5abf41"]
+      ["Other", "#5abf41"],
     ],
     full: "Transportation Improvement Project Categories",
-    sub: "FY20–FY23"
+    sub: "FY22–FY25",
   },
   IPD: {
     classifications: [
@@ -23,10 +23,34 @@ export const layers = {
       [21, "#1d91c0"],
       [24, "#225ea8"],
       [27, "#253494"],
-      [30, "#081d58"]
+      [30, "#081d58"],
     ],
     full: "Indicators of Potential Disadvantage",
-    sub: "Composite Score"
+    sub: "Composite Score",
+  },
+  RM: {
+    classifications: [
+      ["Well Above Average", "#253494"],
+      ["Above Average", "#2c7fb8"],
+      ["Average", "#41b6c4"],
+      ["Below Average", "#a1dab4"],
+      ["Well Below Average", "#ffffcc"],
+      ["No Data", "#ccc"],
+    ],
+    full: "Racial Minority",
+    sub: "Indicator of Potential Disadvantage",
+  },
+  LI: {
+    classifications: [
+      ["Well Above Average", "#253494"],
+      ["Above Average", "#2c7fb8"],
+      ["Average", "#41b6c4"],
+      ["Below Average", "#a1dab4"],
+      ["Well Below Average", "#ffffcc"],
+      ["No Data", "#ccc"],
+    ],
+    full: "Low Income",
+    sub: "Indicator of Potential Disadvantage",
   },
   CMP: {
     classifications: [
@@ -43,10 +67,10 @@ export const layers = {
       ["NJ 41, 45, 47, 55", "#91d3c8"],
       ["NJ 70", "#f4c0d9"],
       ["NJ 73", "#d9bedb"],
-      ["CR 571", "#f7cb7a"]
+      ["CR 571", "#f7cb7a"],
     ],
     full: "CMP Corridors",
-    sub: "New Jersey, 2015 (DVRPC)"
+    sub: "New Jersey, 2015 (DVRPC)",
   },
   LRP: {
     classifications: [
@@ -55,10 +79,10 @@ export const layers = {
       ["Suburban Center", "#0b6d32"],
       ["Town Center", "#729faa"],
       ["Rural Center", "#ed1c24"],
-      ["Planned Town Center", "#9d1d20"]
+      ["Planned Town Center", "#9d1d20"],
     ],
     full: "Planning Centers",
-    sub: "DVRPC Connections 2045 Long-Range Plan"
+    sub: "DVRPC Connections 2045 Long-Range Plan",
   },
   Freight: {
     classifications: [
@@ -66,10 +90,10 @@ export const layers = {
       ["Heavy Industrial", "#ef7e51"],
       ["Distribution and Logistics", "#ca4b66"],
       ["High Tech Manufacturing", "#883272"],
-      ["Local Manufacturing and Distribution", "#312867"]
+      ["Local Manufacturing and Distribution", "#312867"],
     ],
     full: "Freight Centers",
-    sub: "DVRPC Connections 2045 Long-Range Plan"
+    sub: "DVRPC Connections 2045 Long-Range Plan",
   },
   LU: {
     classifications: [
@@ -85,10 +109,10 @@ export const layers = {
       ["Undeveloped", "rgba(165,245,122, 0.5)"],
       ["Utility", "rgba(255,190,190, 0.5)"],
       ["Wooded", "rgba(76,230,0, 0.5)"],
-      ["Water", "rgba(0,197,255, 0.5)"]
+      ["Water", "rgba(0,197,255, 0.5)"],
     ],
     full: "Land Use",
-    sub: "DVRPC (2015)"
+    sub: "DVRPC (2015)",
   },
   Urban: {
     classifications: [
@@ -101,9 +125,9 @@ export const layers = {
       ["Trenton, NJ", "rgba(0, 115, 76, 0.5)"],
       ["Twin Rivers--Hightstown, NJ", "rgba(85, 255, 0, 0.5)"],
       ["Villas, NJ", "rgba(197, 96, 247, 0.5)"],
-      ["Vineland, NJ", "rgba(115, 0, 76, 0.5)"]
+      ["Vineland, NJ", "rgba(115, 0, 76, 0.5)"],
     ],
     full: "Urbanized Areas",
-    sub: "NJDOT (2017)"
-  }
+    sub: "NJDOT (2017)",
+  },
 };

@@ -13,16 +13,16 @@ class Comments extends Component {
       <div
         className="comments no-print"
         id="comments-anchor"
-        ref={el => {
+        ref={(el) => {
           this.comments = el;
         }}
       >
         <h2 style={{ color: `${this.props.headerColor}` }}>
-          Submit a comment on the Draft DVRPC FY2021 TIP for Pennsylvania
+          Submit a comment for {mpms ? `DB #${mpms}`: "the Draft DVRPC FY2022 TIP for New Jersey"}
         </h2>
         <form
           className="comments-form"
-          onSubmit={e => POSTComment(submit, mpms, e)}
+          onSubmit={(e) => POSTComment(submit, mpms, e)}
         >
           <textarea placeholder="Enter your public comment here" />
           <div className="input-fields">
@@ -61,7 +61,7 @@ class Comments extends Component {
             style={{
               background: this.props.colorScheme
                 ? this.props.colorScheme.darkest
-                : "#e5c942"
+                : "#f3ca40",
             }}
           />
         </form>
@@ -70,9 +70,9 @@ class Comments extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    submitComment: comment => dispatch(submitComment(comment))
+    submitComment: (comment) => dispatch(submitComment(comment)),
   };
 };
 export default connect(null, mapDispatchToProps)(Comments);

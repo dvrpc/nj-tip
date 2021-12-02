@@ -46,6 +46,12 @@ class Legend extends Component {
           <li className="legendLink" id="legendLink-IPD" key="legendLink-IPD">
             IPD
           </li>
+          <li className="legendLink" id="legendLink-RM" key="legendLink-RM">
+            Racial Minority
+          </li>
+          <li className="legendLink" id="legendLink-LI" key="legendLink-LI">
+            Low Income
+          </li>
           <li className="legendLink" id="legendLink-CMP" key="legendLink-CMP">
             CMP
           </li>

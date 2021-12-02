@@ -15,7 +15,7 @@ class Results extends Component {
       filtered: false,
       categoryToFilter: "",
       showList: true,
-      loading: true
+      loading: true,
     };
   }
 
@@ -27,12 +27,12 @@ class Results extends Component {
     if (category !== "All Categories") {
       this.setState({
         filtered: true,
-        categoryToFilter: category
+        categoryToFilter: category,
       });
     }
   }
 
-  showList = e => {
+  showList = (e) => {
     // update active-toggle class
     if (!e.target.classList.contains("active-toggle")) {
       e.target.classList.toggle("active-toggle");
@@ -43,7 +43,7 @@ class Results extends Component {
     this.setState({ showList: true });
   };
 
-  showTiles = e => {
+  showTiles = (e) => {
     // update active-toggle class
     if (!e.target.classList.contains("active-toggle")) {
       e.target.classList.toggle("active-toggle");
@@ -54,7 +54,7 @@ class Results extends Component {
     this.setState({ showList: false });
   };
 
-  filterByCategory = e => {
+  filterByCategory = (e) => {
     // get a handle on the selected option
     const selector = this.categorySelector;
     const categoryToFilter = selector.options[selector.selectedIndex].text;
@@ -65,7 +65,7 @@ class Results extends Component {
     } else {
       this.setState({
         filtered: true,
-        categoryToFilter
+        categoryToFilter,
       });
     }
     this.props.setFilter(categoryToFilter);
@@ -78,11 +78,10 @@ class Results extends Component {
 
   render() {
     let projects = this.props.projects ? this.props.projects.features : null;
-    console.log(projects);
     // determine whether to display all projects, or filtered projects
     if (this.state.filtered && projects) {
       projects = projects.filter(
-        project => project.TYPE_DESC === this.state.categoryToFilter
+        (project) => project.type_desc === this.state.categoryToFilter
       );
     }
 
@@ -92,8 +91,8 @@ class Results extends Component {
           <select
             id="selectedCategory"
             name="category"
-            onChange={e => this.filterByCategory(e)}
-            ref={e => (this.categorySelector = e)}
+            onChange={(e) => this.filterByCategory(e)}
+            ref={(e) => (this.categorySelector = e)}
             value={this.props.category}
           >
             <option value="All Categories">All Categories</option>
@@ -155,12 +154,12 @@ class Results extends Component {
         </div>
 
         {this.state.loading ? (
-          <div id="results-loading" ref={el => (this.loadingProjects = el)}>
+          <div id="results-loading" ref={(el) => (this.loadingProjects = el)}>
             LOADING...
           </div>
         ) : projects ? (
           this.state.showList ? (
-            projects.map(feature => (
+            projects.map((feature) => (
               <ListItem
                 data={feature.properties || feature}
                 key={feature.mapbox_id}
@@ -169,7 +168,7 @@ class Results extends Component {
             ))
           ) : (
             <div id="tiles-wrapper">
-              {projects.map(feature => (
+              {projects.map((feature) => (
                 <Tile
                   data={feature.properties || feature}
                   key={feature.mapbox_id}
@@ -180,8 +179,8 @@ class Results extends Component {
         ) : (
           <p id="no-results">
             Sorry! No projects matched your search criteria. Please try again or
-            contact Rick Murphy at rmurphy@dvrpc.org. <br />
-            <br /> Thank you for using the DVRPC FY2020 TIP for NJ.
+            contact Kwan Hui at{" "}
+            <a href="mailto:khui@dvrpc.org">khui@dvrpc.org</a>.
           </p>
         )}
       </div>
@@ -189,16 +188,16 @@ class Results extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     projects: state.getTIP.projects,
-    category: state.getTIP.category
+    category: state.getTIP.category,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    setFilter: filter => dispatch(setFilter(filter))
+    setFilter: (filter) => dispatch(setFilter(filter)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Results);
