@@ -213,6 +213,9 @@ class Homepage extends Component {
                     Chapter 8: Project Listings by Program
                   </a>
                 </li>
+                <li className="list-group-item">
+                  <a href="/TIP/NJ/pdf/roadmap.pdf">Sample Project Listing</a>
+                </li>
               </ul>
 
               <h3>Helpful Project Indices:</h3>
