@@ -46,17 +46,17 @@
       rel="stylesheet"
     />
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9v9tvNfI7DgJKkf-lqbH4IXqW5OXi64c&libraries=places"></script>
+    
+    <!-- Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-9825778-1"></script>
     <script>
-      window.ga =
-        window.ga ||
-        function () {
-          (ga.q = ga.q || []).push(arguments);
-        };
-      ga.l = +new Date();
-      ga("create", "UA-9825778-1", "auto");
-      ga("send", "pageview");
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-9825778-1');
     </script>
-    <script async src="//www.google-analytics.com/ga.js"></script>
   </head>
 
   <body>
