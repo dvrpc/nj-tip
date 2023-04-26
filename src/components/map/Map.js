@@ -156,7 +156,7 @@ class MapComponent extends Component {
       default:
         const projectScope = {
           coords: null,
-          id: value,
+          id: value.toUpperCase(),
           zoom: 18,
         };
 
@@ -329,7 +329,7 @@ class MapComponent extends Component {
       const scope = this.props.projectScope;
       //const id = parseInt(scope.id);
       //let groupProject = groupProjects.includes(id);
-
+      console.log(scope);
       // zoom to project or full extent for group projects
       // if (!groupProject) {
       this.map.flyTo({
