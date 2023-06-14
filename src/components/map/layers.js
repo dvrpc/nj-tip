@@ -254,7 +254,7 @@ const RacialMinority = {
   source: {
     id: "RacialMinority",
     type: "geojson",
-    data: "https://arcgis.dvrpc.org/portal/rest/services/Demographics/IPD_2019/FeatureServer/0/query?where=STATE_FIPS%3D%2734%27&returnGeometry=true&outFields=IPD_Score,rm_score,li_score&geometryPrecision=4&outSR=4326&f=geojson",
+    data: "https://arcgis.dvrpc.org/portal/rest/services/Demographics/IPD_2021/FeatureServer/0/query?where=geoid20+like+%2734%25%27&outFields=RM_SCORE&outSR=4326&f=geojson",
   },
   layout: {
     id: "Racial Minority",
@@ -287,7 +287,7 @@ const LowIncome = {
   source: {
     id: "LowIncome",
     type: "geojson",
-    data: "https://arcgis.dvrpc.org/portal/rest/services/Demographics/IPD_2019/FeatureServer/0/query?where=STATE_FIPS%3D%2734%27&returnGeometry=true&outFields=IPD_Score,rm_score,li_score&geometryPrecision=4&outSR=4326&f=geojson",
+    data: "https://arcgis.dvrpc.org/portal/rest/services/Demographics/IPD_2021/FeatureServer/0/query?where=geoid20+like+%2734%25%27&outFields=LI_SCORE&outSR=4326&f=geojson",
   },
   layout: {
     id: "Low Income",
